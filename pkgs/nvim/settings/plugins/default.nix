@@ -5,6 +5,7 @@
     ./bufferline.nix
     ./cmp.nix
     ./copilot.nix
+    ./etc.nix
     ./git.nix
     ./harpoon.nix
     ./lualine.nix

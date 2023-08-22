@@ -44,7 +44,7 @@
 
   users.users.lemi = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" ];
+    extraGroups = [ "wheel" "video" "docker" ];
     shell = with pkgs; zsh;
     packages = with pkgs; [
       brave
@@ -56,9 +56,9 @@
   };
   environment.systemPackages = with pkgs; [
     alacritty
-    rustup
     font-manager
     brave
+    docker-compose
     winbox
     zsh
     zimfw
@@ -75,17 +75,19 @@
     spotify
     discord
     ripgrep
-    lua-language-server
     hyprpicker
     gcc_multi
     rnix-lsp
     wofi
     waybar
     git
-    nodejs
-    python3
     curl
     wget
+    rustup
+    nodejs
+    php
+    go
+    python3
   ];
   programs = {
     hyprland.enable = true;
@@ -116,6 +118,14 @@
     spotifyd = {
       enable = true;
     };
+  };
+
+  virtualisation = {
+    docker = {
+      enable = true;
+      enableOnBoot = true;
+    };
+
   };
   system.stateVersion = "23.05"; # Did you read the comment?
 }

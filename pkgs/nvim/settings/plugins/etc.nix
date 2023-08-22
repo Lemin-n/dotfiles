@@ -1,7 +1,6 @@
 {
   # https://github.com/junegunn/goyo.vim
   # https://nix-community.github.io/nixvim/plugins/goyo.html
-  plugins.goyo.enable = true;
 
   # https://github.com/smjonas/inc-rename.nvim
   # https://nix-community.github.io/nixvim/plugins/inc-rename.html
@@ -13,11 +12,17 @@
 
   # https://github.com/echasnovski/mini.nvim
   # https://nix-community.github.io/nixvim/plugins/mini.html
-  plugins.mini.enable = true;
+  plugins.mini = {
+    enable = true;
+    modules = {
+      animate = { };
+    };
+  };
 
   # https://github.com/jakewvincent/mkdnflow.nvim
   # https://nix-community.github.io/nixvim/plugins/mkdnflow/index.html
   plugins.mkdnflow.enable = true;
+
 
   # https://github.com/danymat/neogen
   # https://nix-community.github.io/nixvim/plugins/neogen/index.html
@@ -57,14 +62,10 @@
 
   # https://github.com/gelguy/wilder.nvim
   # https://nix-community.github.io/nixvim/plugins/wilder-nvim.html
-  plugins.wilder-nvim.enable = true;
-
-  # https://nix-community.github.io/nixvim/plugins/nix.html
-  plugins.nix.enable = true;
-
-  # https://github.com/ziglang/zig.vim
-  # https://nix-community.github.io/nixvim/plugins/zig.html
-  plugins.zig.enable = true;
+  plugins.wilder-nvim = {
+    enable = true;
+    enableCmdlineEnter = true;
+  };
 
 
 }
