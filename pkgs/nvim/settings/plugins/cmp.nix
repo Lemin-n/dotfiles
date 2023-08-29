@@ -25,7 +25,10 @@
 
   # https://github.com/zbirenbaum/copilot-cmp
   # https://nix-community.github.io/nixvim/plugins/copilot-cmp.html
-  plugins.copilot-cmp.enable = true;
+  #plugins.copilot-cmp = {
+  #  enable = true;
+  #  fixPairs = true;
+  #};
 
   # https://nix-community.github.io/nixvim/plugins/cmp-path.html
   # https://github.com/hrsh7th/cmp-path
@@ -51,10 +54,10 @@
   # https://nix-community.github.io/nixvim/plugins/nvim-cmp/index.html
   plugins.nvim-cmp = {
     enable = true;
+    autoEnableSources = true;
     completion = {
-      autocomplete = [ "TextChanged" ];
-      completeopt = "menu,noinsert,noselect";
-      keywordLength = 4;
+      completeopt = "menu,menuone,noselect";
+      keywordLength = 2;
     };
     mapping =
       {
@@ -68,6 +71,14 @@
         "<C-e>" = "cmp.mapping.close()";
         "<CR>" = "cmp.mapping.confirm ({ behavior = cmp.ConfirmBehavior.Insert, select = true })";
       };
+    snippet.expand = {
+      __raw = ''
+        function(args)
+          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end
+      '';
+
+    };
     sources = [
       {
         name = "path";
@@ -81,10 +92,11 @@
         name = "vsnip";
         priority = 10;
       }
-      #{
-      #  name = "copilot.lua";
-      #  group_index = 11;
-      #}
+      {
+        name = "copilot";
+        priority = 13;
+        groupIndex = 1;
+      }
       {
         name = "buffer";
         keywordLength = 2;

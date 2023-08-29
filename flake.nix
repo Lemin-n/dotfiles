@@ -1,13 +1,14 @@
 {
   description = "Nixzen configuration";
-
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
       imports = [
         ./hosts
-        ./pkgs
+        #./modules
+ #       ./pkgs
+        #./home
       ];
 
       perSystem = { config, pkgs, ... }: {
@@ -20,6 +21,7 @@
         formatter = pkgs.alejandra;
       };
     };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-23.05";
     nixvim.url = "github:nix-community/nixvim";

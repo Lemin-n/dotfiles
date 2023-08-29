@@ -5,8 +5,4 @@
     ./config
     ./plugins
   ];
-  extraPlugins = with pkgs.vimPlugins; [
-    limelight-vim
-    goyo-vim
-  ];
 }

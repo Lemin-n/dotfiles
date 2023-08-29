@@ -1,0 +1,5 @@
+{
+  plugins.packer = {
+    enable = true;
+  };
+}

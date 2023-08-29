@@ -5,5 +5,4 @@
   perSystem = { config, inputs, pkgs, systems, ... }: {
     config.packages.neovim = config.packages.nixvim;
   };
-
 }

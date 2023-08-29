@@ -12,12 +12,21 @@
 
   # https://github.com/echasnovski/mini.nvim
   # https://nix-community.github.io/nixvim/plugins/mini.html
-  plugins.mini = {
-    enable = true;
-    modules = {
-      animate = { };
-    };
-  };
+  #plugins.mini = {
+  #  enable = true;
+  #  modules = {
+  #    animate = {
+  #      resize = {
+  #        enable =  false;};
+  #      window = {
+  #        enable =  false;};
+  #      cursor = {
+  #        enable = true;
+  #        timing = 50;
+  #      };
+  #    };
+  #  };
+  #};
 
   # https://github.com/jakewvincent/mkdnflow.nvim
   # https://nix-community.github.io/nixvim/plugins/mkdnflow/index.html

@@ -5,39 +5,39 @@ with utils;
 {
   config = {
     maps = {
-      normal."<leader>q" =
+      normal."<leader>lq" =
         keymap {
           binding = ":lua vim.lsp.buf.code_binding()";
         };
-      normal."<leader>d" =
+      normal."<leader>ld" =
         keymap {
           binding = ":lua vim.lsp.buf.definition()";
         };
-      normal."<leader>s" = keymap {
+      normal."<leader>ls" = keymap {
         binding = ":lua vim.lsp.buf.hover()";
       };
-      normal."<leader>i" = keymap {
+      normal."<leader>li" = keymap {
         binding = ":lua vim.lsp.buf.implementation()";
       };
-      normal."<leader>sh" = keymap {
+      normal."<leader>lh" = keymap {
         binding = ":lua vim.lsp.buf.signature_help()";
       };
-      normal."<leader>td" = keymap {
+      normal."<leader>lt" = keymap {
         binding = ":lua vim.lsp.buf.type_definition()";
       };
-      normal."<leader>r" = keymap {
+      normal."<leader>lr" = keymap {
         binding = ":lua vim.lsp.buf.references()";
       };
-      normal."<leader>ds" = keymap {
+      normal."<leader>lds" = keymap {
         binding = ":lua vim.lsp.buf.document_symbol()";
       };
-      normal."<leader>ws" = keymap {
+      normal."<leader>lw" = keymap {
         binding = ":lua vim.lsp.buf.workspace_symbol()";
       };
-      normal."<leader>dn" = keymap {
+      normal."<leader>bn" = keymap {
         binding = ":lua vim.lsp.buf.goto_next()";
       };
-      normal."<leader>dp" = keymap {
+      normal."<leader>bb" = keymap {
         binding = ":lua vim.lsp.buf.goto_prev()";
       };
       normal."<leader>th" = keymap {
@@ -46,7 +46,7 @@ with utils;
       normal."<leader>ts" = keymap {
         binding = ":botright vnew <Bar> :terminal";
       };
-      normal."<leader>g" = keymap {
+      normal."<leader>tg" = keymap {
         binding = ":lua require('telescope.builtin').live_grep()";
       };
     };

@@ -11,6 +11,7 @@
     ./lualine.nix
     ./markdown-preview.nix
     ./nvim-tree.nix
+    ./packer.nix
     ./presence.nix
     ./telescope.nix
     ./lsp

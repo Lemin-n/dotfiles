@@ -1,6 +1,6 @@
 { inputs, withSystem, ... }: {
   flake.nixosConfigurations = withSystem "x86_64-linux"
-    ({ system, config, ... }:
+    ({ system, config, self, ... }:
       let
         systemInputs = { _module.args = { inherit inputs; }; };
         inherit (inputs.nixpkgs.lib) nixosSystem;
@@ -11,8 +11,7 @@
             ;
           modules = [
             ./nixzen
-	{environment.systemPackages = [config.packages.neovim];}
-];
+          ];
           specialArgs = {
             inherit inputs;
           };

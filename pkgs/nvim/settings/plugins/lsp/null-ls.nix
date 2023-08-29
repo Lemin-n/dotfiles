@@ -18,7 +18,6 @@
       		})
       	end
       end
-
     '';
     sources.formatting.stylua.enable = true;
     sources.formatting.prettier = {

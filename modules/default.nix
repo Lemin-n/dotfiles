@@ -1,9 +1,9 @@
-{ self, inputs, ... }:
+{ self, inputs,systems,flake, ... }:
 {
-  systems = [ "x86_64-linux" ];
-
-
-  flake.nixosModules = {
+	
+  perSystem = { config, inputs, pkgs, systems, ... }: {
+  config.nixosConfigurations = {
     network = import ./network.nix;
-  };
+    programs = import ./programs.nix;
+  };};
 }

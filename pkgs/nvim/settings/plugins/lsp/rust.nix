@@ -1,3 +1,4 @@
+{libs, pkgs, ...}:
 {
   plugins.rust-tools.enable = true;
   plugins.crates-nvim = {
