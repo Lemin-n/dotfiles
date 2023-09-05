@@ -1,2 +1,2 @@
-{ inputs, pkgs, self, ... }:
+{ inputs, pkgs, config, ... }:
 { }

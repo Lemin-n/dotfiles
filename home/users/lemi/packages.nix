@@ -1,0 +1,42 @@
+{ pkgs, inputs, ... }:
+{
+  home.packages = with pkgs;[
+    fenix.complete.toolchain
+    cargo-leptos
+    cargo-make
+    brave
+    telegram-desktop
+    discord
+    blueman
+    hyprpaper
+    hyprpicker
+    wofi
+    waybar
+    neofetch
+    zsh
+    zimfw
+    zellij
+    trunk
+    nodejs
+    seatd
+    php
+    go
+    python3
+    deno
+    rnix-lsp
+    lua-language-server
+    taplo
+    zls
+    stylua
+    nodePackages.tailwindcss
+    nodePackages.prettier
+    nodePackages."@tailwindcss/language-server"
+    nodePackages.vscode-html-languageserver-bin
+    nodePackages.vscode-css-languageserver-bin
+    nodePackages.vscode-json-languageserver
+    nodePackages.intelephense
+    nodePackages.pyright
+    nodePackages.typescript-language-server
+    nodePackages.yaml-language-server
+  ];
+}

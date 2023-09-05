@@ -1,8 +1,10 @@
-{ inputs, systems, ... }:
+{ inputs, ... }:
 {
-  imports = [ ./nvim ];
-  #specialArgs = {inherit systems;};
-  perSystem = { config, inputs, pkgs, systems, ... }: {
-    config.packages.neovim = config.packages.nixvim;
+  systems = [ "x86_64-linux" ];
+  perSystem = { config, inputs, pkgs, ... }: {
+    config.packages = {
+      xwaylandvideobridge =
+        pkgs.libsForQt5.callPackage ./xwaylandvideobridge { };
+    };
   };
 }

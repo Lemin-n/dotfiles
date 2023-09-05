@@ -1,9 +1,6 @@
-{ self, inputs,systems,flake, ... }:
+{ config, inputs, systems, pkgs, ... }:
 {
-	
-  perSystem = { config, inputs, pkgs, systems, ... }: {
-  config.nixosConfigurations = {
-    network = import ./network.nix;
-    programs = import ./programs.nix;
-  };};
+  imports = [
+  ./services.nix 
+  ];
 }
