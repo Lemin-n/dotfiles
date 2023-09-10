@@ -1,6 +1,5 @@
 { vimPlugins, ... }:
-with vimPlugins;
-[
+with vimPlugins; [
   nvim-ts-context-commentstring
   cmp-treesitter
   nvim-notify
@@ -9,11 +8,11 @@ with vimPlugins;
   cmp-git
   cmp-path
   cmp-emoji
-  cmp-vsnip
+  luasnip
+  cmp_luasnip
   copilot-cmp
   cmp-nvim-lua
   cmp-nvim-lsp
-  vim-vsnip-integ
   lsp-format-nvim
   lspsaga-nvim
   lspkind-nvim
@@ -42,4 +41,3 @@ with vimPlugins;
   (import ./git.nix { inherit vimPlugins; })
   (import ./surround.nix { inherit vimPlugins; })
 ]
-

@@ -1,6 +1,21 @@
-{ config, inputs, systems, pkgs, ... }:
-{
+{ config
+, inputs
+, systems
+, pkgs
+, ...
+}: {
   imports = [
-  ./services.nix 
+    ./boot.nix
+    ./environment.nix
+    ./fonts.nix
+    ./hardware.nix
+    ./i18n.nix
+    ./network.nix
+    ./programs.nix
+    ./services.nix
+    ./sound.nix
+    ./time.nix
+    ./virtualisation.nix
+    ./xdg.nix
   ];
 }

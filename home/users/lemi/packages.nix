@@ -1,21 +1,25 @@
-{ pkgs, inputs, ... }:
-{
-  home.packages = with pkgs;[
+{ pkgs
+, inputs
+, ...
+}: {
+  home.packages = with pkgs; [
     fenix.complete.toolchain
     cargo-leptos
     cargo-make
     brave
     telegram-desktop
     discord
+    webcord
     blueman
     hyprpaper
     hyprpicker
     wofi
     waybar
     neofetch
-    zsh
     zimfw
+    felix-fm
     zellij
+    alejandra
     trunk
     nodejs
     seatd
@@ -28,6 +32,8 @@
     taplo
     zls
     stylua
+    onlyoffice-bin
+    php82Packages.composer
     nodePackages.tailwindcss
     nodePackages.prettier
     nodePackages."@tailwindcss/language-server"

@@ -1,15 +1,28 @@
-
-{
-  pkgs,
-  self',
-  ...
-}:
-
-{
-services = {
+{ pkgs
+, self'
+, ...
+}: {
+  services = {
     # provide location
     geoclue2.enable = true;
-
+    printing = {
+      enable = true;
+    };
+    spotifyd = {
+      enable = true;
+    };
+    xserver = {
+      layout = "
+          us ";
+      xkbVariant = "
+          altgr-intl ";
+    };
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = true;
+      };
+    };
     gnome.gnome-keyring.enable = true;
     pipewire = {
       enable = true;
@@ -26,9 +39,8 @@ services = {
     # upower.enable = true;
 
     # needed for GNOME services outside of GNOME Desktop
-    dbus.packages = [pkgs.gcr];
+    dbus.packages = [ pkgs.gcr ];
 
     ratbagd.enable = true;
   };
-
 }

@@ -12,6 +12,7 @@ in
     python3
     deno
     rnix-lsp
+    alejandra
     lua-language-server
     taplo
     ripgrep

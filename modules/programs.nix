@@ -1,19 +1,16 @@
-{
-  hyprland.enable = true;
-  zsh = {
-    enable = true;
-    shellAliases = {
-      nmr = "nmcli device wifi connect Ruscitti password UnaClave";
-    };
-    autosuggestions = {
+{ ... }: {
+  programs = {
+    hyprland = {
       enable = true;
     };
-    loginShellInit = "Hyprland";
-  };
-  light = {
-    enable = true;
-  };
-  starship = {
-    enable = true;
+    zsh = {
+      enable = true;
+    };
+    light = {
+      enable = true;
+    };
+    starship = {
+      enable = true;
+    };
   };
 }
