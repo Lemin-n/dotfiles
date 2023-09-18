@@ -9,7 +9,16 @@
       enable = true;
     };
     firewall = {
-      allowedTCPPorts = [ 5000 5173 5174 ];
+      allowedTCPPorts = [
+        # Markdown Preview
+        9808
+        # Dufs default port
+        5000
+        # First Vite
+        5173
+        # Second Vite
+        5174
+      ];
     };
   };
 }
