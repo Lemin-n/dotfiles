@@ -60,10 +60,10 @@ in
        keymap("n", "<leader>ts", ":botright vnew <Bar> :terminal")
        keymap("n", "<leader>tg", ":lua require('telescope.builtin').live_grep()")
        -- Markdown preview options
-       vim.g.mkdp_auto_start = 1
-       vim.g.mkdp_open_to_the_world = 1;
+       vim.g.mkdp_open_to_the_world = 1
        vim.g.mkdp_open_ip = "192.168.0.194"
-       vim.g.mkdp_port = "9808"
+       vim.g.mkdp_echo_preview_url = 1
+       vim.g.mkdp_port = 9808
        vim.g.mkdp_theme = "dark"
   '';
 }
