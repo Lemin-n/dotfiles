@@ -72,6 +72,7 @@
     "$mainMod" = "SUPER";
     "$escMod" = "code:9";
     "$minus" = "code:20";
+    "$printScreen" = "code:107";
     "$equal" = "code:21";
     # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
     bind = [
@@ -106,6 +107,8 @@
       "$mainMod CTRL, 7, movetoworkspace, 7"
       "$mainMod CTRL, 8, movetoworkspace, 8"
       "$mainMod CTRL, 9, movetoworkspace, 9"
+      "$mainMod ,$printScreen ,exec, ~/screensht window"
+      "$mainMod ALT_L,$printScreen ,exec, ~/screensht fullscreen"
 
       # Scroll through existing workspaces with mainMod + scroll
       "$mainMod, mouse_down, workspace, e+1"
@@ -122,7 +125,3 @@
     ];
   };
 }
-
-
-
-
