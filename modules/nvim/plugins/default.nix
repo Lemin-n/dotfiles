@@ -16,6 +16,7 @@ with vimPlugins; [
   lsp-format-nvim
   lspsaga-nvim
   lspkind-nvim
+  markdown-preview-nvim
   nvim-lspconfig
   crates-nvim
   plenary-nvim

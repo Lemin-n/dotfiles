@@ -8,8 +8,7 @@ with vimPlugins; {
                               local cmp = require("cmp")
                               local lspkind = require('lspkind')
                               require("copilot_cmp").setup({
-    	        event = { "InsertEnter", "LspAttach" },
-    			fix_pairs = true,
+    			fix_pairs = false,
     	      })
                               lsp_zero.preset("recommended")
                               local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -51,6 +50,7 @@ with vimPlugins; {
                               			cmp.config.compare.exact,
                               			cmp.config.compare.kind,
                               			cmp.config.compare.recently_used,
+    		require("copilot_cmp.comparators").prioritize,
                               		},
                               	},
                               	snippet = {
@@ -65,11 +65,10 @@ with vimPlugins; {
                               		{ name = "emoji", priority = 5, },
                               		{ name = "npm", priority = 5, },
                               		{ name = "nvim_lua", priority = 5, },
-                              		{ name = "treesitter", priority = 5, },
                               		{ name = "buffer", keyword_length = 2, priority = 5 },
                               		{ name = "nvim_lsp", priority = 1, },
                               	    	{ name = 'conventionalcommits', priority = 1, },
-                              		{ name = "copilot", priority = 10, },
+                              		{ name = "copilot", priority = -100, },
                               		{ name = "crates", priority = 4, },
                               	},
                               	formatting = {
