@@ -107,8 +107,8 @@
       "$mainMod CTRL, 7, movetoworkspace, 7"
       "$mainMod CTRL, 8, movetoworkspace, 8"
       "$mainMod CTRL, 9, movetoworkspace, 9"
-      "$mainMod ,$printScreen ,exec, ~/screensht window"
-      "$mainMod ALT_L,$printScreen ,exec, ~/screensht fullscreen"
+      "$mainMod ,$printScreen ,exec, ~/.config/script/screenshot window"
+      "$mainMod ALT_L,$printScreen ,exec, ~/.config/script/screenshot fullscreen"
 
       # Scroll through existing workspaces with mainMod + scroll
       "$mainMod, mouse_down, workspace, e+1"

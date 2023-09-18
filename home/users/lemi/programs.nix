@@ -33,5 +33,8 @@
 
     wallpaper=,~/.config/wallpapers/japan-temple.jpg
   '';
-  home.file.".config/script/screenshots".source = "./script/screenshots";
+  home.file.".config/script/screenshot" = {
+    executable = true;
+    source = ../../../script/screenshot;
+  };
 }
