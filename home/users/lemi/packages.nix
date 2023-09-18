@@ -9,6 +9,10 @@
     brave
     telegram-desktop
     discord
+    grim
+    jq
+    gftp
+    image-roll
     webcord
     blueman
     hyprpaper

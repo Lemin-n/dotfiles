@@ -33,4 +33,5 @@
 
     wallpaper=,~/.config/wallpapers/japan-temple.jpg
   '';
+  home.file.".config/script/screenshots".source = "./script/screenshots";
 }
