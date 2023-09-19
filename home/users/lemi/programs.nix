@@ -112,4 +112,9 @@
   home.file.".config/alacritty/window.yml" = {
     source = ../../../alacritty/window.yml;
   };
+  home.file."screenshots/README.md" = {
+    text = ''
+      # Screenshots folder for hyprline shortcuts
+    '';
+  };
 }
