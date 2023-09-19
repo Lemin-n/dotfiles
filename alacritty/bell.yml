@@ -1,0 +1,21 @@
+#bell:
+  # Values for `animation`:
+  #   - Ease
+  #   - EaseOut
+  #   - EaseOutSine
+  #   - EaseOutQuad
+  #   - EaseOutCubic
+  #   - EaseOutQuart
+  #   - EaseOutQuint
+  #   - EaseOutExpo
+  #   - EaseOutCirc
+  #   - Linear
+  #animation: EaseOutExpo
+
+  #duration: 0
+  #color: '#ffffff'
+
+  #   command:
+  #     program: notify-send
+  #     args: ["Hello, World!"]
+  #command: None

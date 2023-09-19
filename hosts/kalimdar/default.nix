@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ../../modules
     ../../home
+    ../../modules/users/lemi.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

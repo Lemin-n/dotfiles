@@ -37,4 +37,79 @@
     executable = true;
     source = ../../../script/screenshot;
   };
+  home.file.".config/wallpapers/fu-hua.png" = {
+    source = ../../../wallpapers/fu-hua.png;
+  };
+  home.file.".config/wallpapers/fujisan.jpg" = {
+    source = ../../../wallpapers/fujisan.jpg;
+  };
+  home.file.".config/wallpapers/japan-temple.jpg" = {
+    source = ../../../wallpapers/japan-temple.jpg;
+  };
+  home.file.".config/wallpapers/rengoku.jpg" = {
+    source = ../../../wallpapers/rengoku.jpg;
+  };
+  home.file.".config/wallpapers/sci-fi-japan.jpg" = {
+    source = ../../../wallpapers/sci-fi-japan.jpg;
+  };
+  home.file.".config/wallpapers/tokito.jpeg" = {
+    source = ../../../wallpapers/tokito.jpeg;
+  };
+  home.file.".config/wallpapers/yokohama-carrousel.jpg" = {
+    source = ../../../wallpapers/yokohama-carrousel.jpg;
+  };
+  home.file.".config/wallpapers/yokohama.jpg" = {
+    source = ../../../wallpapers/yokohama.jpg;
+  };
+  home.file.".config/waybar/config" = {
+    source = ../../../waybar/config.json;
+  };
+  home.file.".config/waybar/style.css" = {
+    source = ../../../waybar/style.css;
+  };
+  home.file.".config/waybar/modules/battery.css" = {
+    source = ../../../waybar/modules/battery.css;
+  };
+  home.file.".config/waybar/modules/clock.css" = {
+    source = ../../../waybar/modules/clock.css;
+  };
+  home.file.".config/waybar/modules/style.css" = {
+    source = ../../../waybar/modules/style.css;
+  };
+  home.file.".config/waybar/modules/window.css" = {
+    source = ../../../waybar/modules/window.css;
+  };
+  home.file.".config/waybar/modules/workspaces.css" = {
+    source = ../../../waybar/modules/workspaces.css;
+  };
+  home.file.".config/alacritty/alacritty.yml" = {
+    source = ../../../alacritty/alacritty.yml;
+  };
+  home.file.".config/alacritty/bell.yml" = {
+    source = ../../../alacritty/bell.yml;
+  };
+  home.file.".config/alacritty/bindings.yml" = {
+    source = ../../../alacritty/bindings.yml;
+  };
+  home.file.".config/alacritty/color.yml" = {
+    source = ../../../alacritty/color.yml;
+  };
+  home.file.".config/alacritty/cursor.yml" = {
+    source = ../../../alacritty/cursor.yml;
+  };
+  home.file.".config/alacritty/font.yml" = {
+    source = ../../../alacritty/font.yml;
+  };
+  home.file.".config/alacritty/hints.yml" = {
+    source = ../../../alacritty/hints.yml;
+  };
+  home.file.".config/alacritty/modules.yml" = {
+    source = ../../../alacritty/modules.yml;
+  };
+  home.file.".config/alacritty/mouse.yml" = {
+    source = ../../../alacritty/mouse.yml;
+  };
+  home.file.".config/alacritty/window.yml" = {
+    source = ../../../alacritty/window.yml;
+  };
 }

@@ -1,0 +1,55 @@
+import:
+  - ~/.config/alacritty/bell.yml
+  - ~/.config/alacritty/bindings.yml
+  - ~/.config/alacritty/color.yml
+  - ~/.config/alacritty/cursor.yml
+  - ~/.config/alacritty/font.yml
+  - ~/.config/alacritty/hints.yml
+  - ~/.config/alacritty/mouse.yml
+  - ~/.config/alacritty/window.yml
+
+env:
+  TERM: "xterm-256color"
+
+selection:
+  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  #
+  save_to_clipboard: true
+
+shell:
+  program: /home/lemi/.nix-profile/bin/zsh
+  args:
+    - "--login"
+
+#working_directory: ~
+
+ipc_socket: true
+live_config_reload: true
+draw_bold_text_with_bright_colors: true
+#debug:
+# Display the time it takes to redraw each frame.
+#render_timer: false
+
+# Keep the log file after quitting Alacritty.
+#persistent_logging: false
+
+# Values for `log_level`:
+#   - Off
+#   - Error
+#   - Warn
+#   - Info
+#   - Debug
+#   - Trace
+#log_level: Warn
+
+# Renderer override.
+#   - glsl3
+#   - gles2
+#   - gles2_pure
+#renderer: None
+
+# Print all received window events.
+#print_events: false
+
+# Highlight window damage information.
+#highlight_damage: false
