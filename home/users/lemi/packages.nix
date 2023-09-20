@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     fenix.complete.toolchain
     cargo-leptos
+    leptosfmt
     cargo-make
     brave
     telegram-desktop

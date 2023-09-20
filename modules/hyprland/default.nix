@@ -11,6 +11,9 @@
       kb_options = "";
       kb_rules = "";
       follow_mouse = 1;
+      numlock_by_default = true;
+      scroll_method = "on_button_down";
+      scroll_button = 274;
       touchpad = {
         natural_scroll = true;
       };

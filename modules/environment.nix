@@ -1,4 +1,9 @@
 { pkgs, ... }: {
+  environment.sessionVariables = rec {
+    PATH = [
+      "$HOME/.cargo/bin/"
+    ];
+  };
   environment.systemPackages = with pkgs; [
     git
     font-manager
