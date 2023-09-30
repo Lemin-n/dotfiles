@@ -82,36 +82,6 @@
   home.file.".config/waybar/modules/workspaces.css" = {
     source = ../../../waybar/modules/workspaces.css;
   };
-  home.file.".config/alacritty/alacritty.yml" = {
-    source = ../../../alacritty/alacritty.yml;
-  };
-  home.file.".config/alacritty/bell.yml" = {
-    source = ../../../alacritty/bell.yml;
-  };
-  home.file.".config/alacritty/bindings.yml" = {
-    source = ../../../alacritty/bindings.yml;
-  };
-  home.file.".config/alacritty/color.yml" = {
-    source = ../../../alacritty/color.yml;
-  };
-  home.file.".config/alacritty/cursor.yml" = {
-    source = ../../../alacritty/cursor.yml;
-  };
-  home.file.".config/alacritty/font.yml" = {
-    source = ../../../alacritty/font.yml;
-  };
-  home.file.".config/alacritty/hints.yml" = {
-    source = ../../../alacritty/hints.yml;
-  };
-  home.file.".config/alacritty/modules.yml" = {
-    source = ../../../alacritty/modules.yml;
-  };
-  home.file.".config/alacritty/mouse.yml" = {
-    source = ../../../alacritty/mouse.yml;
-  };
-  home.file.".config/alacritty/window.yml" = {
-    source = ../../../alacritty/window.yml;
-  };
   home.file."screenshots/README.md" = {
     text = ''
       # Screenshots folder for hyprline shortcuts
