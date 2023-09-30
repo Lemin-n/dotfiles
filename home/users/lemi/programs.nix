@@ -9,6 +9,7 @@
     exa = import ../../../modules/exa { inherit pkgs; };
     git = import ../../../modules/git { inherit pkgs; };
     gitui = import ../../../modules/gitui { inherit pkgs; };
+    htop = import ../../../modules/htop { inherit pkgs; };
     starship = {
       enable = true;
     };
