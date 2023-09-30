@@ -1,97 +1,99 @@
 { pkgs, ... }: {
   enable = true;
   settings = {
-    "layer" = "bottom";
-    "position" = "top";
-    "margin-top" = 5;
-    "height" = 20;
-    "modules-left" = [ "wlr/workspaces" ];
-    "modules-center" = [ "hyprland/window" ];
-    "modules-right" = [
-      "tray"
-      "backlight"
-      "pulseaudio"
-      "network"
-      "idle_inhibitor"
-      "battery"
-      "clock"
-    ];
-    "wlr/workspaces" = {
-      "format" = "{icon}";
-      "on-click" = "activate";
-      "format-icons" = {
-        "1" = " ";
-        "2" = " ";
-        "3" = " ";
-        "4" = " ";
-        "5" = " ";
-        "urgent" = " ";
-        "active" = " ";
-        "default" = " ";
+    mainBar = {
+      layer = "bottom";
+      position = "top";
+      margin-top = 5;
+      height = 20;
+      modules-left = [ "wlr/workspaces" ];
+      modules-center = [ "hyprland/window" ];
+      modules-right = [
+        "tray"
+        "backlight"
+        "pulseaudio"
+        "network"
+        "idle_inhibitor"
+        "battery"
+        "clock"
+      ];
+      "wlr/workspaces" = {
+        format = "{icon}";
+        on-click = "activate";
+        format-icons = {
+          "1" = " ";
+          "2" = " ";
+          "3" = " ";
+          "4" = " ";
+          "5" = " ";
+          urgent = " ";
+          active = " ";
+          default = " ";
+        };
+        sort-by-number = true;
       };
-      "sort-by-number" = true;
-    };
-    "hyprland/window" = {
-      "max-length" = 80;
-    };
-    "clock" = {
-      "format" = "{:%a %d %b %H:%M}";
-      "tooltip" = false;
-    };
-    "battery" = {
-      "format" = "{capacity}% {icon}";
-      "format-alt" = "{time} {icon}";
-      "format-icons" = [ "  " "  " "  " "  " "  " ];
-      "format-charging" = "{capacity}% 󱊦 ";
-      "interval" = 30;
-      "states" = {
-        "warning" = 15;
-        "critical" = 5;
+      "hyprland/window" = {
+        max-length = 80;
       };
-      "tooltip" = false;
-    };
-    "network" = {
-      "format" = "{icon}";
-      "format-alt" = "{ipaddr}/{cidr} {icon}";
-      "format-alt-click" = "click-right";
-      "format-icons" = {
-        "wifi" = [ "󰤟 " "󰤢 " "󰤨 " ];
-        "ethernet" = [ "󰈀 " ];
-        "disconnected" = [ "󰇨 " ];
+      clock = {
+        format = "{:%a %d %b %H:%M}";
+        tooltip = false;
       };
-      "tooltip" = false;
-    };
-    "pulseaudio" = {
-      "format" = "{icon}";
-      "format-alt" = "{volume} {icon}";
-      "format-alt-click" = "click-right";
-      "format-muted" = "󰝟 ";
-      "format-icons" = {
-        "phone" = [ "  󰖁 " "  󰕿 " "  󰖀 " "  󰕾 " ];
-        "default" = [ "󰖁 " "󰕿 " "󰖀 " " " ];
+      battery = {
+        format = "{capacity}% {icon}";
+        format-alt = "{time} {icon}";
+        format-icons = [ "  " "  " "  " "  " "  " ];
+        format-charging = "{capacity}% 󱊦 ";
+        interval = 30;
+        states = {
+          warning = 15;
+          critical = 5;
+        };
+        tooltip = false;
       };
-      "scroll-step" = 1;
-      "on-click" = "pavucontrol";
-    };
-    "backlight" = {
-      "format" = "{icon}";
-      "format-alt" = "{percent}% {icon}";
-      "format-alt-click" = "click-right";
-      "format-icons" = [ "󰖔 " "󰖙 " ];
-      "on-scroll-down" = "light -A 1";
-      "on-scroll-up" = "light -U 1";
-      "tooltip" = false;
-    };
-    "idle_inhibitor" = {
-      "format" = "{icon}";
-      "format-icons" = {
-        "activated" = " ";
-        "deactivated" = "";
+      network = {
+        format = "{icon}";
+        format-alt = "{ipaddr}/{cidr} {icon}";
+        format-alt-click = "click-right";
+        format-icons = {
+          wifi = [ "󰤟 " "󰤢 " "󰤨 " ];
+          ethernet = [ "󰈀 " ];
+          disconnected = [ "󰇨 " ];
+        };
+        tooltip = false;
       };
-      "tooltip" = false;
-    };
-    "tray" = {
-      "icon-size" = 18;
+      pulseaudio = {
+        format = "{icon}";
+        format-alt = "{volume} {icon}";
+        format-alt-click = "click-right";
+        format-muted = "󰝟 ";
+        format-icons = {
+          phone = [ "  󰖁 " "  󰕿 " "  󰖀 " "  󰕾 " ];
+          default = [ "󰖁 " "󰕿 " "󰖀 " " " ];
+        };
+        scroll-step = 1;
+        on-click = "pavucontrol";
+      };
+      backlight = {
+        format = "{icon}";
+        format-alt = "{percent}% {icon}";
+        format-alt-click = "click-right";
+        format-icons = [ "󰖔 " "󰖙 " ];
+        on-scroll-down = "light -A 1";
+        on-scroll-up = "light -U 1";
+        tooltip = false;
+      };
+      idle_inhibitor = {
+        format = "{icon}";
+        format-icons = {
+          activated = " ";
+          deactivated = "";
+        };
+        tooltip = false;
+      };
+      tray = {
+        icon-size = 18;
+      };
     };
   };
   style = ''

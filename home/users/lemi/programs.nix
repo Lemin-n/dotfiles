@@ -3,13 +3,13 @@
     alacritty = import ../../../modules/alacritty { inherit pkgs; };
     bat = import ../../../modules/bat { inherit pkgs; };
     exa = import ../../../modules/exa { inherit pkgs; };
-    feh = import ../../../modules/feh { inherit pkgs; };
+    feh = import ../../../modules/feh;
     git = import ../../../modules/git { inherit pkgs; };
     gitui = import ../../../modules/gitui { inherit pkgs; };
     htop = import ../../../modules/htop { inherit pkgs; };
     nushell = import ../../../modules/nushell { inherit pkgs; };
     neovim = import ../../../modules/nvim { inherit pkgs; };
-    ripgrep = import ../../../modules/ripgrep { inherit pkgs; };
+    ripgrep = import ../../../modules/ripgrep;
     rofi = import ../../../modules/rofi { inherit pkgs; };
     ssh = import ../../../modules/ssh { inherit pkgs; };
     starship = import ../../../modules/starship { inherit pkgs; };
