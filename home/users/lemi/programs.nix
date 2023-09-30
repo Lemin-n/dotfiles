@@ -6,9 +6,7 @@
     ssh = {
       enable = true;
     };
-    exa = {
-      enable = true;
-    };
+    exa = import ../../../modules/exa { inherit pkgs; };
     starship = {
       enable = true;
     };
@@ -16,7 +14,7 @@
       enable = true;
       shellAliases = {
         nmr = "nmcli device wifi connect Ruscitti password UnaClave";
-        ls = "exa -1lTFgHh -L 1 --octal-permissions -t changed --icons";
+        ls = "exa";
         cat = "bat";
       };
       enableAutosuggestions = true;
