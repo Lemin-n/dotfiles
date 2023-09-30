@@ -10,6 +10,7 @@
     git = import ../../../modules/git { inherit pkgs; };
     gitui = import ../../../modules/gitui { inherit pkgs; };
     htop = import ../../../modules/htop { inherit pkgs; };
+    nushell = import ../../../modules/nushell { inherit pkgs; };
     starship = {
       enable = true;
     };
