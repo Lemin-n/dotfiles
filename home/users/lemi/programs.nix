@@ -3,17 +3,13 @@
     neovim = import ../../../modules/nvim { inherit pkgs; };
     alacritty = import ../../../modules/alacritty { inherit pkgs; };
     bat = import ../../../modules/bat { inherit pkgs; };
-    ssh = {
-      enable = true;
-    };
+    ssh = import ../../../modules/ssh { inherit pkgs; };
     exa = import ../../../modules/exa { inherit pkgs; };
     git = import ../../../modules/git { inherit pkgs; };
     gitui = import ../../../modules/gitui { inherit pkgs; };
     htop = import ../../../modules/htop { inherit pkgs; };
     nushell = import ../../../modules/nushell { inherit pkgs; };
-    starship = {
-      enable = true;
-    };
+    starship = import ../../../modules/starship { inherit pkgs; };
     zsh = {
       enable = true;
       shellAliases = {
