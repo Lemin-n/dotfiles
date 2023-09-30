@@ -4,6 +4,7 @@
   enableNushellIntegration = true;
   settings = {
     add_newline = true;
+    format = "$all";
     rust = {
       format = "[$symbol ($version ) ]($style)";
       version_format = "ver.$\{major\}";

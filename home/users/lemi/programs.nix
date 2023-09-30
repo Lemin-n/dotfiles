@@ -1,25 +1,23 @@
 { pkgs, ... }: {
   programs = {
-    neovim = import ../../../modules/nvim { inherit pkgs; };
     alacritty = import ../../../modules/alacritty { inherit pkgs; };
     bat = import ../../../modules/bat { inherit pkgs; };
-    ssh = import ../../../modules/ssh { inherit pkgs; };
     exa = import ../../../modules/exa { inherit pkgs; };
+    feh = import ../../../modules/feh { inherit pkgs; };
     git = import ../../../modules/git { inherit pkgs; };
     gitui = import ../../../modules/gitui { inherit pkgs; };
     htop = import ../../../modules/htop { inherit pkgs; };
     nushell = import ../../../modules/nushell { inherit pkgs; };
+    neovim = import ../../../modules/nvim { inherit pkgs; };
+    ripgrep = import ../../../modules/ripgrep { inherit pkgs; };
+    rofi = import ../../../modules/rofi { inherit pkgs; };
+    ssh = import ../../../modules/ssh { inherit pkgs; };
     starship = import ../../../modules/starship { inherit pkgs; };
-    zsh = {
-      enable = true;
-      shellAliases = {
-        nmr = "nmcli device wifi connect Ruscitti password UnaClave";
-        ls = "exa";
-        cat = "bat";
-      };
-      enableAutosuggestions = true;
-      enableCompletion = true;
-    };
+    waybar = import ../../../modules/waybar { inherit pkgs; };
+    wofi = import ../../../modules/wofi { inherit pkgs; };
+    zellij = import ../../../modules/zellij { inherit pkgs; };
+    zoxide = import ../../../modules/zoxide { inherit pkgs; };
+    zsh = import ../../../modules/zsh { inherit pkgs; };
     home-manager.enable = true;
   };
 
@@ -59,27 +57,6 @@
   };
   home.file.".config/wallpapers/yokohama.jpg" = {
     source = ../../../wallpapers/yokohama.jpg;
-  };
-  home.file.".config/waybar/config" = {
-    source = ../../../waybar/config.json;
-  };
-  home.file.".config/waybar/style.css" = {
-    source = ../../../waybar/style.css;
-  };
-  home.file.".config/waybar/modules/battery.css" = {
-    source = ../../../waybar/modules/battery.css;
-  };
-  home.file.".config/waybar/modules/clock.css" = {
-    source = ../../../waybar/modules/clock.css;
-  };
-  home.file.".config/waybar/modules/style.css" = {
-    source = ../../../waybar/modules/style.css;
-  };
-  home.file.".config/waybar/modules/window.css" = {
-    source = ../../../waybar/modules/window.css;
-  };
-  home.file.".config/waybar/modules/workspaces.css" = {
-    source = ../../../waybar/modules/workspaces.css;
   };
   home.file."screenshots/README.md" = {
     text = ''
