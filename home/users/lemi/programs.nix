@@ -2,7 +2,7 @@
   programs = {
     neovim = import ../../../modules/nvim { inherit pkgs; };
     alacritty = import ../../../modules/alacritty { inherit pkgs; };
-
+    bat = import ../../../modules/bat { inherit pkgs; };
     ssh = {
       enable = true;
     };
@@ -17,6 +17,7 @@
       shellAliases = {
         nmr = "nmcli device wifi connect Ruscitti password UnaClave";
         ls = "exa -1lTFgHh -L 1 --octal-permissions -t changed --icons";
+        cat = "bat";
       };
       enableAutosuggestions = true;
       enableCompletion = true;
