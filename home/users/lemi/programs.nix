@@ -7,6 +7,7 @@
       enable = true;
     };
     exa = import ../../../modules/exa { inherit pkgs; };
+    git = import ../../../modules/git { inherit pkgs; };
     starship = {
       enable = true;
     };
