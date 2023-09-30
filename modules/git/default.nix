@@ -6,8 +6,11 @@
     aa = "add .";
     co = "checkout";
     b = "branch";
-    cc = "commit -m ";
+    cc = "commit";
     pm = "push origin main";
+    pp = "push origin";
+    mm = "merge";
+    st = "status";
     pl = "pull";
   };
   delta = {
