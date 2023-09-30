@@ -4,7 +4,7 @@
     nmr = "nmcli device wifi connect Ruscitti password UnaClave";
     ls = "exa";
     cat = "bat";
-    cd = "zoxide";
+    cd = "z";
   };
   enableAutosuggestions = true;
   enableCompletion = true;

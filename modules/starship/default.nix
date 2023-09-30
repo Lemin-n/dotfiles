@@ -9,7 +9,7 @@
       format = "[$symbol ($version ) ]($style)";
       version_format = "ver.$\{major\}";
     };
-    nix-shell = {
+    nix_shell = {
       symbol = "❄️ ";
       format = "[$symbol$state( \( [$name] \))]($style)";
     };
