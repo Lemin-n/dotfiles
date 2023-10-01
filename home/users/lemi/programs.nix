@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   programs = {
-    alacritty = import ../../../modules/alacritty { inherit pkgs; };
     bat = import ../../../modules/bat { inherit pkgs; };
     exa = import ../../../modules/exa { inherit pkgs; };
     feh = import ../../../modules/feh;
@@ -30,37 +29,37 @@
 
     wallpaper=,~/.config/wallpapers/japan-temple.jpg
   '';
+  home.file.".config/zellij/config.kdl" = {
+    source = ../../../modules/zellij/config.kdl;
+  };
+  home.file.".config/zellij/layouts/default.kdl" = {
+    text = ''
+      layout {
+            pane size=1 borderless=true {
+                plugin location="zellij:compact-bar"
+            }
+        }
+    '';
+  };
+  home.file.".config/zellij/layouts/laravel-vite.kdl" = {
+    text = ''
+      layout {
+          pane stacked=true {
+              pane command="./vendor/bin/sail" {
+      			args "up"
+      	       }
+              pane command="./vendor/bin/sail" {
+       			args "npx" "tailwind" "-i" "./resources/css/app.css" "-o" "./resources/css/style.css" "--watch"
+       	      }
+              pane command="./vendor/bin/sail" {
+       			args "npm" "run" "dev"
+      	      }
+          }
+      }
+    '';
+  };
   home.file.".config/script/screenshot" = {
     executable = true;
     source = ../../../script/screenshot;
-  };
-  home.file.".config/wallpapers/fu-hua.png" = {
-    source = ../../../wallpapers/fu-hua.png;
-  };
-  home.file.".config/wallpapers/fujisan.jpg" = {
-    source = ../../../wallpapers/fujisan.jpg;
-  };
-  home.file.".config/wallpapers/japan-temple.jpg" = {
-    source = ../../../wallpapers/japan-temple.jpg;
-  };
-  home.file.".config/wallpapers/rengoku.jpg" = {
-    source = ../../../wallpapers/rengoku.jpg;
-  };
-  home.file.".config/wallpapers/sci-fi-japan.jpg" = {
-    source = ../../../wallpapers/sci-fi-japan.jpg;
-  };
-  home.file.".config/wallpapers/tokito.jpeg" = {
-    source = ../../../wallpapers/tokito.jpeg;
-  };
-  home.file.".config/wallpapers/yokohama-carrousel.jpg" = {
-    source = ../../../wallpapers/yokohama-carrousel.jpg;
-  };
-  home.file.".config/wallpapers/yokohama.jpg" = {
-    source = ../../../wallpapers/yokohama.jpg;
-  };
-  home.file."screenshots/README.md" = {
-    text = ''
-      # Screenshots folder for hyprline shortcuts
-    '';
   };
 }

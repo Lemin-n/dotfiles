@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  plugins = import ./plugins { inherit (pkgs) vimPlugins; };
+  plugins = import ./plugins { inherit pkgs; };
 in
 {
   inherit plugins;

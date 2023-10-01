@@ -5,6 +5,7 @@
 , ...
 }: {
   imports = [
+    ./alacritty
     ./boot.nix
     ./environment.nix
     ./fonts.nix
@@ -16,6 +17,15 @@
     ./sound.nix
     ./time.nix
     ./virtualisation.nix
+    ./wallpapers.nix
     ./xdg.nix
   ];
+  wallpapers = {
+    enable = true;
+    name = "lemi";
+  };
+  alacritty = {
+    enable = true;
+    name = "lemi";
+  };
 }

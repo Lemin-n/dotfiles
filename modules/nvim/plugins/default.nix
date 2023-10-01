@@ -1,5 +1,8 @@
-{ vimPlugins, ... }:
-with vimPlugins; [
+{ pkgs, ... }:
+let
+  vimPlugins = pkgs.vimPlugins;
+in
+with pkgs.vimPlugins; [
   nvim-ts-context-commentstring
   cmp-treesitter
   nvim-notify
@@ -8,6 +11,7 @@ with vimPlugins; [
   cmp-git
   cmp-path
   cmp-emoji
+  nvim-colorizer-lua
   luasnip
   cmp_luasnip
   copilot-cmp

@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{ lib
+, pkgs
+, config
+, ...
+}:
 let
   bell = import ./bell.nix;
   bindings = import ./bindings.nix;
@@ -8,21 +12,39 @@ let
   hints = import ./hints.nix;
   mouse = import ./mouse.nix;
   window = import ./window.nix;
+  cfg = config.alacritty;
 in
-{
-  enable = true;
-  settings = {
-    env.TERM = "xterm-256color";
-    selection = {
-      save_to_clipboard = true;
+with lib; {
+  options.alacritty = {
+    enable = mkEnableOption "Enable alacritty";
+    name = mkOption {
+      type = types.str;
     };
-    shell = {
-      program = "${pkgs.zsh}/bin/zsh";
-      args = [ "--login" ];
+    shell = mkOption {
+      type = types.package;
+      default = pkgs.zsh;
     };
-    ipc_socket = true;
-    live_config_reload = true;
-    draw_bold_text_with_bright_colors = true;
-    inherit bell bindings color cursor font hints mouse window;
+  };
+
+  config = mkIf cfg.enable {
+    home-manager.users.${cfg.name} = {
+      programs.alacritty = {
+        enable = true;
+        settings = {
+          env.TERM = "xterm-256color";
+          selection = {
+            save_to_clipboard = true;
+          };
+          shell = {
+            program = "${cfg.shell}/bin/zsh";
+            args = [ "--login" "-c" "zellij" ];
+          };
+          ipc_socket = true;
+          live_config_reload = true;
+          draw_bold_text_with_bright_colors = true;
+          inherit bell bindings color cursor font hints mouse window;
+        };
+      };
+    };
   };
 }
