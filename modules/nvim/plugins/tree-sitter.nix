@@ -1,7 +1,5 @@
 { vimPlugins, ... }:
-with vimPlugins;
-{
-
+with vimPlugins; {
   plugin = nvim-treesitter.withAllGrammars;
   type = "lua";
 
@@ -24,5 +22,6 @@ with vimPlugins;
     })
     local parser = require("nvim-treesitter.parsers").get_parser_configs()
     parser.tsx.filename_to_parsername = { "javascript", "typescript.tsx" }
+    parser.http.filename_to_parsername = { "http" }
   '';
 }

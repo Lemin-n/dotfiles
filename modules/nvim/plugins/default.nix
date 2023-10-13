@@ -29,6 +29,7 @@ with pkgs.vimPlugins; [
   nvim-ts-autotag
   nvim-treesitter-endwise
   inc-rename-nvim
+  rest-nvim
   (import ./null-ls.nix { inherit vimPlugins; })
   (import ./copilot.nix { inherit vimPlugins; })
   (import ./tree-sitter.nix { inherit vimPlugins; })

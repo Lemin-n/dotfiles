@@ -3,35 +3,58 @@
 , ...
 }: {
   home.packages = with pkgs; [
+    # Dev-Js
+    deno
+    nodejs
+    # Dev-Rust
     fenix.complete.toolchain
     cargo-leptos
     leptosfmt
     cargo-make
-    brave
+    trunk
+    # Dev-php
+    php
+    php82Packages.composer
+    # Dev-go
+    go
+    # Dev-python
+    python3
+    # Dev-web
+    nodePackages.tailwindcss
+
+    # Social
     telegram-desktop
     discord
+    webcord
+
+    # Script
     grim
+
+    # Utils
     jq
     gftp
     image-roll
-    webcord
+    neofetch
+    felix-fm
+    onlyoffice-bin
+
+    # Bluetooth
     blueman
+
+    # Hyprland
     hyprpaper
     hyprpicker
-    neofetch
+
+    # Shell-zsh
     zimfw
-    felix-fm
+    # Shell-environment
     zellij
-    trunk
-    nodejs
+
+    # Browser
+    brave
+    # Networking
     seatd
-    php
-    go
-    python3
-    deno
-    onlyoffice-bin
-    php82Packages.composer
-    nodePackages.tailwindcss
+
     /*
       zls
       rnix-lsp

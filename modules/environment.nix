@@ -5,31 +5,57 @@
     ];
   };
   environment.systemPackages = with pkgs; [
-    git
+    # Remote and Networking
     anydesk
-    slack
-    font-manager
-    docker-compose
     winbox
-    openssl
-    openssh
-    bluezFull
-    pavucontrol
-    wev
-    ntfs3g
-    gitoxide
-    xdg-utils
+
+    # Social
+    slack
+
+    # Spotify
     spotify-tui
     spotifyd
     spotify
-    ripgrep
-    gcc_multi
+
+    # Default
     curl
     wget
+
+    # SSL
     openssl
     openssl.dev
+
+    # Windows tools
+    ntfs3g
+
+    # Compression
     zip
     unzip
     gnutar
+
+    # Predefined
+    # Git
+    git
+    gitoxide
+
+    # Bluetooth
+    bluezFull
+
+    # Utils
+    ripgrep
+    gcc_multi
+
+    # Xserver
+    xdg-utils
+    pavucontrol
+
+    # Docker
+    docker-compose
+
+    # Font
+    font-manager
+
+    #Hyprland
+    wev
   ];
 }

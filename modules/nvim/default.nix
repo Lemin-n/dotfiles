@@ -6,31 +6,59 @@ in
   inherit plugins;
   enable = true;
   extraPackages = with pkgs; [
+    # Dev-Rust
+    taplo
+
+    # Dev-js
     nodejs
-    php
-    go
-    python3
     deno
+    nodePackages.typescript-language-server
+
+    # Dev-php
+    php
+    nodePackages.intelephense
+
+    # Dev-python
+    python3
+    nodePackages.pyright
+
+    # Dev-go
+    go
+
+    # Dev-Lua
+    stylua
+    lua-language-server
+
+    # Dev-Nix
     rnix-lsp
     alejandra
-    lua-language-server
-    taplo
+
+    # Utils
     ripgrep
+
+    # Self-Dif ~ Data Interchange Format
+    nodePackages.vscode-json-languageserver
+    taplo
+    nodePackages.yaml-language-server
+
+    # Dev-Zig
     zls
-    stylua
+
+    # Dev-web
     nodePackages.tailwindcss
     nodePackages.prettier
     nodePackages."@tailwindcss/language-server"
     nodePackages.vscode-html-languageserver-bin
     nodePackages.vscode-css-languageserver-bin
-    nodePackages.vscode-json-languageserver
-    nodePackages.intelephense
-    nodePackages.pyright
-    nodePackages.typescript-language-server
-    nodePackages.yaml-language-server
   ];
   viAlias = true;
   vimAlias = true;
+
+  # Override vim opt and globals
+
+  # Override Keymaps
+
+  # Mk Preview
   extraLuaConfig = ''
        vim.o.signcolumn = "yes"
        vim.o.completeopt = "menuone,noinsert,noselect"
@@ -60,6 +88,7 @@ in
        keymap("n", "<leader>ts", ":botright vnew <Bar> :terminal")
        keymap("n", "<leader>tg", ":Telescope live_grep")
        keymap("n", "<leader>tf", ":Telescope find_files")
+       keymap("n", "<leader>xr", '<Plug>RestNvim')
        -- Markdown preview options
        vim.g.mkdp_open_to_the_world = 1
        vim.g.mkdp_open_ip = "0.0.0.0"

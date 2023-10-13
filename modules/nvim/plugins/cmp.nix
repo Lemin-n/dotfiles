@@ -27,6 +27,7 @@ with vimPlugins; {
                                 keymap("n", "<leader>ws", "lua vim.lsp.buf.workspace_symbol()")
                                 keymap("n", "<leader>dn", "lua vim.diagnostic.goto_next()")
                                 keymap("n", "<leader>dp", "lua vim.diagnostic.goto_prev()")
+    		 		require("rest-nvim").setup({})
                                 lsp_zero.set_preferences({ set_lsp_keymaps = false, cmp_capabilities = capabilities })
                                 lsp_zero.setup_nvim_cmp({
                                 	mapping = {

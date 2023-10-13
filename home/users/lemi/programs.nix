@@ -20,6 +20,7 @@
     home-manager.enable = true;
   };
 
+  # Iterate over wallpaper folder and set default
   home.file.".config/hypr/hyprpaper.conf".text = ''
     preload= ~/.config/wallpapers/yokohama-carrousel.jpg
     preload= ~/.config/wallpapers/fujisan.jpg
@@ -29,6 +30,8 @@
 
     wallpaper=,~/.config/wallpapers/japan-temple.jpg
   '';
+
+  # Iterate over zellij config file, layout and plugin folder
   home.file.".config/zellij/config.kdl" = {
     source = ../../../modules/zellij/config.kdl;
   };
@@ -58,6 +61,8 @@
       }
     '';
   };
+
+  # Iterate over script folder and make executable
   home.file.".config/script/screenshot" = {
     executable = true;
     source = ../../../script/screenshot;
