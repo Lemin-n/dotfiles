@@ -2,6 +2,7 @@
   environment.sessionVariables = rec {
     PATH = [
       "$HOME/.cargo/bin/"
+      "$HOME/.npm-global/bin"
     ];
   };
   environment.systemPackages = with pkgs; [

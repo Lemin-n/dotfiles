@@ -1,6 +1,5 @@
 { vimPlugins, ... }:
-with vimPlugins;
-{
+with vimPlugins; {
   plugin = null-ls-nvim;
   type = "lua";
   config = ''
@@ -16,7 +15,7 @@ with vimPlugins;
     				vim.lsp.buf.format({
     					async = false,
     					filter = function(client)
-    						return client.name ~= "tsserver"
+    						return (client.name ~= "tsserver") or (client.name ~= "intelephense")
     					end,
     				})
     			end,
@@ -25,9 +24,22 @@ with vimPlugins;
     end
     local null_ls = require("null-ls")
     null_ls.setup({
+     debug = true,
     	sources = {
     		null_ls.builtins.formatting.stylua,
     		null_ls.builtins.formatting.alejandra,
+    		null_ls.builtins.formatting.blade_formatter.with({
+        extra_args = {
+     "--sort-tailwindcss-classes",
+     "--sort-html-attributes",
+     "idiomatic",
+     "--tailwindcss-config-path",
+     "tailwind.config.js",
+     "--no-trailing-comma-php",
+     "--no-single-quote",
+     "--no-multiple-empty-lines",
+        },
+    }),
     		null_ls.builtins.formatting.prettier.with({
     			filetypes = {
     				"javascript",
@@ -48,6 +60,5 @@ with vimPlugins;
     	},
     	on_attach = on_attach,
     })
-    	'';
+  '';
 }
-
