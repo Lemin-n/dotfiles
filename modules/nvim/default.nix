@@ -96,7 +96,4 @@ in
        vim.g.mkdp_port = 9808
        vim.g.mkdp_theme = "dark"
   '';
-  extraConfig = ''
-    autocmd BufRead,BufNewFile *.blade.php set filetype=blade
-  '';
 }
