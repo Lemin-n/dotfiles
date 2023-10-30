@@ -21,6 +21,7 @@
     # Default
     curl
     wget
+    pkg-config
 
     # SSL
     openssl
