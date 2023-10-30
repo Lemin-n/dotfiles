@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
-  plugins = import ./plugins { inherit pkgs; };
-in
-{
+{pkgs, ...}: let
+  plugins = import ./plugins {inherit pkgs;};
+in {
   inherit plugins;
   enable = true;
   extraPackages = with pkgs; [
@@ -31,6 +29,7 @@ in
 
     # Dev-Nix
     rnix-lsp
+    nil
     alejandra
 
     # Utils
