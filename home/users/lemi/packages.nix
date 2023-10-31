@@ -1,6 +1,7 @@
-{ pkgs
-, inputs
-, ...
+{
+  pkgs,
+  inputs,
+  ...
 }: {
   home.packages = with pkgs; [
     # Dev-Js
@@ -49,28 +50,30 @@
     zimfw
     # Shell-environment
     zellij
-
+    # Gaming
+    steam
+    retroarch
     # Browser
     brave
     # Networking
     seatd
 
     /*
-      zls
-      rnix-lsp
-      taplo
-      alejandra
-      lua-language-server
-      stylua
-      nodePackages.prettier
-      nodePackages."@tailwindcss/language-server"
-      nodePackages.vscode-html-languageserver-bin
-      nodePackages.vscode-css-languageserver-bin
-      nodePackages.vscode-json-languageserver
-      nodePackages.intelephense
-      nodePackages.pyright
-      nodePackages.typescript-language-server
-      nodePackages.yaml-language-server
+    zls
+    rnix-lsp
+    taplo
+    alejandra
+    lua-language-server
+    stylua
+    nodePackages.prettier
+    nodePackages."@tailwindcss/language-server"
+    nodePackages.vscode-html-languageserver-bin
+    nodePackages.vscode-css-languageserver-bin
+    nodePackages.vscode-json-languageserver
+    nodePackages.intelephense
+    nodePackages.pyright
+    nodePackages.typescript-language-server
+    nodePackages.yaml-language-server
     */
   ];
 }

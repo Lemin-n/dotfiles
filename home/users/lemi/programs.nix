@@ -1,22 +1,22 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs = {
-    bat = import ../../../modules/bat { inherit pkgs; };
-    exa = import ../../../modules/exa { inherit pkgs; };
+    bat = import ../../../modules/bat {inherit pkgs;};
+    exa = import ../../../modules/exa {inherit pkgs;};
     feh = import ../../../modules/feh;
-    git = import ../../../modules/git { inherit pkgs; };
-    gitui = import ../../../modules/gitui { inherit pkgs; };
-    htop = import ../../../modules/htop { inherit pkgs; };
-    nushell = import ../../../modules/nushell { inherit pkgs; };
-    neovim = import ../../../modules/nvim { inherit pkgs; };
+    git = import ../../../modules/git {inherit pkgs;};
+    gitui = import ../../../modules/gitui {inherit pkgs;};
+    htop = import ../../../modules/htop {inherit pkgs;};
+    nushell = import ../../../modules/nushell {inherit pkgs;};
+    neovim = import ../../../modules/nvim {inherit pkgs;};
     ripgrep = import ../../../modules/ripgrep;
-    rofi = import ../../../modules/rofi { inherit pkgs; };
-    ssh = import ../../../modules/ssh { inherit pkgs; };
-    starship = import ../../../modules/starship { inherit pkgs; };
-    waybar = import ../../../modules/waybar { inherit pkgs; };
-    wofi = import ../../../modules/wofi { inherit pkgs; };
-    zellij = import ../../../modules/zellij { inherit pkgs; };
-    zoxide = import ../../../modules/zoxide { inherit pkgs; };
-    zsh = import ../../../modules/zsh { inherit pkgs; };
+    rofi = import ../../../modules/rofi {inherit pkgs;};
+    ssh = import ../../../modules/ssh {inherit pkgs;};
+    starship = import ../../../modules/starship {inherit pkgs;};
+    waybar = import ../../../modules/waybar {inherit pkgs;};
+    wofi = import ../../../modules/wofi {inherit pkgs;};
+    zellij = import ../../../modules/zellij {inherit pkgs;};
+    zoxide = import ../../../modules/zoxide {inherit pkgs;};
+    zsh = import ../../../modules/zsh {inherit pkgs;};
     home-manager.enable = true;
   };
 
