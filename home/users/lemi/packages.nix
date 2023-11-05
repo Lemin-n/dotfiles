@@ -57,7 +57,7 @@
     brave
     # Networking
     seatd
-
+    qbittorrent
     /*
     zls
     rnix-lsp

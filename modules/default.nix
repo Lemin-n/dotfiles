@@ -1,10 +1,10 @@
-{ config
-, inputs
-, systems
-, pkgs
-, ...
-}:
-let
+{
+  config,
+  inputs,
+  systems,
+  pkgs,
+  ...
+}: let
   utils = config.alacritty;
   graphServer = config.graphServer;
   git = config.git;
@@ -29,8 +29,7 @@ let
   xserver = config.xdg;
   time = config.time;
   docker = config.docker;
-in
-{
+in {
   imports = [
     ./alacritty
     ./boot.nix
@@ -43,6 +42,7 @@ in
     ./services.nix
     ./sound.nix
     ./time.nix
+    ./torrent.nix
     ./virtualisation.nix
     ./wallpapers.nix
     ./xdg.nix
