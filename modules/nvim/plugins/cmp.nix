@@ -177,6 +177,8 @@ with vimPlugins; {
            "svelte",
            "vue",
            "rust",
+    "php",
+    "blade",
          },
          init_options = {
            -- There you can set languages to be considered as different ones by tailwind lsp I guess same as includeLanguages in VSCod
