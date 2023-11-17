@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.sessionVariables = rec {
     PATH = [
       "$HOME/.cargo/bin/"
@@ -34,6 +34,7 @@
     zip
     unzip
     gnutar
+    dbeaver
 
     # Predefined
     # Git
