@@ -51,10 +51,10 @@
               pane command="./vendor/bin/sail" {
       			args "up"
       	       }
-              pane command="./vendor/bin/sail" {
+              pane command="./vendor/bin/sail" start_suspended=true {
        			args "npx" "tailwind" "-i" "./resources/css/app.css" "-o" "./resources/css/style.css" "--watch"
        	      }
-              pane command="./vendor/bin/sail" {
+              pane command="./vendor/bin/sail" start_suspended=true {
        			args "npm" "run" "dev"
       	      }
           }
