@@ -42,7 +42,7 @@
     gitoxide
 
     # Bluetooth
-    bluezFull
+    bluez
 
     # Utils
     ripgrep

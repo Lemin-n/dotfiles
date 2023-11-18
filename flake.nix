@@ -2,41 +2,39 @@
   description = "Nixzen configuration";
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake
-      {
-        inherit inputs;
-      }
-      {
-        systems = [ "x86_64-linux" ];
+    {
+      inherit inputs;
+    }
+    {
+      systems = ["x86_64-linux"];
 
-        imports = [
-          ./hosts
-          ./pkgs
-        ];
-        perSystem =
-          { config
-          , pkgs
-          , ...
-          }: {
-            devShells.default = pkgs.mkShell {
-              packages = [ pkgs.alejandra pkgs.git ];
-              name = "Zenparadise";
-              DIRENV_LOG_FORMAT = "";
-            };
-            # Nix Formatter
-            formatter = pkgs.alejandra;
-          };
+      imports = [
+        ./hosts
+        ./pkgs
+      ];
+      perSystem = {
+        config,
+        pkgs,
+        ...
+      }: {
+        devShells.default = pkgs.mkShell {
+          packages = [pkgs.alejandra pkgs.git];
+          name = "Zenparadise";
+          DIRENV_LOG_FORMAT = "";
+        };
+        # Nix Formatter
+        formatter = pkgs.alejandra;
       };
+    };
 
   inputs = {
     fenix = {
       url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     hm = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   nixConfig = {

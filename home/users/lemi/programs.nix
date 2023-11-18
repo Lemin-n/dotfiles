@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs = {
     bat = import ../../../modules/bat {inherit pkgs;};
-    exa = import ../../../modules/exa {inherit pkgs;};
+    eza = import ../../../modules/eza {inherit pkgs;};
     feh = import ../../../modules/feh;
     git = import ../../../modules/git {inherit pkgs;};
     gitui = import ../../../modules/gitui {inherit pkgs;};
