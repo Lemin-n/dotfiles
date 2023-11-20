@@ -31,7 +31,7 @@ in
     rest-nvim
     (import ./null-ls.nix {inherit vimPlugins;})
     (import ./copilot.nix {inherit vimPlugins;})
-    (import ./tree-sitter.nix {inherit vimPlugins;})
+    (import ./tree-sitter.nix {inherit vimPlugins pkgs;})
     (import ./autopairs.nix {inherit vimPlugins;})
     (import ./nvim-tree.nix {inherit vimPlugins;})
     (import ./cmp.nix {inherit vimPlugins;})
