@@ -13,14 +13,15 @@ vim.g.syntax = "off"
 vim.diagnostic.config({
 	update_in_insert = true,
 })
-function keymap(maptype, keybind, binding, mode)
+--- Keymap setter
+local function keymap(maptype, keybind, binding, mode)
 	mode = mode or { nowait = true, silent = true, noremap = true }
 	vim.api.nvim_set_keymap(maptype, keybind, "<cmd>" .. binding .. "<CR>", mode)
 end
 
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
 	callback = function()
-		vim.diagnostic.open_float(nil, { focuseable = false })
+		vim.cmd(":Lspsaga show_line_diagnostics ++unfocus")
 	end,
 })
 keymap("n", "<leader>th", ":botright new <Bar> :terminal")

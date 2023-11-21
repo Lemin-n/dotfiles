@@ -1,9 +1,9 @@
-{ lib
-, pkgs
-, config
-, ...
-}:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   bell = import ./bell.nix;
   bindings = import ./bindings.nix;
   color = import ./color.nix;
@@ -14,37 +14,44 @@ let
   window = import ./window.nix;
   cfg = config.alacritty;
 in
-with lib; {
-  options.alacritty = {
-    enable = mkEnableOption "Enable alacritty";
-    name = mkOption {
-      type = types.str;
-    };
-    shell = mkOption {
-      type = types.package;
-      default = pkgs.zsh;
-    };
-  };
-
-  config = mkIf cfg.enable {
-    home-manager.users.${cfg.name} = {
-      programs.alacritty = {
-        enable = true;
-        settings = {
-          env.TERM = "xterm-256color";
-          selection = {
-            save_to_clipboard = true;
-          };
-          shell = {
-            program = "${cfg.shell}/bin/zsh";
-            args = [ "--login" "-c" "zellij" ];
-          };
-          ipc_socket = true;
-          live_config_reload = true;
-          draw_bold_text_with_bright_colors = true;
-          inherit bell bindings color cursor font hints mouse window;
-        };
+  with lib; {
+    options.alacritty = {
+      enable = mkEnableOption "Enable alacritty";
+      name = mkOption {
+        type = types.str;
+      };
+      shell = mkOption {
+        type = types.enum [pkgs.zsh pkgs.nushell];
       };
     };
-  };
-}
+
+    config = let
+      selectedShell =
+        if cfg.shell == pkgs.zsh
+        then "zsh"
+        else "nu";
+      shellArgs = ["options" "--default-shell" selectedShell];
+    in
+      mkIf cfg.enable {
+        home-manager.users.${cfg.name} = {
+          programs.alacritty = {
+            enable = true;
+            settings = {
+              env.TERM = "xterm-256color";
+              selection = {
+                save_to_clipboard = true;
+              };
+              shell = {
+                program = "${pkgs.zellij}/bin/zellij";
+
+                args = shellArgs;
+              };
+              ipc_socket = true;
+              live_config_reload = true;
+              draw_bold_text_with_bright_colors = true;
+              inherit bell bindings color cursor font hints mouse window;
+            };
+          };
+        };
+      };
+  }

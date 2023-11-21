@@ -5,6 +5,7 @@
   pkgs,
   ...
 }: let
+  user = config.zenix;
   utils = config.alacritty;
   graphServer = config.graphServer;
   git = config.git;
@@ -36,6 +37,7 @@ in {
     ./environment.nix
     ./fonts.nix
     ./hardware.nix
+    ./shell
     ./i18n.nix
     ./network.nix
     ./programs.nix
@@ -48,12 +50,35 @@ in {
     ./xdg.nix
   ];
 
-  wallpapers = {
-    enable = true;
-    name = "lemi";
+  options.zenix = with pkgs.lib; {
+    username = mkOption {
+      type = types.str;
+    };
+    homepath = mkOption {
+      type = types.str;
+    };
+    shell = mkOption {
+      type = types.enum [pkgs.zsh pkgs.nushell];
+      default = pkgs.zsh;
+    };
+    groups = mkOption {
+      type = types.listOf types.str;
+    };
   };
-  alacritty = {
-    enable = true;
-    name = "lemi";
+
+  config = {
+    wallpapers = {
+      enable = true;
+      name = user.username;
+    };
+    usershell = {
+      shell = pkgs.nushell;
+      user = user.username;
+    };
+    alacritty = {
+      enable = true;
+      shell = user.shell;
+      name = user.username;
+    };
   };
 }
