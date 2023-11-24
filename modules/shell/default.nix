@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  cfg = config.usershell;
+  cfg = config.zenix;
   shellAliases = {
     nmr = "nmcli device wifi connect Ruscitti password UnaClave";
     cat = "bat";
@@ -19,19 +19,8 @@
       };
       files = {};
     };
-    nushell = rec {
-      config = {
-        shellAliases =
-          shellAliases
-          // {
-            ls = "exa";
-          };
-        environmentVariables = {
-          EDITOR = "nvim";
-        };
-
-        configFile.source = ./config.nu;
-      };
+    nushell = {
+      config = {};
       files = {
         file.".config/nushell/config.nu".source = ./config.nu;
         file.".config/nushell/env.nu".source = ./env.nu;
@@ -54,9 +43,9 @@ in {
     };
   };
   config = {
-    users.users."${cfg.user}".shell = cfg.shell;
+    users.users."${cfg.username}".shell = cfg.shell;
 
-    home-manager.users."${cfg.user}" = let
+    home-manager.users."${cfg.username}" = let
       settings = shellConfig."${selectedShell}";
     in {
       programs."${selectedShell}" = settings.config;

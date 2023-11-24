@@ -1,35 +1,9 @@
 {
   config,
-  inputs,
-  systems,
   pkgs,
   ...
 }: let
-  user = config.zenix;
-  utils = config.alacritty;
-  graphServer = config.graphServer;
-  git = config.git;
-  neovim = config.neovim;
-  ssh = config.ssh;
-
-  # Merge
-  shell = config.shell;
-  alacritty = config.alacritty;
-  starship = config.starship;
-
-  # Configuration.nix
-  boot = config.boot;
-  fonts = config.fonts;
-  sysPkgs = config.sysPkgs;
-
-  scripts = config.scripts;
-  nixPkgs = config.nixPkgs;
-  envVars = config.envVars;
-  customPkgs = config.customPkgs;
-  networking = config.networking;
-  xserver = config.xdg;
-  time = config.time;
-  docker = config.docker;
+  zenix = config.zenix;
 in {
   imports = [
     ./alacritty
@@ -54,8 +28,13 @@ in {
     username = mkOption {
       type = types.str;
     };
+    normalUser = mkOption {
+      type = types.bool;
+      default = true;
+    };
     homepath = mkOption {
       type = types.str;
+      default = "/home/${zenix.username}";
     };
     shell = mkOption {
       type = types.enum [pkgs.zsh pkgs.nushell];
@@ -63,22 +42,24 @@ in {
     };
     groups = mkOption {
       type = types.listOf types.str;
+      default = [];
     };
   };
 
   config = {
+    users.users."${zenix.username}" = {
+      isNormalUser = zenix.normalUser;
+      extraGroups = zenix.groups;
+    };
+
     wallpapers = {
       enable = true;
-      name = user.username;
-    };
-    usershell = {
-      shell = pkgs.nushell;
-      user = user.username;
+      name = zenix.username;
     };
     alacritty = {
       enable = true;
-      shell = user.shell;
-      name = user.username;
+      shell = zenix.shell;
+      name = zenix.username;
     };
   };
 }

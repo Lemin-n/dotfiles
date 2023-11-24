@@ -8,12 +8,12 @@
     ./hardware-configuration.nix
     ../../modules
     ../../home
-    ../../modules/users/lemi.nix
   ];
 
   zenix = {
     username = "lemi";
     shell = pkgs.nushell;
+    groups = ["wheel" "video" "docker" "networkmanager"];
   };
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
