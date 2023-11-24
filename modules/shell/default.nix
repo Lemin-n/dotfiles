@@ -12,20 +12,31 @@
   };
   shellConfig = {
     zsh = {
-      shellAliases = shellAliases;
-      enableAutosuggestions = true;
-      enableCompletion = true;
+      config = {
+        shellAliases = shellAliases;
+        enableAutosuggestions = true;
+        enableCompletion = true;
+      };
+      files = {};
     };
     nushell = rec {
-      shellAliases =
-        shellAliases
-        // {
-          ls = "exa";
+      config = {
+        shellAliases =
+          shellAliases
+          // {
+            ls = "exa";
+          };
+        environmentVariables = {
+          EDITOR = "nvim";
         };
-      environmentVariables = {
-        EDITOR = "nvim";
+
+        configFile.source = ./config.nu;
       };
-      configFile.source = ./config.nu;
+      files = {
+        file.".config/nushell/config.nu".source = ./config.nu;
+        file.".config/nushell/env.nu".source = ./env.nu;
+        file.".cache/zoxide/init.nu".source = ./init.nu;
+      };
     };
   };
   selectedShell =
@@ -45,6 +56,11 @@ in {
   config = {
     users.users."${cfg.user}".shell = cfg.shell;
 
-    home-manager.users."${cfg.user}".programs."${selectedShell}" = shellConfig.nushell;
+    home-manager.users."${cfg.user}" = let
+      settings = shellConfig."${selectedShell}";
+    in {
+      programs."${selectedShell}" = settings.config;
+      home = settings.files;
+    };
   };
 }

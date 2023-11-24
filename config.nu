@@ -1,4 +1,4 @@
-source /home/lemi/.cache/zoxide/init.nu
+source /home/lemi/.cache/init.nu
 source /home/lemi/.cache/starship/init.nu
 $env.STARSHIP_SHELL = "nu"
 def create_left_prompt [] {
@@ -13,6 +13,7 @@ $env.PROMPT_INDICATOR = ""
 $env.PROMPT_INDICATOR_VI_INSERT = ": "
 $env.PROMPT_INDICATOR_VI_NORMAL = "〉"
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
+$env.PATH = ($env.PATH | prepend "/home/lemi/.config/carapace/bin")
 
 let carapace_completer = {|spans|
   carapace $spans.0 nushell $spans | from json
