@@ -15,5 +15,4 @@ $env.PROMPT_MULTILINE_INDICATOR = "::: "
 $env.EDITOR = nvim
 
 alias ll = eza -1lTFgHh -L 1 --octal-permissions -t changed
-alias cd = __zoxide_z
 alias nmr = nmcli device wifi connect Ruscitti password UnaClave
