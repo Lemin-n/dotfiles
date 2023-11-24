@@ -1,8 +1,12 @@
-{ pkgs, inputs, ... }:
 {
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: {
   home-manager.users = {
     lemi = import ./lemi {
-      inherit pkgs inputs;
+      inherit pkgs inputs lib;
     };
   };
 }

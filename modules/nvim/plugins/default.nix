@@ -1,7 +1,23 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
+  tabby-vim = pkgs.vimUtils.buildVimPlugin {
+    pname = "tabby.vim";
+    version = "2023-09-21";
+    src = pkgs.fetchFromGitHub {
+      owner = "TabbyML";
+      repo = "vim-tabby";
+      rev = "9e537762cbb7647357eab22c61c7c5dda00138dd";
+      sha256 = "0wznkhpd3wax8jqw6wa2802x649jv8ph89plz1qwc08ia47lwcfb";
+    };
+    meta.homepage = "https://github.com/TabbyML/vim-tabby";
+  };
   vimPlugins = pkgs.vimPlugins;
-in
-  with pkgs.vimPlugins; [
+  cfg = config.zenix;
+in {
+  home-manager.users."${cfg.username}".programs.neovim.plugins = with pkgs.vimPlugins; [
     nvim-ts-context-commentstring
     cmp-treesitter
     nvim-notify
@@ -19,6 +35,7 @@ in
     lsp-format-nvim
     lspsaga-nvim
     lspkind-nvim
+    tabby-vim
     markdown-preview-nvim
     nvim-lspconfig
     crates-nvim
@@ -45,4 +62,5 @@ in
     (import ./colorizer-nvim.nix {inherit vimPlugins;})
     (import ./git.nix {inherit vimPlugins;})
     (import ./surround.nix {inherit vimPlugins;})
-  ]
+  ];
+}

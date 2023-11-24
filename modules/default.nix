@@ -7,6 +7,7 @@
 in {
   imports = [
     ./alacritty
+    ./nvim
     ./boot.nix
     ./environment.nix
     ./fonts.nix

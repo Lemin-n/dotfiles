@@ -1,60 +1,69 @@
-{pkgs, ...}: let
-  plugins = import ./plugins {inherit pkgs;};
-in {
-  inherit plugins;
-  enable = true;
-  extraPackages = with pkgs; [
-    # Dev-Rust
-    taplo
+{
+  pkgs,
+  config,
+  ...
+}: {
+  imports = [./plugins];
+  config = let
+    cfg = config.zenix;
+  in {
+    home-manager.users."${cfg.username}".programs.neovim = {
+      enable = true;
+      extraPackages = with pkgs; [
+        # Dev-Rust
+        taplo
 
-    # Dev-js
-    nodejs
-    deno
-    nodePackages.typescript-language-server
+        # Dev-js
+        nodejs
+        deno
+        nodePackages.typescript-language-server
 
-    # Dev-php
-    php
-    nodePackages.intelephense
+        # Dev-php
+        php
+        nodePackages.intelephense
 
-    # Dev-python
-    python3
-    nodePackages.pyright
+        # Dev-python
+        python3
+        nodePackages.pyright
 
-    # Dev-go
-    go
+        # Dev-go
+        go
 
-    # Dev-Lua
-    stylua
-    lua-language-server
+        # Dev-Lua
+        stylua
 
-    # Dev-Nix
-    rnix-lsp
-    nil
-    alejandra
+        lua-language-server
 
-    # Utils
-    ripgrep
+        # Dev-Nix
+        rnix-lsp
+        nil
+        alejandra
 
-    # Self-Dif ~ Data Interchange Format
-    nodePackages.vscode-json-languageserver
-    taplo
-    nodePackages.yaml-language-server
+        # Utils
+        ripgrep
 
-    # Dev-Zig
-    zls
+        # Self-Dif ~ Data Interchange Format
+        nodePackages.vscode-json-languageserver
+        taplo
+        nodePackages.yaml-language-server
 
-    # Dev-web
-    nodePackages.tailwindcss
-    nodePackages.prettier
-    nodePackages."@tailwindcss/language-server"
-    nodePackages.vscode-html-languageserver-bin
-    nodePackages.vscode-css-languageserver-bin
-  ];
-  viAlias = true;
-  vimAlias = true;
+        # Dev-Zig
+        zls
 
-  # Override vim opt and globals
-  # Override Keymaps
-  # Mk Preview
-  extraLuaConfig = pkgs.lib.strings.fileContents ./globals.lua;
+        # Dev-web
+        nodePackages.tailwindcss
+        nodePackages.prettier
+        nodePackages."@tailwindcss/language-server"
+        nodePackages.vscode-html-languageserver-bin
+        nodePackages.vscode-css-languageserver-bin
+      ];
+      viAlias = true;
+      vimAlias = true;
+
+      # Override vim opt and globals
+      # Override Keymaps
+      # Mk Preview
+      extraLuaConfig = pkgs.lib.strings.fileContents ./globals.lua;
+    };
+  };
 }

@@ -6,7 +6,6 @@
     git = import ../../../modules/git {inherit pkgs;};
     gitui = import ../../../modules/gitui {inherit pkgs;};
     htop = import ../../../modules/htop {inherit pkgs;};
-    neovim = import ../../../modules/nvim {inherit pkgs;};
     ripgrep = import ../../../modules/ripgrep;
     rofi = import ../../../modules/rofi {inherit pkgs;};
     ssh = import ../../../modules/ssh {inherit pkgs;};

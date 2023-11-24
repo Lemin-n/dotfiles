@@ -1,7 +1,4 @@
-{ pkgs
-, inputs
-, ...
-}: {
+{inputs, ...}: {
   imports = [
     ./packages.nix
     ./programs.nix
@@ -17,6 +14,6 @@
     manpages.enable = false;
   };
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ inputs.fenix.overlays.default ];
+  nixpkgs.overlays = [inputs.fenix.overlays.default];
   wayland.windowManager.hyprland = import ../../../modules/hyprland;
 }
