@@ -4,6 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
+    carapace
     # Dev-Js
     deno
     nodejs

@@ -11,6 +11,11 @@
     ../../modules/users/lemi.nix
   ];
 
+  zenix = {
+    username = "lemi";
+    shell = pkgs.nushell;
+  };
+
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 

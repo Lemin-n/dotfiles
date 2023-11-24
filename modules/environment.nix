@@ -6,6 +6,7 @@
     ];
   };
   environment.systemPackages = with pkgs; [
+    carapace
     # Remote and Networking
     anydesk
     winbox

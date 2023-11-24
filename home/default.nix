@@ -1,5 +1,7 @@
-{ pkgs, inputs, ... }:
 {
-  imports = [ inputs.hm.nixosModule ./users ];
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [inputs.hm.nixosModule ./users];
 }
-	
