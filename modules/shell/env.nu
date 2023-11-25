@@ -16,3 +16,4 @@ $env.EDITOR = nvim
 
 alias ll = eza -1lTFgHh -L 1 --octal-permissions -t changed
 alias nmr = nmcli device wifi connect Ruscitti password UnaClave
+alias cat = bat

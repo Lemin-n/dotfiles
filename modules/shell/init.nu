@@ -43,9 +43,9 @@ def --env __zoxide_zi  [...rest:string] {
 # Commands for zoxide. Disable these using --no-cmd.
 #
 
-alias z = __zoxide_z
-alias zi = __zoxide_zi
-
+alias cdl = cd
+alias cd = __zoxide_z
+alias cdi = __zoxide_zi
 # =============================================================================
 #
 # Add this to your env file (find it by running `$nu.env-path` in Nushell):
