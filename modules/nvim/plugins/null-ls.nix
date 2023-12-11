@@ -1,4 +1,4 @@
-{ vimPlugins, ... }:
+{vimPlugins, ...}:
 with vimPlugins; {
   plugin = null-ls-nvim;
   type = "lua";
@@ -33,16 +33,14 @@ with vimPlugins; {
     "php",
     "blade",
     },
-          extra_args = {
-       "--sort-tailwindcss-classes",
-       "--sort-html-attributes",
+    extra_args = {
+       "--sort-classes",
+       "--sort-attributes",
        "idiomatic",
-       "--tailwindcss-config-path",
-       "tailwind.config.js",
+       "--ident-inner-html",
        "--no-trailing-comma-php",
-       "--no-single-quote",
        "--no-multiple-empty-lines",
-          },
+      },
       }),
       		null_ls.builtins.formatting.prettier.with({
       			filetypes = {

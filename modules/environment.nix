@@ -6,7 +6,9 @@
     ];
   };
   environment.systemPackages = with pkgs; [
+    google-chrome
     carapace
+    spot
     # Remote and Networking
     anydesk
     winbox

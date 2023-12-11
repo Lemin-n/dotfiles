@@ -9,6 +9,7 @@ vim.o.mouse = "a"
 vim.o.scrolloff = 3
 vim.g.rustfmt_autosave = 1
 vim.g.mapleader = ","
+vim.g.skip_ts_context_commentstring_module = true
 vim.g.syntax = "off"
 vim.diagnostic.config({
 	update_in_insert = true,
