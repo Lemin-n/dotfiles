@@ -1,7 +1,5 @@
 {
   enable = true;
-  enableNvidiaPatches = true;
-  xwayland.enable = true;
   settings = {
     monitor = ",highres,auto,1";
     exec-once = "waybar &> /dev/null | hyprpaper &> /dev/null";
