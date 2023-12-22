@@ -6,6 +6,7 @@
     ];
   };
   environment.systemPackages = with pkgs; [
+    wl-clipboard
     google-chrome
     carapace
     spot

@@ -1,4 +1,4 @@
-let starship_cache = "/home/lemi/.cache/starship"
+let starship_cache = $"($env.HOME)/.cache/starship"
 starship init nu | save --force /home/lemi/.cache/starship/init.nu
 
 
@@ -12,7 +12,9 @@ $env.PROMPT_INDICATOR = ""
 $env.PROMPT_INDICATOR_VI_INSERT = ": "
 $env.PROMPT_INDICATOR_VI_NORMAL = "〉"
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
+$env.BUILD_CACHE = "/home/cache"
 $env.EDITOR = nvim
+$env.TEMPLATES = $"($env.HOME)/flakes"
 
 alias ll = eza -1lTFgHh -L 1 --octal-permissions -t changed
 alias nmr = nmcli device wifi connect Ruscitti password UnaClave
