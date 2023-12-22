@@ -53,7 +53,7 @@ in {
     (import ./nvim-tree.nix {inherit vimPlugins;})
     (import ./cmp.nix {inherit vimPlugins pkgs;})
     (import ./catppuccin.nix {inherit vimPlugins;})
-    (import ./harpoon.nix {inherit vimPlugins;})
+    ## (import ./harpoon.nix {inherit vimPlugins;})
     (import ./bufferline.nix {inherit vimPlugins;})
     (import ./lualine.nix {inherit vimPlugins;})
     ## (import ./presence.nix {inherit vimPlugins;})
