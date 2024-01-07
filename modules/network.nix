@@ -1,7 +1,8 @@
-{ inputs
-, pkgs
-, config
-, ...
+{
+  inputs,
+  pkgs,
+  config,
+  ...
 }: {
   networking = {
     hostName = "nixzen";
@@ -18,6 +19,8 @@
         5173
         # Second Vite
         5174
+        #pg
+        5432
       ];
     };
   };
