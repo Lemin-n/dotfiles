@@ -59,7 +59,9 @@
       ];
       viAlias = true;
       vimAlias = true;
-
+      extraConfig = ''
+        set noswapfile
+      '';
       # Override vim opt and globals
       # Override Keymaps
       # Mk Preview
