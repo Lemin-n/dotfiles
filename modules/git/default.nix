@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   enable = true;
-  userName = "Lemin-n";
+  userName = "Emilio Ruscitti";
   userEmail = "emiliorccp@gmail.com";
   aliases = {
     aa = "add .";
@@ -16,7 +16,7 @@
   delta = {
     enable = true;
     options = {
-      decorations = { };
+      decorations = {};
       features = "decorations";
       whitespace-error-style = "22 reverse";
       syntax-theme = "Nord";
