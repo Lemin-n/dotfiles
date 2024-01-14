@@ -27,6 +27,12 @@ in {
     username = mkOption {
       type = types.str;
     };
+    gitname = mkOption {
+      type = types.str;
+    };
+    gitemail = mkOption {
+      type = types.str;
+    };
     normalUser = mkOption {
       type = types.bool;
       default = true;
@@ -131,13 +137,14 @@ in {
         packages = with pkgs.lib.lists; let
           deno-pkgs = optionals zenix.dev-env.deno [pkgs.deno];
           node-pkgs = optionals zenix.dev-env.node [pkgs.nodejs];
-          rust-pkgs = optionals zenix.dev-env.rust [
-            pkgs.fenix.complete.toolchain
-            pkgs.cargo-leptos
-            pkgs.leptosfmt
-            pkgs.cargo-make
-            pkgs.trunk
-          ];
+          rust-pkgs = optionals zenix.dev-env.rust (with pkgs; [
+            fenix.complete.toolchain
+            cargo-leptos
+            cargo-shuttle
+            leptosfmt
+            cargo-make
+            trunk
+          ]);
           php-pkgs = optionals zenix.dev-env.php [
             pkgs.php
             pkgs.php82Packages.composer
@@ -155,35 +162,46 @@ in {
         in
           flatten-packages
           ++ (with pkgs; [
-            # Social
+            slack
             telegram-desktop
             discord
             webcord
 
-            spot
-            google-chrome
+            bluez
+            blueman
 
-            # Script
+            docker-compose
+
+            font-manager
+
+            anydesk
+            winbox
+
             grim
-            # Utils
             jq
             gftp
             image-roll
+
             neofetch
             felix-fm
+
             onlyoffice-bin
 
-            # Bluetooth
-            blueman
-            # Gaming
+            spot
+            spotify-tui
+            spotifyd
+            spotify
+
+            google-chrome
+            brave
+
+            dbeaver
+
             steam
             retroarch
-            # Browser
-            brave
-            # Networking
+
             seatd
             qbittorrent
-            zellij
           ])
           ++ zenix.extraPackages;
       };
@@ -214,6 +232,11 @@ in {
       zentube = {
         enable = true;
         music = true;
+      };
+      zengit = {
+        enable = true;
+        userName = zenix.gitname;
+        userEmail = zenix.gitemail;
       };
     };
     users.users."${zenix.username}" = {
