@@ -17,7 +17,7 @@
   vimPlugins = pkgs.vimPlugins;
   cfg = config.zenix;
 in {
-  home-manager.users."${cfg.username}".programs.neovim.plugins = with pkgs.vimPlugins; [
+  programs.neovim.plugins = with pkgs.vimPlugins; [
     nvim-ts-context-commentstring
     cmp-treesitter
     nvim-notify

@@ -18,7 +18,9 @@
     in {
       nixzen = nixosSystem {
         inherit system;
+
         modules = [
+          inputs.hm.nixosModule
           ./nixzen
           {
             environment.systemPackages = [config.packages.xwaylandvideobridge];
@@ -29,9 +31,12 @@
           inherit inputs;
         };
       };
+
       kalimdar = nixosSystem {
         inherit system;
+
         modules = [
+          inputs.hm.nixosModule
           ./kalimdar
           {
             environment.systemPackages = [config.packages.xwaylandvideobridge];

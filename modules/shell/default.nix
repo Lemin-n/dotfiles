@@ -4,7 +4,8 @@
   config,
   ...
 }: let
-  cfg = config.zenix;
+  cfg = config.usershell;
+  zenix = config.zenix;
   shellAliases = {
     nmr = "nmcli device wifi connect Ruscitti password UnaClave";
     cat = "bat";
@@ -17,21 +18,23 @@
         enableAutosuggestions = true;
         enableCompletion = true;
       };
-      files = {};
+      home = {
+        packages = with pkgs; [zimfw];
+      };
     };
     nushell = {
       config = {};
-      files = {
-        file.".config/nushell/config.nu".source = ./config.nu;
-        file.".config/nushell/env.nu".source = ./env.nu;
-        file.".cache/zoxide/init.nu".source = ./init.nu;
+      home = {
+        file = {
+          ".config/nushell/config.nu".source = ./config.nu;
+          ".config/nushell/env.nu".source = ./env.nu;
+          ".cache/zoxide/init.nu".source = ./init.nu;
+        };
+        packages = [pkgs.carapace];
       };
     };
   };
-  selectedShell =
-    if cfg.shell == pkgs.zsh
-    then "zsh"
-    else "nushell";
+  selectedShell = cfg.shell.pname;
 in {
   options.usershell = with lib; {
     shell = mkOption {
@@ -42,14 +45,12 @@ in {
       type = types.str;
     };
   };
-  config = {
-    users.users."${cfg.username}".shell = cfg.shell;
-
-    home-manager.users."${cfg.username}" = let
-      settings = shellConfig."${selectedShell}";
-    in {
-      programs."${selectedShell}" = settings.config;
-      home = settings.files;
+  config = let
+    settings = shellConfig."${selectedShell}";
+  in {
+    programs."${selectedShell}" = settings.config;
+    home = {
+      inherit (settings.home) file packages;
     };
   };
 }
