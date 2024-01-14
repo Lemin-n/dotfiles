@@ -48,9 +48,13 @@ in {
     home.packages = with pkgs; [
       hyprpaper
       hyprpicker
+      wl-clipboard
       wofi
       cliphist
       wl-clip-persist
+      xdg-utils
+      pavucontrol
+      wev
     ];
 
     # Iterate over wallpaper folder and set default
