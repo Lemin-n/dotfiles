@@ -6,6 +6,7 @@
     ];
   };
   environment.systemPackages = with pkgs; [
+    cargo-shuttle
     wl-clipboard
     google-chrome
     carapace

@@ -1,6 +1,6 @@
 {...}: {
   enable = true;
-  userName = "Lemin-n";
+  userName = "Emilio Ruscitti";
   userEmail = "emiliorccp@gmail.com";
   aliases = {
     aa = "add .";
