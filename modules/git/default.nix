@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   enable = true;
   userName = "Emilio Ruscitti";
   userEmail = "emiliorccp@gmail.com";
