@@ -95,6 +95,8 @@ in {
         ./shell
         ./nvim
         ./wallpapers.nix
+        ./youtube
+        ./zellij
       ];
 
       nixpkgs.config.allowUnfree = true;
@@ -112,7 +114,6 @@ in {
         starship = import ./starship {inherit pkgs;};
         waybar = import ./waybar {inherit pkgs;};
         wofi = import ./wofi {inherit pkgs;};
-        zellij = import ./zellij {inherit pkgs;};
         zoxide = import ./zoxide {inherit pkgs;};
         home-manager.enable = true;
       };
@@ -122,35 +123,6 @@ in {
         username = zenix.username;
         homeDirectory = zenix.homepath;
         # Iterate over zellij config file, layout and plugin folder
-        file.".config/zellij/config.kdl" = {
-          source = ./zellij/config.kdl;
-        };
-        file.".config/zellij/layouts/default.kdl" = {
-          text = ''
-            layout {
-                  pane size=1 borderless=true {
-                      plugin location="zellij:compact-bar"
-                  }
-              }
-          '';
-        };
-        file.".config/zellij/layouts/laravel-vite.kdl" = {
-          text = ''
-            layout {
-                pane stacked=true {
-                    pane command="./vendor/bin/sail" {
-            			args "up"
-            	       }
-                    pane command="./vendor/bin/sail" start_suspended=true {
-             			args "npx" "tailwind" "-i" "./resources/css/app.css" "-o" "./resources/css/style.css" "--watch"
-             	      }
-                    pane command="./vendor/bin/sail" start_suspended=true {
-             			args "npm" "run" "dev"
-            	      }
-                }
-            }
-          '';
-        };
         file.".config/script/screenshot" = {
           executable = true;
           source = ../script/screenshot;
@@ -187,6 +159,10 @@ in {
             telegram-desktop
             discord
             webcord
+
+            spot
+            google-chrome
+
             # Script
             grim
             # Utils
@@ -234,6 +210,10 @@ in {
         enable = true;
         shell = zenix.shell;
         name = zenix.username;
+      };
+      zentube = {
+        enable = true;
+        music = true;
       };
     };
     users.users."${zenix.username}" = {
