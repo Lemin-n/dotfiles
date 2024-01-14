@@ -5,7 +5,6 @@
   ...
 }: let
   cfg = config.usershell;
-  zenix = config.zenix;
   shellAliases = {
     nmr = "nmcli device wifi connect Ruscitti password UnaClave";
     cat = "bat";

@@ -1,6 +1,5 @@
-{ vimPlugins, ... }:
-with vimPlugins;
-{
+{vimPlugins, ...}:
+with vimPlugins; {
   plugin = bufferline-nvim;
   type = "lua";
   config = ''

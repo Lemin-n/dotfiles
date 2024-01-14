@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   enable = true;
   terminal = "${pkgs.alacritty}/bin/alacritty";
   font = "Comic Sans 14";

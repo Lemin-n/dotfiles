@@ -1,1 +1,1 @@
-{ pkgs, ... }: { enable = true; }
+{...}: {enable = true;}

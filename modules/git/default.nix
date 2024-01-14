@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{...}: {
   enable = true;
   userName = "Lemin-n";
   userEmail = "emiliorccp@gmail.com";
@@ -16,7 +16,7 @@
   delta = {
     enable = true;
     options = {
-      decorations = { };
+      decorations = {};
       features = "decorations";
       whitespace-error-style = "22 reverse";
       syntax-theme = "Nord";

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{...}: {
   enable = true;
   settings = {
     mainBar = {
@@ -6,8 +6,8 @@
       position = "top";
       margin-top = 5;
       height = 20;
-      modules-left = [ "wlr/workspaces" ];
-      modules-center = [ "hyprland/window" ];
+      modules-left = ["wlr/workspaces"];
+      modules-center = ["hyprland/window"];
       modules-right = [
         "tray"
         "backlight"
@@ -42,7 +42,7 @@
       battery = {
         format = "{capacity}% {icon}";
         format-alt = "{time} {icon}";
-        format-icons = [ "  " "  " "  " "  " "  " ];
+        format-icons = ["  " "  " "  " "  " "  "];
         format-charging = "{capacity}% 󱊦 ";
         interval = 30;
         states = {
@@ -56,9 +56,9 @@
         format-alt = "{ipaddr}/{cidr} {icon}";
         format-alt-click = "click-right";
         format-icons = {
-          wifi = [ "󰤟 " "󰤢 " "󰤨 " ];
-          ethernet = [ "󰈀 " ];
-          disconnected = [ "󰇨 " ];
+          wifi = ["󰤟 " "󰤢 " "󰤨 "];
+          ethernet = ["󰈀 "];
+          disconnected = ["󰇨 "];
         };
         tooltip = false;
       };
@@ -68,8 +68,8 @@
         format-alt-click = "click-right";
         format-muted = "󰝟 ";
         format-icons = {
-          phone = [ "  󰖁 " "  󰕿 " "  󰖀 " "  󰕾 " ];
-          default = [ "󰖁 " "󰕿 " "󰖀 " " " ];
+          phone = ["  󰖁 " "  󰕿 " "  󰖀 " "  󰕾 "];
+          default = ["󰖁 " "󰕿 " "󰖀 " " "];
         };
         scroll-step = 1;
         on-click = "pavucontrol";
@@ -78,7 +78,7 @@
         format = "{icon}";
         format-alt = "{percent}% {icon}";
         format-alt-click = "click-right";
-        format-icons = [ "󰖔 " "󰖙 " ];
+        format-icons = ["󰖔 " "󰖙 "];
         on-scroll-down = "light -A 1";
         on-scroll-up = "light -U 1";
         tooltip = false;
