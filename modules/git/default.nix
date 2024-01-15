@@ -1,5 +1,9 @@
-{pkgs, ...}: let
-  cfg = cfg.zengit;
+{
+  pkgs,
+  config,
+  ...
+}: let
+  cfg = config.zengit;
 in {
   options.zengit = with pkgs.lib; {
     enable = mkEnableOption "Enable zengit config and packages";
@@ -10,8 +14,8 @@ in {
       type = types.str;
     };
   };
-  config = pkgs.lib.mkIf cfg.enable {
-    programs.git = {
+  config = {
+    programs.git = pkgs.lib.mkIf cfg.enable {
       enable = true;
       userName = cfg.userName;
       userEmail = cfg.userEmail;
@@ -36,9 +40,9 @@ in {
         };
       };
     };
-    home.packages = with pkgs; [
-      git
-      gitoxide
+    home.packages = pkgs.lib.mkIf cfg.enable [
+      pkgs.git
+      pkgs.gitoxide
     ];
   };
 }
