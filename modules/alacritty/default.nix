@@ -41,7 +41,7 @@ in
               save_to_clipboard = true;
             };
             shell = {
-              program = "${pkgs.zellij}/bin/zellij";
+              program = lib.meta.getExe pkgs.zellij;
 
               args = shellArgs;
             };
