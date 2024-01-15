@@ -71,7 +71,7 @@ in {
       enable = true;
       settings = {
         monitor = ",highres,auto,1";
-        exec-once = "waybar &> /dev/null | hyprpaper &> /dev/null | wl-paste --type text --watch cliphist store &> /dev/null | wl-paste --type image --watch cliphist store &> /dev/null | wl-clip-persist --clipboard both &> /dev/null";
+        exec-once = "waybar &> /dev/null | hyprpaper &> /dev/null | wl-paste --type text --watch cliphist store &> /dev/null | wl-paste --type image --watch cliphist store &> /dev/null | wl-clip-persist --clipboard both &> /dev/null | alacritty";
         env = "XCURSOR_SIZE,24";
         input = {
           kb_layout = cfg.keyboard.layout;
