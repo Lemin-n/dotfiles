@@ -8,6 +8,8 @@
     username = "lemi";
     shell = pkgs.nushell;
     groups = ["wheel" "video" "docker" "networkmanager"];
+    gitname = "Emilio Ruscitti";
+    gitemail = "emiliorccp@gmail.com";
   };
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];

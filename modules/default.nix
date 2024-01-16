@@ -99,6 +99,7 @@ in {
         ./alacritty
         ./hyprland
         ./shell
+        ./git
         ./nvim
         ./wallpapers.nix
         ./youtube
@@ -111,7 +112,6 @@ in {
         bat = import ./bat {inherit pkgs;};
         eza = import ./eza {inherit pkgs;};
         feh = import ./feh;
-        git = import ./git {inherit pkgs;};
         gitui = import ./gitui {inherit pkgs;};
         htop = import ./htop {inherit pkgs;};
         ripgrep = import ./ripgrep;
@@ -230,7 +230,6 @@ in {
         name = zenix.username;
       };
       zentube = {
-        enable = true;
         music = true;
       };
       zengit = {

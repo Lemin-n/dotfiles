@@ -8,11 +8,10 @@
     username = "lemi";
     shell = pkgs.nushell;
     groups = ["wheel" "video" "docker" "networkmanager"];
+    gitname = "Emilio Ruscitti";
+    gitemail = "emiliorccp@gmail.com";
     extraPackages = with pkgs; [
       amdctl
-      youtube-tui
-      spot
-      google-chrome
     ];
   };
   nixpkgs.config.allowUnfree = true;
