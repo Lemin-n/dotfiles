@@ -3,7 +3,6 @@
     ./hardware-configuration.nix
     ../../modules
   ];
-
   zenix = {
     username = "lemi";
     shell = pkgs.nushell;
@@ -12,6 +11,9 @@
     gitemail = "emiliorccp@gmail.com";
     extraPackages = with pkgs; [
       amdctl
+      youtube-tui
+      spot
+      google-chrome
     ];
   };
   nixpkgs.config.allowUnfree = true;

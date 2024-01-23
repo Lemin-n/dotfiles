@@ -47,7 +47,6 @@ in
             };
             ipc_socket = true;
             live_config_reload = true;
-            draw_bold_text_with_bright_colors = true;
             inherit bell bindings color cursor font hints mouse window;
           };
         };
