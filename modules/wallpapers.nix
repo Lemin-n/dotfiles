@@ -47,6 +47,9 @@ in {
       home.file.".config/wallpapers/blue-sky.png" = {
         source = ../wallpapers/blue-sky.png;
       };
+      home.file.".config/script/partstats" = {
+        source = ../script/partstats;
+      };
     }
     // {
       home.file."screenshots/README.md" = {

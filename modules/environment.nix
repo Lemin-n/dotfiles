@@ -3,6 +3,7 @@
     PATH = [
       "$HOME/.cargo/bin/"
       "$HOME/.npm-global/bin"
+      "$HOME/.config/script"
     ];
   };
   environment.systemPackages = with pkgs; [
