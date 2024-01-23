@@ -13,8 +13,7 @@ let
   teal = "#94E2D5";
   lavender = "#B4BEFE";
   rosewater = "#F5E0DC";
-in
-let
+in let
   defaultColorSet = {
     red = red;
     green = green;
@@ -23,9 +22,9 @@ let
     magenta = pink;
     cyan = teal;
   };
-in
-rec
+in rec
 {
+  draw_bold_text_with_bright_colors = true;
   primary = {
     background = base;
     foreground = text;
@@ -49,8 +48,8 @@ rec
       foreground = base;
       background = green;
     };
-    footer_bar = search.matches;
   };
+  footer_bar = search.matches;
   hints = {
     start = {
       foreground = base;

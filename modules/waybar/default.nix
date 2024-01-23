@@ -17,7 +17,7 @@
         "battery"
         "clock"
       ];
-      "wlr/workspaces" = {
+      "hyprland/workspaces" = {
         format = "{icon}";
         on-click = "activate";
         format-icons = {

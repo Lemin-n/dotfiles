@@ -5,8 +5,8 @@
   ...
 }: let
   bell = import ./bell.nix;
-  bindings = import ./bindings.nix;
-  color = import ./color.nix;
+  ##bindings = import ./bindings.nix;
+  colors = import ./color.nix;
   cursor = import ./cursor.nix;
   font = import ./font.nix;
   hints = import ./hints.nix;
@@ -47,8 +47,7 @@ in
             };
             ipc_socket = true;
             live_config_reload = true;
-            draw_bold_text_with_bright_colors = true;
-            inherit bell bindings color cursor font hints mouse window;
+            inherit bell colors cursor font hints mouse window;
           };
         };
       };

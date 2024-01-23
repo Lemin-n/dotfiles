@@ -44,6 +44,9 @@ in {
       home.file.".config/wallpapers/yokohama.jpg" = {
         source = ../wallpapers/yokohama.jpg;
       };
+      home.file.".config/wallpapers/blue-sky.png" = {
+        source = ../wallpapers/blue-sky.png;
+      };
     }
     // {
       home.file."screenshots/README.md" = {

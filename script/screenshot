@@ -1,9 +1,9 @@
 #!/bin/sh 
 if [ "$1" = "window" ]
 then
-	hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -t jpeg -c -q 100 -g - ~/screenshots/$(date +%s).jpg
+	hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -t png -c -l 0 -g - ~/screenshots/$(date +%s).png
 fi
 if [ "$1" = "fullscreen" ]
 then
-	grim -t jpeg -c -q 100  ~/screenshots/$(date +%s)-fullscreen.jpg
+	grim -t png -c -l 0  ~/screenshots/$(date +%s)-fullscreen.png
 fi
