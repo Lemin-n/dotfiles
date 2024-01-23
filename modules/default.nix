@@ -88,6 +88,7 @@ in {
     ];
     home-manager.sharedModules = [
       inputs.wired.homeManagerModules.default
+      inputs.sss.nixosModules.home-manager
     ];
 
     home-manager.users.${zenix.username} = {pkgs, ...}: {
@@ -121,6 +122,14 @@ in {
         waybar = import ./waybar {inherit pkgs;};
         wofi = import ./wofi {inherit pkgs;};
         zoxide = import ./zoxide {inherit pkgs;};
+        sss = {
+          enable = true;
+          author = "lemi";
+        };
+        sssCode = {
+          enable = true;
+          author = "lemi";
+        };
         home-manager.enable = true;
       };
       home = {
