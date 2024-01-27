@@ -26,6 +26,7 @@ in {
     cmp-git
     cmp-path
     cmp-emoji
+    gitsigns-nvim
     nvim-colorizer-lua
     luasnip
     cmp_luasnip
