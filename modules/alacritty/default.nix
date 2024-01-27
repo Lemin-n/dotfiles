@@ -5,8 +5,8 @@
   ...
 }: let
   bell = import ./bell.nix;
-  bindings = import ./bindings.nix;
-  color = import ./color.nix;
+  ##bindings = import ./bindings.nix;
+  colors = import ./color.nix;
   cursor = import ./cursor.nix;
   font = import ./font.nix;
   hints = import ./hints.nix;
@@ -33,24 +33,21 @@ in
       shellArgs = ["options" "--default-shell" selectedShell];
     in
       mkIf cfg.enable {
-        home-manager.users.${cfg.name} = {
-          programs.alacritty = {
-            enable = true;
-            settings = {
-              env.TERM = "xterm-256color";
-              selection = {
-                save_to_clipboard = true;
-              };
-              shell = {
-                program = "${pkgs.zellij}/bin/zellij";
-
-                args = shellArgs;
-              };
-              ipc_socket = true;
-              live_config_reload = true;
-              draw_bold_text_with_bright_colors = true;
-              inherit bell bindings color cursor font hints mouse window;
+        programs.alacritty = {
+          enable = true;
+          settings = {
+            env.TERM = "xterm-256color";
+            selection = {
+              save_to_clipboard = true;
             };
+            shell = {
+              program = lib.meta.getExe pkgs.zellij;
+
+              args = shellArgs;
+            };
+            ipc_socket = true;
+            live_config_reload = true;
+            inherit bell colors cursor font hints mouse window;
           };
         };
       };

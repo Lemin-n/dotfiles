@@ -1,13 +1,7 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [./plugins];
-  config = let
-    cfg = config.zenix;
-  in {
-    home-manager.users."${cfg.username}".programs.neovim = {
+  config = {
+    programs.neovim = {
       enable = true;
       extraPackages = with pkgs; [
         # Dev-Rust

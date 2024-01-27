@@ -1,24 +1,25 @@
-{ lib
-, pkgs
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 with lib; let
   cfg = config.wallpapers;
-in
-{
+in {
   options.wallpapers = {
     enable = mkEnableOption "Enable wallpapers";
     name = mkOption {
       type = types.str;
     };
+    path = mkOption {
+      type = types.path;
+      default = ../wallpapers;
+    };
   };
 
-  # Define what other settings, services and resources should be active IF
-  # a user of this "hello.nix" module ENABLED this module
-  # by setting "services.hello.enable = true;".
-  config = mkIf cfg.enable {
-    home-manager.users.${cfg.name} = {
+  config =
+    mkIf cfg.enable
+    {
       home.file.".config/wallpapers/fu-hua.png" = {
         source = ../wallpapers/fu-hua.png;
       };
@@ -43,11 +44,18 @@ in
       home.file.".config/wallpapers/yokohama.jpg" = {
         source = ../wallpapers/yokohama.jpg;
       };
+      home.file.".config/wallpapers/blue-sky.png" = {
+        source = ../wallpapers/blue-sky.png;
+      };
+      home.file.".config/script/partstats" = {
+        source = ../script/partstats;
+      };
+    }
+    // {
       home.file."screenshots/README.md" = {
         text = ''
           # Screenshots folder for hyprline shortcuts
         '';
       };
     };
-  };
 }

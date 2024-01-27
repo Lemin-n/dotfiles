@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{pkgs, ...}: let
   tabby-vim = pkgs.vimUtils.buildVimPlugin {
     pname = "tabby.vim";
     version = "2023-09-21";
@@ -15,9 +11,8 @@
     meta.homepage = "https://github.com/TabbyML/vim-tabby";
   };
   vimPlugins = pkgs.vimPlugins;
-  cfg = config.zenix;
 in {
-  home-manager.users."${cfg.username}".programs.neovim.plugins = with pkgs.vimPlugins; [
+  programs.neovim.plugins = with pkgs.vimPlugins; [
     nvim-ts-context-commentstring
     cmp-treesitter
     nvim-notify

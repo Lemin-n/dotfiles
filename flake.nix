@@ -28,9 +28,11 @@
     };
 
   inputs = {
+    wired.url = "github:Toqozz/wired-notify";
     fenix = {
       url = "github:nix-community/fenix";
     };
+    sss.url = "git+file:/home/lemi/sss";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     hm = {
@@ -44,7 +46,6 @@
       "https://fufexan.cachix.org"
       "https://nix-gaming.cachix.org"
       "https://hyprland.cachix.org"
-      "https://cache.privatevoid.net"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="

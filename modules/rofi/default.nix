@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   enable = true;
-  terminal = "${pkgs.alacritty}/bin/alacritty";
+  terminal = with pkgs.lib.meta; getExe pkgs.alacritty;
   font = "Comic Sans 14";
   theme = ''
     	   * {
