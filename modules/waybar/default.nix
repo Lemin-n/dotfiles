@@ -5,6 +5,7 @@
       layer = "bottom";
       position = "top";
       margin-top = 5;
+      margin-bottom = 4;
       height = 20;
       modules-left = ["wlr/workspaces"];
       modules-center = ["hyprland/window"];

@@ -18,7 +18,10 @@
         ...
       }: {
         devShells.default = pkgs.mkShell {
-          packages = [pkgs.alejandra pkgs.git];
+          packages = with pkgs; [
+            alejandra
+            git
+          ];
           name = "Zenparadise";
           DIRENV_LOG_FORMAT = "";
         };
@@ -28,13 +31,18 @@
     };
 
   inputs = {
-    wired.url = "github:Toqozz/wired-notify";
+    wired = {
+      url = "github:Toqozz/wired-notify";
+    };
     fenix = {
       url = "github:nix-community/fenix";
     };
-    sss.url = "git+file:/home/lemi/sss";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+    };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
     hm = {
       url = "github:nix-community/home-manager";
     };
