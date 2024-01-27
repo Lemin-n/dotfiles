@@ -88,7 +88,13 @@ in {
     ];
     home-manager.sharedModules = [
       inputs.wired.homeManagerModules.default
-      inputs.sss.nixosModules.home-manager
+    ];
+    programs.nix-ld.enable = true;
+    programs.nix-ld.libraries = with pkgs; [
+      libqt5pas
+      xorg.libxcb
+      xorg.libX11
+      libsForQt5.qt5.qtwayland
     ];
 
     home-manager.users.${zenix.username} = {pkgs, ...}: {
@@ -122,14 +128,6 @@ in {
         waybar = import ./waybar {inherit pkgs;};
         wofi = import ./wofi {inherit pkgs;};
         zoxide = import ./zoxide {inherit pkgs;};
-        sss = {
-          enable = true;
-          author = "lemi";
-        };
-        sssCode = {
-          enable = true;
-          author = "lemi";
-        };
         home-manager.enable = true;
       };
       home = {
@@ -175,7 +173,6 @@ in {
             telegram-desktop
             discord
             webcord
-
             bluez
             blueman
 
