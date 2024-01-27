@@ -6,6 +6,7 @@
       "$HOME/.config/script"
     ];
   };
+  powerManagement.cpuFreqGovernor = "ondemand";
   environment.systemPackages = with pkgs; [
     # Default
     curl
