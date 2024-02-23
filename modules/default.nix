@@ -142,8 +142,9 @@ in {
         };
 
         packages = with pkgs.lib.lists; let
-          deno-pkgs = optionals zenix.dev-env.deno [pkgs.deno];
-          node-pkgs = optionals zenix.dev-env.node [pkgs.nodejs];
+          #deno-pkgs = optionals zenix.dev-env.deno [pkgs.deno];
+          #node-pkgs = optionals zenix.dev-env.node [pkgs.nodejs];
+          bun-pkgs = optionals zenix.dev-env.node [pkgs.bun];
           rust-pkgs = optionals zenix.dev-env.rust (with pkgs; [
             fenix.complete.toolchain
             cargo-leptos
@@ -165,7 +166,7 @@ in {
           web-pkgs = optionals zenix.dev-env.web [
             pkgs.nodePackages.tailwindcss
           ];
-          flatten-packages = flatten [deno-pkgs node-pkgs rust-pkgs php-pkgs go-pkgs python-pkgs web-pkgs];
+          flatten-packages = flatten [bun-pkgs rust-pkgs php-pkgs go-pkgs python-pkgs web-pkgs];
         in
           flatten-packages
           ++ (with pkgs; [
