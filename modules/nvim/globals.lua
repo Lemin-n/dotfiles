@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 vim.o.signcolumn = "yes"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.shortmess = "filnxtToOFc"
