@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-global
+---@diagnostic disable: undefined-global ,redefined-local
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local on_attach = function(client, bufnr)
 	if client.supports_method("textDocument/formatting") then
@@ -18,13 +18,15 @@ local on_attach = function(client, bufnr)
 		})
 	end
 end
-local null_ls = require("null-ls")
-null_ls.setup({
+local none_ls = require("null-ls")
+none_ls.setup({
 	debug = true,
 	sources = {
-		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.alejandra,
-		null_ls.builtins.formatting.blade_formatter.with({
+		none_ls.builtins.formatting.stylua,
+		none_ls.builtins.formatting.alejandra,
+		none_ls.builtins.formatting.leptosfmt,
+		none_ls.builtins.formatting.biome,
+		none_ls.builtins.formatting.blade_formatter.with({
 			filetypes = {
 				"php",
 				"blade",
@@ -38,16 +40,11 @@ null_ls.setup({
 				"--no-multiple-empty-lines",
 			},
 		}),
-		null_ls.builtins.formatting.prettier.with({
+		none_ls.builtins.formatting.prettier.with({
 			filetypes = {
-				"javascript",
-				"typescript",
-				"javascriptreact",
-				"typescriptreact",
 				"css",
 				"scss",
 				"html",
-				"json",
 				"yaml",
 				"markdown",
 				"graphql",

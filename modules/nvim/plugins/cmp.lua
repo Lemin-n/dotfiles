@@ -116,17 +116,21 @@ cmp.setup({
 	},
 })
 lsp_zero.setup_servers = {
+	-- web
 	"tailwindcss",
-	"lua_ls",
-	"rust_analyzer",
 	"cssls",
+	"html",
+	-- dif/config files
+	"jsonls",
+	"yamlls",
+	"taplo",
+	-- rust
+	"rust_analyzer",
+	-- scripting
+	"lua_ls",
 	"nil_ls",
 	"pyright",
 	"intelephense",
-	"jsonls",
-	"html",
-	"taplo",
-	"yamlls",
 	--"lemminx",
 	--"dockerls",
 	--"docker_compose_language_service",
@@ -149,6 +153,7 @@ Rust_lsp = lsp_zero.build_options("rust_analyzer", {
 			procMacro = {
 				ignored = {
 					leptos_macro = {
+						-- Leptos
 						"component",
 						"server",
 					},

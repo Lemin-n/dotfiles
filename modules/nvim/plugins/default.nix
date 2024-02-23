@@ -41,7 +41,7 @@ in {
     nvim-treesitter-endwise
     inc-rename-nvim
     rest-nvim
-    (import ./null-ls.nix {inherit pkgs;})
+    (import ./none-ls.nix {inherit pkgs;})
     (import ./copilot.nix {inherit pkgs;})
     (import ./tree-sitter.nix {inherit pkgs;})
     (import ./autopairs.nix {inherit pkgs;})
