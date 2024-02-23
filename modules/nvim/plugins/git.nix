@@ -1,8 +1,6 @@
-{vimPlugins, ...}:
-with vimPlugins; {
+{pkgs, ...}:
+with pkgs.vimPlugins; {
   plugin = fugitive;
   type = "lua";
-  config = ''
-    require('gitsigns').setup()
-  '';
+  config = pkgs.lib.strings.fileContents ./git.lua;
 }
