@@ -174,8 +174,6 @@ in {
             discord
             webcord
             bluez
-            blueman
-
             docker-compose
 
             font-manager
