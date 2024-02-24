@@ -169,6 +169,7 @@ in {
         in
           flatten-packages
           ++ (with pkgs; [
+            cargo-tauri
             slack
             telegram-desktop
             discord

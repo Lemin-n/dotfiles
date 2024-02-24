@@ -25,7 +25,7 @@ keymap("n", "<leader>dp", "lua vim.diagnostic.goto_prev()")
 require("rest-nvim").setup({})
 lsp_zero.set_preferences({ set_lsp_keymaps = false, cmp_capabilities = capabilities })
 
-local cmp_action = lsp_zero.cmp_action()
+-- local cmp_action = lsp_zero.cmp_action()
 cmp.setup({
 	mapping = {
 		["<C-up>"] = cmp.mapping.select_prev_item(),
@@ -102,7 +102,7 @@ cmp.setup({
 				TypeParameter = "",
 				Copilot = " ",
 			},
-			before = function(entry, vim_item)
+			before = function(_, vim_item)
 				return vim_item
 			end,
 		}),
@@ -116,17 +116,21 @@ cmp.setup({
 	},
 })
 lsp_zero.setup_servers = {
+	-- web
 	"tailwindcss",
-	"lua_ls",
-	"rust_analyzer",
 	"cssls",
+	"html",
+	-- dif/config files
+	"jsonls",
+	"yamlls",
+	"taplo",
+	-- rust
+	"rust_analyzer",
+	-- scripting
+	"lua_ls",
 	"nil_ls",
 	"pyright",
 	"intelephense",
-	"jsonls",
-	"html",
-	"taplo",
-	"yamlls",
 	--"lemminx",
 	--"dockerls",
 	--"docker_compose_language_service",
@@ -149,6 +153,7 @@ Rust_lsp = lsp_zero.build_options("rust_analyzer", {
 			procMacro = {
 				ignored = {
 					leptos_macro = {
+						-- Leptos
 						"component",
 						"server",
 					},
@@ -211,7 +216,7 @@ lsp.html.setup({})
 lsp.taplo.setup({})
 lsp.yamlls.setup({})
 lsp_zero.setup()
-local lspsaga = require("lspsaga").setup({
+require("lspsaga").setup({
 	code_action_lightbulb = { enable = false },
 	lightbulb = {
 		enable = false,

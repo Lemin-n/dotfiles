@@ -1,7 +1,6 @@
-{ vimPlugins, ... }:
-with vimPlugins;
-{
+{pkgs, ...}:
+with pkgs.vimPlugins; {
   plugin = nvim-surround;
   type = "lua";
-  config = "require('nvim-surround').setup()";
+  config = pkgs.lib.strings.fileContents ./surround.lua;
 }

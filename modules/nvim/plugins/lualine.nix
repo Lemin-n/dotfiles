@@ -1,12 +1,6 @@
-{ vimPlugins, ... }:
-with vimPlugins;{
+{pkgs, ...}:
+with pkgs.vimPlugins; {
   plugin = lualine-nvim;
   type = "lua";
-  config = ''
-    require('lualine').setup({
-     options = {
-            theme = "catppuccin"
-        }
-    })
-  '';
+  config = pkgs.lib.strings.fileContents ./lualine.lua;
 }

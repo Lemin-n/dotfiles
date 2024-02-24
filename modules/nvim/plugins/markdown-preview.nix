@@ -1,9 +1,6 @@
-{ vimPlugins, ... }:
-with vimPlugins;
-{
+{pkgs, ...}:
+with pkgs.vimPlugins; {
   plugin = markdown-preview-nvim;
   type = "lua";
-  config = ''
-    vim.fn['mkdp#util#install']()
-  '';
+  config = pkgs.lib.strings.fileContents ./markdown-preview.lua;
 }

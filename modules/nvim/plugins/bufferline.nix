@@ -1,10 +1,6 @@
-{vimPlugins, ...}:
-with vimPlugins; {
+{pkgs, ...}:
+with pkgs.vimPlugins; {
   plugin = bufferline-nvim;
   type = "lua";
-  config = ''
-    require("bufferline").setup {
-      highlights = require("catppuccin.groups.integrations.bufferline").get()
-    }
-  '';
+  config = pkgs.lib.strings.fileContents ./bufferline.lua;
 }

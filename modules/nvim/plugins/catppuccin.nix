@@ -1,15 +1,6 @@
-{vimPlugins, ...}:
-with vimPlugins; {
+{pkgs, ...}:
+with pkgs.vimPlugins; {
   plugin = catppuccin-nvim;
   type = "lua";
-  config = ''
-          require('catppuccin').setup({
-          flavour = 'mocha',
-          transparent_background =true,
-          integrations = {
-    noice = true,
-          },
-          })
-          vim.cmd.colorscheme "catppuccin"
-  '';
+  config = pkgs.lib.strings.fileContents ./catppuccin.lua;
 }
