@@ -208,6 +208,13 @@ lsp.nil_ls.setup({
 	},
 })
 lsp.pyright.setup({})
+lsp.tsserver.setup({
+	on_attach = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+	end,
+})
+lsp.biome.setup({})
+lsp.volar.setup({})
 lsp.intelephense.setup({})
 lsp.jsonls.setup({
 	cmd = { "vscode-json-languageserver", "--stdio" },

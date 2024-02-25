@@ -6,11 +6,13 @@
       extraPackages = with pkgs; [
         # Dev-Rust
         taplo
+        leptosfmt
 
         # Dev-js
         nodejs
         deno
         nodePackages.typescript-language-server
+        nodePackages.volar
 
         # Dev-php
         php
@@ -45,6 +47,7 @@
         zls
 
         # Dev-web
+        biome
         nodePackages.tailwindcss
         nodePackages.prettier
         nodePackages."@tailwindcss/language-server"
