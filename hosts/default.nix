@@ -34,9 +34,16 @@
 
         modules = [
           inputs.hm.nixosModule
+
           ./kalimdar
           {
-            environment.systemPackages = [config.packages.xwaylandvideobridge];
+            imports = [
+              inputs.sss.nixosModules.default
+            ];
+            programs.sss = {
+              enable = true;
+            };
+            environment.systemPackages = [config.packages.xwaylandvideobridge inputs.nixpkgs.legacyPackages.${system}.slurp];
           }
         ];
 

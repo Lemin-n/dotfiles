@@ -46,6 +46,9 @@
     hm = {
       url = "github:nix-community/home-manager";
     };
+    sss = {
+      url = "github:SergioRibera/sss";
+    };
   };
   nixConfig = {
     extra-substituters = [

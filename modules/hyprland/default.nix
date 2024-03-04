@@ -178,9 +178,9 @@ in {
           "${cfg.main-mod} CTRL, 7, movetoworkspace, 7"
           "${cfg.main-mod} CTRL, 8, movetoworkspace, 8"
           "${cfg.main-mod} CTRL, 9, movetoworkspace, 9"
-          "${cfg.main-mod}, $printScreen , exec, ~/.config/script/screenshot window"
-          "${cfg.main-mod} ALT_L, $printScreen, exec, ~/.config/script/screenshot fullscreen"
-
+          "${cfg.main-mod}, $printScreen , exec, ~/.config/script/screenshot fullscreen"
+          "${cfg.main-mod} SHIFT, $printScreen, exec, ~/.config/script/screenshot window"
+          "${cfg.main-mod} CTRL, $printScreen, exec, ~/.config/script/screenshot zone"
           # Scroll through existing workspaces with mainMod + scroll
           "${cfg.main-mod}, mouse_down, workspace, e+1"
           "${cfg.main-mod}, mouse_up, workspace, e-1"
