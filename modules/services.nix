@@ -1,6 +1,7 @@
-{ pkgs
-, self'
-, ...
+{
+  pkgs,
+  self',
+  ...
 }: {
   services = {
     # provide location
@@ -9,10 +10,12 @@
       enable = true;
     };
     xserver = {
-      layout = "
+      xkb = {
+        layout = "
           us ";
-      xkbVariant = "
+        variant = "
           altgr-intl ";
+      };
     };
     openssh = {
       enable = true;
@@ -30,7 +33,7 @@
       pulse.enable = true;
     };
     upower.enable = true;
-    dbus.packages = [ pkgs.gcr ];
+    dbus.packages = [pkgs.gcr];
     ratbagd.enable = true;
   };
 }
