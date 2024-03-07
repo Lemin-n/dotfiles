@@ -8,7 +8,7 @@ vim.o.updatetime = 100
 vim.o.rnu = true
 vim.o.mouse = "a"
 vim.o.scrolloff = 3
-vim.g.rustfmt_autosave = 1
+--vim.g.rustfmt_autosave = 1
 vim.g.mapleader = ","
 vim.g.skip_ts_context_commentstring_module = true
 vim.g.syntax = "off"
@@ -23,7 +23,7 @@ end
 
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
 	callback = function()
-		vim.cmd(":Lspsaga show_line_diagnostics ++unfocus")
+		--vim.cmd(":Lspsaga show_line_diagnostics ++unfocus")
 	end,
 })
 keymap("n", "<leader>th", ":botright new <Bar> :terminal")

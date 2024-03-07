@@ -7,6 +7,7 @@
         # Dev-Rust
         taplo
         leptosfmt
+        fenix.complete.toolchain
 
         # Dev-js
         nodejs

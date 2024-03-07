@@ -58,16 +58,16 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "path",                priority = 5 },
-		{ name = "luasnip",             priority = 5 },
-		{ name = "emoji",               priority = 5 },
-		{ name = "npm",                 priority = 5 },
-		{ name = "nvim_lua",            priority = 5 },
-		{ name = "buffer",              keyword_length = 2, priority = 5 },
-		{ name = "nvim_lsp",            priority = 1 },
+		{ name = "path", priority = 5 },
+		{ name = "luasnip", priority = 5 },
+		{ name = "emoji", priority = 5 },
+		{ name = "npm", priority = 5 },
+		{ name = "nvim_lua", priority = 5 },
+		{ name = "buffer", keyword_length = 2, priority = 5 },
+		{ name = "nvim_lsp", priority = 1 },
 		{ name = "conventionalcommits", priority = 1 },
 		--{ name = "copilot",             priority = -100 },
-		{ name = "crates",              priority = 4 },
+		{ name = "crates", priority = 4 },
 	},
 	formatting = {
 		format = lspkind.cmp_format({
@@ -125,7 +125,7 @@ lsp_zero.setup_servers = {
 	"yamlls",
 	"taplo",
 	-- rust
-	--"rust_analyzer",
+	"rust-analyzer",
 	-- scripting
 	"lua_ls",
 	"nil_ls",
@@ -139,29 +139,29 @@ lsp_zero.setup_servers = {
 lsp_zero.format_on_save({
 	servers = {
 		["lua_ls"] = { "lua" },
-		["rust_analyzer"] = { "rust" },
+		["rust-analyzer"] = { "rust" },
 		["tailwindcss"] = { "css", "scss" },
 		["intelephense"] = { "php" },
 		["pyright"] = { "python" },
 		["taplo"] = { "toml" },
 	},
 })
-Rust_lsp = lsp_zero.build_options("rust_analyzer", {
-	settings = {
-		["rust-analyzer"] = {
-			-- Other Settings ...
-			procMacro = {
-				ignored = {
-					leptos_macro = {
-						-- Leptos
-						"component",
-						"server",
-					},
-				},
-			},
-		},
-	},
-})
+--Rust_lsp = lsp_zero.build_options("rust_analyzer", {
+--	settings = {
+--		["rust-analyzer"] = {
+--			-- Other Settings ...
+--			procMacro = {
+--				ignored = {
+--					leptos_macro = {
+--						-- Leptos
+--						"component",
+--						"server",
+--					},
+--				},
+--			},
+--		},
+--	},
+--})
 local lsp = require("lspconfig")
 lsp.lua_ls.setup({})
 lsp.tailwindcss.setup({
@@ -223,13 +223,13 @@ lsp.html.setup({})
 lsp.taplo.setup({})
 lsp.yamlls.setup({})
 lsp_zero.setup()
-require("lspsaga").setup({
-	code_action_lightbulb = { enable = false },
-	lightbulb = {
-		enable = false,
-		sign = false,
-	},
-})
+--require("lspsaga").setup({
+--	code_action_lightbulb = { enable = false },
+--	lightbulb = {
+--		enable = false,
+--		sign = false,
+--	},
+--})
 require("colorizer").setup({
 	filetypes = { "*" },
 	user_default_options = {
@@ -242,7 +242,7 @@ require("colorizer").setup({
 		mode = "background", -- Set the display mode.
 		-- Available methods are false / true / "normal" / "lsp" / "both"
 		-- True is same as normal
-		tailwind = true,                  -- Enable tailwind colors
+		tailwind = true, -- Enable tailwind colors
 		sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
 		virtualtext = "■",
 		always_update = true,

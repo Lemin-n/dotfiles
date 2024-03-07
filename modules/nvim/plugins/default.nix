@@ -14,9 +14,11 @@
     cmp_luasnip
     #copilot-cmp
     cmp-nvim-lua
+    nvim-dap
+    lsp-inlayhints-nvim
     cmp-nvim-lsp
     lsp-format-nvim
-    lspsaga-nvim
+    #lspsaga-nvim
     lspkind-nvim
     #tabby-vim
     markdown-preview-nvim
@@ -40,7 +42,7 @@
     (import ./bufferline.nix {inherit pkgs;})
     (import ./lualine.nix {inherit pkgs;})
     ## (import ./presence.nix {inherit pkgs;})
-    (import ./rust-tools.nix {inherit pkgs;})
+    (import ./rustaceanvim.nix {inherit pkgs;})
     (import ./telescope.nix {inherit pkgs;})
     (import ./colorizer-nvim.nix {inherit pkgs;})
     (import ./git.nix {inherit pkgs;})

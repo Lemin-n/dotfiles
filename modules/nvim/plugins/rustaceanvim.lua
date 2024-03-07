@@ -1,16 +1,16 @@
-local opts = {
-	tools = {
-		autoSetHints = true,
-		runnables = {
-			use_telescope = true,
-		},
-		inlay_hints = {
-			parameter_hints_prefix = "",
-			other_hints_prefix = "",
-		},
-	},
-	server = Rust_lsp,
-}
+--local opts = {
+--	tools = {
+--		autoSetHints = true,
+--		runnables = {
+--			use_telescope = true,
+--		},
+--		inlay_hints = {
+--			parameter_hints_prefix = "",
+--			other_hints_prefix = "",
+--		},
+--	},
+--	server = Rust_lsp,
+--}
 --require("rust-tools").setup(opts)
 require("crates").setup({
 	popup = {
@@ -29,16 +29,33 @@ require("crates").setup({
 })
 
 vim.g.rustaceanvim = {
-	-- Plugin configuration
-	--tools = {},
-	-- LSP configuration
+	inlay_hints = {
+		highlight = "NonText",
+	},
+	tools = {
+		hover_actions = {
+			auto_focus = true,
+		},
+		enable_clippy = true,
+	},
 	server = {
 		on_attach = function(client, bufnr)
-			-- you can also put keymaps in here
+			require("lsp-inlayhints").on_attach(client, bufnr)
 		end,
 		default_settings = {
 			-- rust-analyzer language server configuration
 			["rust-analyzer"] = {
+				cargo = {
+					allFeatures = true,
+					loadOutDirsFromCheck = true,
+					runBuildScripts = true,
+				},
+				-- Add clippy lints for Rust.
+				checkOnSave = {
+					allFeatures = true,
+					command = "clippy",
+					extraArgs = { "--no-deps" },
+				},
 				-- Other Settings ...
 				procMacro = {
 					ignored = {
