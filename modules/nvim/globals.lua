@@ -23,7 +23,7 @@ end
 
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
 	callback = function()
-		--vim.cmd(":Lspsaga show_line_diagnostics ++unfocus")
+		vim.cmd(":Lspsaga show_line_diagnostics ++unfocus")
 	end,
 })
 keymap("n", "<leader>th", ":botright new <Bar> :terminal")

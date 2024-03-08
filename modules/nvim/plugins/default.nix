@@ -18,7 +18,7 @@
     lsp-inlayhints-nvim
     cmp-nvim-lsp
     lsp-format-nvim
-    #lspsaga-nvim
+    lspsaga-nvim
     lspkind-nvim
     #tabby-vim
     markdown-preview-nvim

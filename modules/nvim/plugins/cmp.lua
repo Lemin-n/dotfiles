@@ -223,13 +223,13 @@ lsp.html.setup({})
 lsp.taplo.setup({})
 lsp.yamlls.setup({})
 lsp_zero.setup()
---require("lspsaga").setup({
---	code_action_lightbulb = { enable = false },
---	lightbulb = {
---		enable = false,
---		sign = false,
---	},
---})
+require("lspsaga").setup({
+	code_action_lightbulb = { enable = false },
+	lightbulb = {
+		enable = false,
+		sign = false,
+	},
+})
 require("colorizer").setup({
 	filetypes = { "*" },
 	user_default_options = {
