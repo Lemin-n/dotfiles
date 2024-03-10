@@ -22,6 +22,7 @@
     lspkind-nvim
     #tabby-vim
     markdown-preview-nvim
+    telescope-file-browser-nvim
     nvim-lspconfig
     crates-nvim
     plenary-nvim
@@ -34,7 +35,7 @@
     #(import ./copilot.nix {inherit pkgs;})
     (import ./tree-sitter.nix {inherit pkgs;})
     (import ./autopairs.nix {inherit pkgs;})
-    (import ./nvim-tree.nix {inherit pkgs;})
+    # (import ./nvim-tree.nix {inherit pkgs;})
     (import ./cmp.nix {inherit pkgs;})
     (import ./none-ls.nix {inherit pkgs;})
     (import ./catppuccin.nix {inherit pkgs;})

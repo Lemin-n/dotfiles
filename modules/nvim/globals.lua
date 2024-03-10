@@ -30,6 +30,7 @@ keymap("n", "<leader>th", ":botright new <Bar> :terminal")
 keymap("n", "<leader>ts", ":botright vnew <Bar> :terminal")
 keymap("n", "<leader>tg", ":Telescope live_grep")
 keymap("n", "<leader>tf", ":Telescope find_files")
+keymap("n", "<leader>tb", ":Telescope file_browser")
 keymap("n", "<leader>xr", "<Plug>RestNvim")
 -- Markdown preview options
 vim.g.mkdp_open_to_the_world = 1

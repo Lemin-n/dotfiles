@@ -4,6 +4,10 @@ require("catppuccin").setup({
 	transparent_background = true,
 	integrations = {
 		noice = true,
+		telescope = {
+			enabled = true,
+			style = "nvchad",
+		},
 	},
 })
 vim.cmd.colorscheme("catppuccin")
