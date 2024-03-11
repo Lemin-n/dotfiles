@@ -11,6 +11,20 @@
     gitname = "Emilio Ruscitti";
     gitemail = "emiliorccp@gmail.com";
   };
+  # Enable OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  # Load nvidia driver for Xorg and Wayland
+  #services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    #modesetting.enable = true;
+    nvidiaSettings = true;
+  };
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
