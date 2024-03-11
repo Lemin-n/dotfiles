@@ -1,0 +1,32 @@
+[general]
+# Misc
+author = "Emilio Ruscitti"
+window_title = "Kalimdar"
+save_format = "png"
+fonts = "UbuntuMono Nerd Font=24.0"
+notify = true
+copy = true
+# Display
+radius = 12
+# padding-x = 0 Panic trace
+# padding-y = 0 Panic trace
+# Shadow
+shadow = true
+shadow_image = true
+shadow_blur = 80
+
+[general.colors]
+background = "#2b3655"
+author = "#82a6c2"
+window_background = "#464953"
+shadow = "#526d8b"
+title = "#8f979c"
+
+[general.window-controls]
+enable = false
+width = 120
+height = 40
+titlebar_padding = 10
+
+[cli]
+current = true

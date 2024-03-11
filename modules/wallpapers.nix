@@ -57,5 +57,8 @@ in {
           # Screenshots folder for hyprline shortcuts
         '';
       };
+      home.file.".config/sss/config.toml" = {
+        source = "../config.toml";
+      };
     };
 }
