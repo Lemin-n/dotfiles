@@ -18,5 +18,6 @@
     openssl
     ntfs3g
     ouch
+    fd
   ];
 }
