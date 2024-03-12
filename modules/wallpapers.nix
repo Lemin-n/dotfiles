@@ -50,15 +50,13 @@ in {
       home.file.".config/script/partstats" = {
         source = ../script/partstats;
       };
-    }
-    // {
       home.file."screenshots/README.md" = {
         text = ''
           # Screenshots folder for hyprline shortcuts
         '';
       };
       home.file.".config/sss/config.toml" = {
-        source = "../config.toml";
+        source = ../config.toml;
       };
     };
 }
