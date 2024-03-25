@@ -11,6 +11,9 @@
     gitsigns-nvim
     nvim-colorizer-lua
     luasnip
+    vim-dadbod
+    vim-dadbod-ui
+    vim-dadbod-completion
     cmp_luasnip
     #copilot-cmp
     cmp-nvim-lua

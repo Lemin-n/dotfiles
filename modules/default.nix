@@ -187,7 +187,7 @@ in {
             jq
             gftp
             image-roll
-
+            postgresql
             neofetch
             felix-fm
 
