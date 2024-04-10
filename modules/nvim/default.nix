@@ -32,7 +32,6 @@
         lua-language-server
 
         # Dev-Nix
-        rnix-lsp
         nil
         alejandra
 

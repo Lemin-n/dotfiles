@@ -194,7 +194,6 @@ in {
             onlyoffice-bin
 
             spot
-            spotify-tui
             spotifyd
             spotify
 
