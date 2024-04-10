@@ -35,5 +35,9 @@
     upower.enable = true;
     dbus.packages = [pkgs.gcr];
     ratbagd.enable = true;
+    ntpd-rs = {
+      enable = true;
+      useNetworkingTimeServers = true;
+    };
   };
 }
