@@ -65,7 +65,8 @@ in {
       preload= ~/.config/wallpapers/japan-temple.jpg
       preload= ~/.config/wallpapers/sci-fi-japan.jpg
       preload= ~/.config/wallpapers/blue-sky.png
-      wallpaper=,~/.config/wallpapers/blue-sky.png
+      preload= ~/.config/wallpapers/fu-hua.png
+      wallpaper=,~/.config/wallpapers/fu-hua.png
     '';
 
     wayland.windowManager.hyprland = pkgs.lib.mkIf cfg.enable {
