@@ -146,6 +146,11 @@ in {
         "$minus" = "code:20";
         "$printScreen" = "code:107";
         "$equal" = "code:21";
+        "$volMut" = "121";
+        "$volDec" = "122";
+        "$volInc" = "123";
+        "$brightDec" = "232";
+        "$brightInc" = "233";
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         bind = [
           "${cfg.main-mod}, A, exec, alacritty"
@@ -179,16 +184,21 @@ in {
           "${cfg.main-mod} CTRL, 7, movetoworkspace, 7"
           "${cfg.main-mod} CTRL, 8, movetoworkspace, 8"
           "${cfg.main-mod} CTRL, 9, movetoworkspace, 9"
-          "${cfg.main-mod}, $printScreen , exec, ~/.config/script/screenshot fullscreen"
+          "${cfg.main-mod}, $printScreen, exec, ~/.config/script/screenshot fullscreen"
           "${cfg.main-mod} SHIFT, $printScreen, exec, ~/.config/script/screenshot window"
           "${cfg.main-mod} CTRL, $printScreen, exec, ~/.config/script/screenshot zone"
           # Scroll through existing workspaces with mainMod + scroll
           "${cfg.main-mod}, mouse_down, workspace, e+1"
           "${cfg.main-mod}, mouse_up, workspace, e-1"
+          "${cfg.main-mod}, $volMut, exec, amixer set Master toggle"
         ];
         binde = [
-          "${cfg.main-mod}, $minus , resizeactive, -20 0"
-          "${cfg.main-mod}, $equal , resizeactive, 20 0"
+          "${cfg.main-mod}, $minus, resizeactive, -20 0"
+          "${cfg.main-mod}, $equal, resizeactive, 20 0"
+          "${cfg.main-mod}, $brightDec, exec, light -U 1"
+          "${cfg.main-mod}, $brightInc, exec, light -A 1"
+          "${cfg.main-mod}, $volDec, exec, amixer set Master 2%-"
+          "${cfg.main-mod}, $volInc, exec, amixer set Master 2%+"
         ];
         # Move/resize windows with mainMod + LMB/RMB and dragging
         bindm = [
