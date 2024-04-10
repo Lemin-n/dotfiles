@@ -1,5 +1,5 @@
 {...}: {
-  enable = true;
+  enable = false;
   settings = {
     mainBar = {
       layer = "bottom";
@@ -39,6 +39,7 @@
       clock = {
         format = "{:%a %d %b %H:%M}";
         tooltip = false;
+        timezone = "America/Argentina/Rio_Gallegos";
       };
       battery = {
         format = "{capacity}% {icon}";
