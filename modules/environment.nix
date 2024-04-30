@@ -11,6 +11,8 @@
   environment.systemPackages = with pkgs; [
     # Default
     curl
+    cloudflared
+    wrangler
     ripgrep
     git
     wget
