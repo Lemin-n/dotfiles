@@ -155,8 +155,9 @@ in {
         bind = [
           "${cfg.main-mod}, A, exec, alacritty"
           "${cfg.main-mod}, $escMod, killactive,"
-          "${cfg.main-mod} CTRL, $escMod, exit, "
+          "${cfg.main-mod} CTRL, $escMod, exit,"
           "${cfg.main-mod}, V, togglefloating, "
+          "${cfg.main-mod}, O, pin, active"
           "${cfg.main-mod}, W, exec, wofi --show drun"
           "${cfg.main-mod}, left, movefocus, l"
           "${cfg.main-mod}, right, movefocus, r"
