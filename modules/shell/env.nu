@@ -1,5 +1,5 @@
 let starship_cache = $"($env.HOME)/.cache/starship"
-starship init nu | save --force /home/lemi/.cache/starship/init.nu
+starship init nu | save --force $"($env.HOME)/.cache/starship/init.nu"
 
 
 $env.STARSHIP_SHELL = "nu"

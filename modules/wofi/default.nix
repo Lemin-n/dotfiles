@@ -1,51 +1,53 @@
 {...}: {
-  enable = true;
-  style = ''
-    * {
-    	font-family: "Hack", monospace;
-    }
+  programs.wofi = {
+    enable = true;
+    style = ''
+      * {
+      	font-family: "Hack", monospace;
+      }
 
-    window {
-    	background-color: #3B4252;
-    }
+      window {
+      	background-color: #3B4252;
+      }
 
-    #input {
-    	margin: 5px;
-    	border-radius: 0px;
-    	border: none;
-    	background-color: #3B4252;
-    	color: white;
-    }
+      #input {
+      	margin: 5px;
+      	border-radius: 0px;
+      	border: none;
+      	background-color: #3B4252;
+      	color: white;
+      }
 
-    #inner-box {
-    	background-color: #383C4A;
-    }
+      #inner-box {
+      	background-color: #383C4A;
+      }
 
-    #outer-box {
-    	margin: 2px;
-    	padding: 10px;
-    	background-color: #383C4A;
-    }
+      #outer-box {
+      	margin: 2px;
+      	padding: 10px;
+      	background-color: #383C4A;
+      }
 
-    #scroll {
-    	margin: 5px;
-    }
+      #scroll {
+      	margin: 5px;
+      }
 
-    #text {
-    	padding: 4px;
-    	color: white;
-    }
+      #text {
+      	padding: 4px;
+      	color: white;
+      }
 
-    #entry:nth-child(even){
-    	background-color: #404552;
-    }
+      #entry:nth-child(even){
+      	background-color: #404552;
+      }
 
-    #entry:selected {
-    	background-color: #4C566A;
-    }
+      #entry:selected {
+      	background-color: #4C566A;
+      }
 
-    #text:selected {
-    	background: transparent;
-    }
-  '';
+      #text:selected {
+      	background: transparent;
+      }
+    '';
+  };
 }

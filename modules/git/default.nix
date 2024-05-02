@@ -13,6 +13,10 @@ in {
     userEmail = mkOption {
       type = types.str;
     };
+    gitui = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
   config = {
     programs.git = pkgs.lib.mkIf cfg.enable {
@@ -40,6 +44,7 @@ in {
         };
       };
     };
+    programs.gitui.enable = cfg.gitui;
     home.packages = pkgs.lib.mkIf cfg.enable [
       pkgs.git
       pkgs.gitoxide
