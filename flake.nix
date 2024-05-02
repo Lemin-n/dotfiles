@@ -34,6 +34,9 @@
     wired = {
       url = "github:Toqozz/wired-notify";
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+    };
     fenix = {
       url = "github:nix-community/fenix";
     };
@@ -48,6 +51,9 @@
     };
     sss = {
       url = "github:SergioRibera/sss";
+    };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
     };
   };
   nixConfig = {
