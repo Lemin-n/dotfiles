@@ -1,0 +1,3 @@
+{...}: {
+  imports = [./proxmox-devenv.nix];
+}
