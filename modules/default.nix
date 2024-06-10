@@ -72,6 +72,11 @@ in {
         libsForQt5.qt5.qtwayland
       ];
     };
+    users.users."${zenix.username}" = {
+      isNormalUser = zenix.normalUser;
+      extraGroups = zenix.groups;
+      shell = zenix.shell;
+    };
 
     home-manager.users.${zenix.username} = {pkgs, ...}: {
       services.wired = {
@@ -203,11 +208,6 @@ in {
         userName = zenix.gitname;
         userEmail = zenix.gitemail;
       };
-    };
-    users.users."${zenix.username}" = {
-      isNormalUser = zenix.normalUser;
-      extraGroups = zenix.groups;
-      shell = zenix.shell;
     };
   };
 }

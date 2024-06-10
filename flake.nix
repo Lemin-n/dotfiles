@@ -11,6 +11,7 @@
       imports = [
         ./hosts
         ./pkgs
+        ./vm
       ];
       perSystem = {
         config,
