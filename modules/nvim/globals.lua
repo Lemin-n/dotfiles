@@ -2,7 +2,7 @@
 vim.o.signcolumn = "yes"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.shortmess = "filnxtToOFc"
-vim.o.mapleader = ","
+vim.g.mapleader = ","
 vim.o.number = true
 vim.o.updatetime = 100
 vim.o.rnu = true

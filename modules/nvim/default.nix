@@ -21,7 +21,7 @@
 
         # Dev-python
         python3
-        nodePackages.pyright
+        pyright
 
         # Dev-go
         go

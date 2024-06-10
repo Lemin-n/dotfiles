@@ -34,7 +34,7 @@
     nvim-ts-autotag
     nvim-treesitter-endwise
     inc-rename-nvim
-    rest-nvim
+    #rest-nvim
     #(import ./copilot.nix {inherit pkgs;})
     (import ./tree-sitter.nix {inherit pkgs;})
     (import ./autopairs.nix {inherit pkgs;})

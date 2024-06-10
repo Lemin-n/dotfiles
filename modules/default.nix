@@ -147,7 +147,7 @@ in {
             google-chrome
             brave
 
-            dbeaver
+            dbeaver-bin
 
             steam
             retroarch
