@@ -21,11 +21,11 @@ local function keymap(maptype, keybind, binding, mode)
 	vim.api.nvim_set_keymap(maptype, keybind, "<cmd>" .. binding .. "<CR>", mode)
 end
 
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
-	callback = function()
-		vim.cmd(":Lspsaga show_line_diagnostics ++unfocus")
-	end,
-})
+--vim.api.nvim_create_autocmd({ "CursorHold" }, {
+--	callback = function()
+--		vim.cmd(":Lspsaga show_line_diagnostics ++unfocus")
+--	end,
+--})
 keymap("n", "<leader>th", ":botright new <Bar> :terminal")
 keymap("n", "<leader>ts", ":botright vnew <Bar> :terminal")
 keymap("n", "<leader>dt", ":DBUIToggle")
