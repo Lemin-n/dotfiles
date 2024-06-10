@@ -14,7 +14,7 @@
     zsh = {
       config = {
         shellAliases = shellAliases;
-        enableAutosuggestions = true;
+        autosuggestion.enable = true;
         enableCompletion = true;
       };
       home = {
