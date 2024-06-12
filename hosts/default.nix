@@ -35,6 +35,28 @@
         };
       };
 
+      lenarth = nixosSystem {
+        inherit system;
+
+        modules = [
+          inputs.hm.nixosModule
+          ./lenarth
+          {
+            imports = [
+              inputs.sss.nixosModules.default
+            ];
+            programs.sss = {
+              enable = true;
+            };
+            environment.systemPackages = [config.packages.xwaylandvideobridge inputs.nixpkgs.legacyPackages.${system}.slurp];
+          }
+        ];
+
+        specialArgs = {
+          inherit inputs;
+        };
+      };
+
       kalimdar = nixosSystem {
         inherit system;
 
