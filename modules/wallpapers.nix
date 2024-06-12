@@ -20,11 +20,11 @@ in {
   config =
     mkIf cfg.enable
     {
-      home.file.".config/wallpapers/fu-hua.png" = {
-        source = ../wallpapers/fu-hua.png;
-      };
       home.file.".config/wallpapers/fujisan.jpg" = {
         source = ../wallpapers/fujisan.jpg;
+      };
+      home.file.".config/wallpapers/thus-spoke-apocalypse.png" = {
+        source = ../wallpapers/thus-spoke-apocalypse.png;
       };
       home.file.".config/wallpapers/japan-temple.jpg" = {
         source = ../wallpapers/japan-temple.jpg;
