@@ -8,6 +8,7 @@
         taplo
         leptosfmt
         fenix.complete.toolchain
+        rust-analyzer-nightly
 
         # Dev-js
         nodejs
