@@ -13,7 +13,7 @@
         nodejs
         deno
         nodePackages.typescript-language-server
-        nodePackages.volar
+        #volar
 
         # Dev-php
         php

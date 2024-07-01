@@ -12,7 +12,7 @@
     # Default
     curl
     cloudflared
-    wrangler
+    #wrangler
     ripgrep
     git
     wget
