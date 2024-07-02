@@ -207,6 +207,9 @@ in {
           "${cfg.main-mod}, mouse:272, movewindow"
           "${cfg.main-mod}, mouse:273, resizewindow"
         ];
+        debug = {
+          disable_logs = false;
+        };
       };
     };
   };
