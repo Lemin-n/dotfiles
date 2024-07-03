@@ -62,6 +62,7 @@ in {
     ];
     home-manager.sharedModules = [
       inputs.wired.homeManagerModules.default
+      inputs.niri.homeModules.niri
     ];
     programs.nix-ld = {
       enable = true;
@@ -72,12 +73,13 @@ in {
         libsForQt5.qt5.qtwayland
       ];
     };
+    xdg.portal.config.common.default = "*";
     users.users."${zenix.username}" = {
       isNormalUser = zenix.normalUser;
       extraGroups = zenix.groups;
       shell = zenix.shell;
     };
-
+    home-manager.backupFileExtension = "backup";
     home-manager.users.${zenix.username} = {pkgs, ...}: {
       services.wired = {
         package = inputs.wired.packages.${system}.default;
@@ -113,6 +115,23 @@ in {
       nixpkgs.config.allowUnfree = true;
       nixpkgs.overlays = [inputs.fenix.overlays.default];
       programs.home-manager.enable = true;
+      programs.niri = {
+        enable = true;
+        settings = {
+          prefer-no-csd = true;
+          hotkey-overlay.skip-at-startup = true;
+          environment = {
+            DISPLAY = ":0";
+          };
+          spawn-at-startup = [
+            {command = ["alacritty"];}
+            {command = ["brave"];}
+          ];
+          binds = {
+            "Mod+Ctrl+Escape".action.quit.skip-confirmation = true;
+          };
+        };
+      };
       home = {
         stateVersion = "24.05";
 
