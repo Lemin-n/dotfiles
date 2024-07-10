@@ -27,6 +27,8 @@ end
 --})
 keymap("n", "<leader>th", ":botright new <Bar> :terminal")
 keymap("n", "<leader>ts", ":botright vnew <Bar> :terminal")
+keymap("n", "<leader>b", ":bprev")
+keymap("n", "<leader>n", ":bnext")
 keymap("n", "<leader>dt", ":DBUIToggle")
 keymap("n", "<leader>dr", ":DBUIRenameBuffer")
 keymap("n", "<leader>di", ":DBUILastQueryInfo")
