@@ -73,7 +73,6 @@ in {
         libsForQt5.qt5.qtwayland
       ];
     };
-    xdg.portal.config.common.default = "*";
     users.users."${zenix.username}" = {
       isNormalUser = zenix.normalUser;
       extraGroups = zenix.groups;

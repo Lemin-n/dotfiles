@@ -1,6 +1,12 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    wlr = {
+      enable = true;
+    };
+    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+    config.common = {
+      default = "hyprland";
+    };
   };
 }
