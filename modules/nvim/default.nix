@@ -40,7 +40,6 @@
         ripgrep
 
         # Self-Dif ~ Data Interchange Format
-        nodePackages.vscode-json-languageserver
         taplo
         nodePackages.yaml-language-server
 
@@ -52,8 +51,7 @@
         nodePackages.tailwindcss
         nodePackages.prettier
         nodePackages."@tailwindcss/language-server"
-        nodePackages.vscode-html-languageserver-bin
-        nodePackages.vscode-css-languageserver-bin
+        vscode-langservers-extracted
       ];
       viAlias = true;
       vimAlias = true;
