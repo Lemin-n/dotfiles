@@ -17,9 +17,6 @@ require("crates").setup({
 	},
 })
 vim.g.rustaceanvim = {
-	inlay_hints = {
-		highlight = "NonText",
-	},
 	tools = {
 		hover_actions = {
 			auto_focus = true,
@@ -28,7 +25,7 @@ vim.g.rustaceanvim = {
 	},
 	server = {
 		on_attach = function(client, bufnr)
-			require("lsp-inlayhints").on_attach(client, bufnr)
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 		end,
 		default_settings = {
 			["rust-analyzer"] = {
