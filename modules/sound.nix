@@ -1,3 +1,2 @@
-{ ... }: {
-  sound.enable = true;
+{...}: {
 }

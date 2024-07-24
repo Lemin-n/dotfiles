@@ -71,10 +71,14 @@ in {
     '';
 
     wayland.windowManager.hyprland = pkgs.lib.mkIf cfg.enable {
+      systemd = {
+        enableXdgAutostart = true;
+        variables = ["--all"];
+      };
       enable = true;
       settings = {
         monitor = ",highres,auto,1";
-        exec-once = "waybar &> /dev/null | hyprpaper &> /dev/null | wl-paste --type text --watch cliphist store &> /dev/null | wl-paste --type image --watch cliphist store &> /dev/null | wl-clip-persist --clipboard both &> /dev/null | alacritty";
+        exec-once = ["waybar" "hyprpaper" "wl-copy -f" "wl-paste --type text --watch cliphist store " "wl-paste --type image --watch cliphist store" "alacritty" "dbus-update-activation-environment --systemd --all"];
         env = "XCURSOR_SIZE,24";
         input = {
           kb_layout = cfg.keyboard.layout;

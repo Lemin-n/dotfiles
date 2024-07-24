@@ -51,7 +51,7 @@
       url = "github:nix-community/home-manager";
     };
     sss = {
-      url = "github:SergioRibera/sss";
+      url = "github:SergioRibera/sss?rev=7ae8bc2adeb1a77317ed551436e2b9304e27d7bc";
     };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";

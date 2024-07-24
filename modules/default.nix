@@ -114,23 +114,23 @@ in {
       nixpkgs.config.allowUnfree = true;
       nixpkgs.overlays = [inputs.fenix.overlays.default];
       programs.home-manager.enable = true;
-      programs.niri = {
-        enable = true;
-        settings = {
-          prefer-no-csd = true;
-          hotkey-overlay.skip-at-startup = true;
-          environment = {
-            DISPLAY = ":0";
-          };
-          spawn-at-startup = [
-            {command = ["alacritty"];}
-            {command = ["brave"];}
-          ];
-          binds = {
-            "Mod+Ctrl+Escape".action.quit.skip-confirmation = true;
-          };
-        };
-      };
+      #programs.niri = {
+      #	enable = true;
+      # settings = {
+      #   prefer-no-csd = true;
+      #   hotkey-overlay.skip-at-startup = true;
+      #   environment = {
+      #     DISPLAY = ":0";
+      #   };
+      #   spawn-at-startup = [
+      #     {command = ["alacritty"];}
+      #     {command = ["brave"];}
+      #   ];
+      #   binds = {
+      #     "Mod+Ctrl+Escape".action.quit.skip-confirmation = true;
+      #   };
+      # };
+      # };
       home = {
         stateVersion = "24.05";
 
