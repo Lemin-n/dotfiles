@@ -1,5 +1,15 @@
 ---@diagnostic disable: undefined-global ,redefined-local
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local blgroup = vim.api.nvim_create_augroup("HandlingBlade", {})
+vim.api.nvim_create_autocmd("FileType", {
+	group = blgroup,
+	buffer = bufnr,
+	callback = function()
+		if string.find(vim.bo.filetype, "%.blade%.") then
+			vim.bo.filetype = "blade"
+		end
+	end,
+})
 local on_attach = function(client, bufnr)
 	if client.server_capabilities.inlayHintProvider then
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -14,7 +24,7 @@ local on_attach = function(client, bufnr)
 				vim.lsp.buf.format({
 					async = false,
 					filter = function(client)
-						return (client.name ~= "tsserver") or (client.name ~= "intelephense")
+						return (client.name ~= "tsserver")
 					end,
 				})
 			end,
@@ -31,7 +41,6 @@ none_ls.setup({
 		none_ls.builtins.formatting.biome,
 		none_ls.builtins.formatting.blade_formatter.with({
 			filetypes = {
-				"php",
 				"blade",
 			},
 			extra_args = {
