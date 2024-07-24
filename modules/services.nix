@@ -33,7 +33,10 @@
       pulse.enable = true;
     };
     upower.enable = true;
-    dbus.packages = [pkgs.gcr];
+    dbus = {
+      apparmor = "enabled";
+      implementation = "broker";
+    };
     ratbagd.enable = true;
     ntpd-rs = {
       enable = true;

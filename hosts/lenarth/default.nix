@@ -17,7 +17,7 @@
     ];
   };
   # Enable OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
 
@@ -29,6 +29,7 @@
     nvidiaSettings = true;
   };
   nixpkgs.config.allowUnfree = true;
+  boot.initrd.systemd.dbus.enable = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   system.stateVersion = " 24.05 "; # Did you read the comment?
