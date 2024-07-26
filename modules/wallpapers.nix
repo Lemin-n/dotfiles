@@ -29,9 +29,6 @@ in {
       home.file.".config/wallpapers/japan-temple.jpg" = {
         source = ../wallpapers/japan-temple.jpg;
       };
-      home.file.".config/wallpapers/rengoku.jpg" = {
-        source = ../wallpapers/rengoku.jpg;
-      };
       home.file.".config/wallpapers/sci-fi-japan.jpg" = {
         source = ../wallpapers/sci-fi-japan.jpg;
       };
