@@ -1364,17 +1364,17 @@
         "nixpkgs": "nixpkgs_15"
       },
       "locked": {
-        "lastModified": 1720302317,
-        "narHash": "sha256-6oSGAYc0ZNeDmHe01YV5Sz5rguLAY0IMPIsPCUm3fvk=",
+        "lastModified": 1718672334,
+        "narHash": "sha256-GxNR1EaPdQY92inDqc/DS18ksXxlzpErFPQc6C6t338=",
         "owner": "SergioRibera",
         "repo": "sss",
-        "rev": "7ae8bc2adeb1a77317ed551436e2b9304e27d7bc",
+        "rev": "15e46e961286c62d56f6b8e2e2d818ef194b02ac",
         "type": "github"
       },
       "original": {
         "owner": "SergioRibera",
         "repo": "sss",
-        "rev": "7ae8bc2adeb1a77317ed551436e2b9304e27d7bc",
+        "rev": "15e46e961286c62d56f6b8e2e2d818ef194b02ac",
         "type": "github"
       }
     },

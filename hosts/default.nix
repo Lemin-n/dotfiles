@@ -45,9 +45,9 @@
             imports = [
               inputs.sss.nixosModules.default
             ];
-            #programs.sss = {
-            #  enable = true;
-            #};
+            programs.sss = {
+              enable = true;
+            };
             environment.systemPackages = [config.packages.xwaylandvideobridge inputs.nixpkgs.legacyPackages.${system}.slurp];
           }
         ];
@@ -68,9 +68,9 @@
             imports = [
               inputs.sss.nixosModules.default
             ];
-            #programs.sss = {
-            #  enable = true;
-            #};
+            programs.sss = {
+              enable = true;
+            };
             environment.systemPackages = [config.packages.xwaylandvideobridge inputs.nixpkgs.legacyPackages.${system}.slurp];
           }
         ];
