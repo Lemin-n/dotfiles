@@ -18,7 +18,7 @@ require("telescope").setup({
 		},
 	},
 })
-function get_fd(opts)
+local function get_fd(opts)
 	opts = opts or {}
 
 	local theme_opts = {
