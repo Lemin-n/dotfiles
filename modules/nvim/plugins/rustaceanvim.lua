@@ -25,7 +25,7 @@ vim.g.rustaceanvim = {
 	},
 	server = {
 		on_attach = function(client, bufnr)
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			--		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 		end,
 		default_settings = {
 			["rust-analyzer"] = {
