@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 local on_attach = function(client, bufnr)
 	if client.server_capabilities.inlayHintProvider then
-		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		vim.lsp.inlay_hint.enable()
 	end
 	if client.supports_method("textDocument/formatting") then
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

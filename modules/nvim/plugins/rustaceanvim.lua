@@ -24,8 +24,8 @@ vim.g.rustaceanvim = {
 		enable_clippy = true,
 	},
 	server = {
-		on_attach = function(client, bufnr)
-			--		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		on_attach = function()
+			vim.lsp.inlay_hint.enable()
 		end,
 		default_settings = {
 			["rust-analyzer"] = {
