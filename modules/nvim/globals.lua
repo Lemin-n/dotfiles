@@ -22,11 +22,14 @@ end
 
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
 	callback = function()
-		vim.cmd(":Lspsaga show_line_diagnostics ++unfocus")
+		vim.cmd(":Lspsaga show_buf_diagnostics ++unfocus")
 	end,
 })
 keymap("n", "<leader>th", ":botright new <Bar> :terminal")
 keymap("n", "<leader>ts", ":botright vnew <Bar> :terminal")
+keymap("n", "<leader>lc", ":Lspsaga code_action")
+keymap("n", "<leader>lh", ":Lspsaga hover_doc")
+keymap("n", "<leader>lw", ":Lspsaga show_workspace_diagnostics")
 keymap("n", "<leader>b", ":bprev")
 keymap("n", "<leader>n", ":bnext")
 keymap("n", "<leader>dt", ":DBUIToggle")
@@ -36,6 +39,9 @@ keymap("n", "<leader>e", ":Lspsaga rename")
 keymap("n", "<leader>tg", ":Telescope live_grep")
 keymap("n", "<leader>tf", ":Telescope find_files")
 keymap("n", "<leader>tb", ":Telescope file_browser")
+vim.diagnostic.config({
+	virtual_text = false,
+})
 -- Markdown preview options
 vim.g.mkdp_open_to_the_world = 1
 vim.g.mkdp_open_ip = "0.0.0.0"

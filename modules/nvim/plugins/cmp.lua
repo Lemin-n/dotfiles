@@ -232,6 +232,10 @@ require("lspsaga").setup({
 		enable = false,
 		sign = false,
 	},
+	diagnostic = {
+		diagnostic_only_current = true,
+		extend_relatedInformation = true,
+	},
 })
 require("colorizer").setup({
 	filetypes = { "*" },
