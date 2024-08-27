@@ -58,17 +58,17 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "path",                  priority = 5 },
-		{ name = "luasnip",               priority = 5 },
-		{ name = "emoji",                 priority = 5 },
-		{ name = "npm",                   priority = 5 },
+		{ name = "path", priority = 5 },
+		{ name = "luasnip", priority = 5 },
+		{ name = "emoji", priority = 5 },
+		{ name = "npm", priority = 5 },
 		{ name = "vim-dadbod-completion", priority = 1 },
-		{ name = "nvim_lua",              priority = 5 },
-		{ name = "buffer",                keyword_length = 2, priority = 5 },
-		{ name = "nvim_lsp",              priority = 1 },
-		{ name = "conventionalcommits",   priority = 1 },
+		{ name = "nvim_lua", priority = 5 },
+		{ name = "buffer", keyword_length = 2, priority = 5 },
+		{ name = "nvim_lsp", priority = 1 },
+		{ name = "conventionalcommits", priority = 1 },
 		--{ name = "copilot",             priority = -100 },
-		{ name = "crates",                priority = 4 },
+		{ name = "crates", priority = 4 },
 	},
 	formatting = {
 		format = lspkind.cmp_format({
@@ -145,6 +145,8 @@ lsp_zero.format_on_save({
 		["intelephense"] = { "php" },
 		["pyright"] = { "python" },
 		["taplo"] = { "toml" },
+		["volar"] = { "vue" },
+		["biome"] = { "*" },
 	},
 })
 --Rust_lsp = lsp_zero.build_options("rust_analyzer", {
@@ -242,7 +244,7 @@ require("colorizer").setup({
 		mode = "background", -- Set the display mode.
 		-- Available methods are false / true / "normal" / "lsp" / "both"
 		-- True is same as normal
-		tailwind = true,                  -- Enable tailwind colors
+		tailwind = true, -- Enable tailwind colors
 		sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
 		virtualtext = "■",
 		always_update = true,
