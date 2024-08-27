@@ -21,6 +21,9 @@ lsp.volar.setup({
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
   cmd = { '${pkgs.lib.getExe pkgs.vue-language-server}', '--stdio' },
   init_options = {
+    typescript = {
+      tsdk = '${pkgs.typescript}/lib/node_modules/typescript/lib',
+    },
     vue = {
       hybridMode = false,
     },
