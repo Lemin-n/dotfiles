@@ -4,11 +4,18 @@
   ...
 }: {
   services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+    };
     # provide location
     geoclue2.enable = true;
     printing = {
       enable = true;
+      drivers = with pkgs; [gutenprint gutenprintBin hplipWithPlugin hplip];
+      webInterface = true;
     };
+
     xserver = {
       xkb = {
         layout = "
