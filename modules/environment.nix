@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   environment.sessionVariables = {
     PATH = [
       "$HOME/.cargo/bin/"
@@ -10,8 +14,10 @@
   powerManagement.cpuFreqGovernor = "ondemand";
   environment.systemPackages = with pkgs; [
     # Default
+    inputs.agenix.packages.${system}.default
     curl
     cloudflared
+    remmina
     #wrangler
     ripgrep
     git
