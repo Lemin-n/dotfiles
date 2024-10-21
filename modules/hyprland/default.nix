@@ -109,8 +109,8 @@ in {
           rounding = cfg.rounding;
           blur = {
             enabled = true;
-            size = 2;
-            passes = 2;
+            size = 3;
+            passes = 3;
             new_optimizations = true;
           };
           drop_shadow = true;
