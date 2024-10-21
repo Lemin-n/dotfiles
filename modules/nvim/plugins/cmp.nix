@@ -3,7 +3,7 @@ with pkgs.vimPlugins; {
   plugin = lsp-zero-nvim;
   type = "lua";
   config = pkgs.lib.strings.fileContents ./cmp.lua + "
-lsp.tsserver.setup({
+lsp.ts_ls.setup({
   init_options = {
     plugins = {
       {
@@ -13,19 +13,20 @@ lsp.tsserver.setup({
       },
     },
   },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
   on_attach = function(client)
-	client.server_capabilities.documentFormattingProvider = false
+  	client.server_capabilities.documentFormattingProvider = false
   end,
 })
 lsp.volar.setup({
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  filetypes = { 'vue' },
   cmd = { '${pkgs.lib.getExe pkgs.vue-language-server}', '--stdio' },
   init_options = {
     typescript = {
       tsdk = '${pkgs.typescript}/lib/node_modules/typescript/lib',
-    },
+   },
     vue = {
-      hybridMode = false,
+      hybridMode = true,
     },
   },
 })

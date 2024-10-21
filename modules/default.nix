@@ -159,7 +159,6 @@ in {
             image-roll
             postgresql
             neofetch
-            felix-fm
 
             onlyoffice-bin
 
