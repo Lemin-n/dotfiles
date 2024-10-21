@@ -13,7 +13,7 @@ $env.PROMPT_INDICATOR_VI_INSERT = ": "
 $env.PROMPT_INDICATOR_VI_NORMAL = "〉"
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
 $env.BUILD_CACHE = "/home/cache"
-$env.EDITOR = nvim
+$env.EDITOR = "nvim"
 $env.TEMPLATES = $"($env.HOME)/flakes"
 
 alias ll = eza -1lTFgHh -L 1 --octal-permissions -t changed
