@@ -1,4 +1,11 @@
 ---@diagnostic disable: undefined-global
+local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
+ls.add_snippets("vue", { s("template", { t("<template>"), i(1), t("</template>") }) })
+ls.add_snippets("vue", { s("style", { t("<style>"), i(1), t("</style>") }) })
+ls.add_snippets("vue", { s("script", { t("<script>"), i(1), t("</script>") }) })
 vim.o.signcolumn = "yes"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.shortmess = "filnxtToOFc"
