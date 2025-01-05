@@ -1,9 +1,27 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   cfg = config.zenprland;
+  hyprpaperWallpaper = basepath: files: let
+    isWallpaper = file: file ? "monitor";
+    hyprpaperConfig = builtins.partition (file: lib.strings.hasPrefix "wallpaper" file) (lib.lists.flatten (
+      builtins.map (
+        file: let
+          preloadConf = "preload=${basepath}/${file.name}";
+          wallpaperConf = "wallpaper=${file.monitor},${basepath}/${file.name}";
+        in
+          if isWallpaper file
+          then [wallpaperConf preloadConf]
+          else preloadConf
+      )
+      files
+    ));
+  in
+    lib.strings.concatLines
+    (lib.lists.flatten [hyprpaperConfig.wrong hyprpaperConfig.right]);
 in {
   options.zenprland = with pkgs.lib; {
     enable = mkEnableOption "Enable Hyprland as main WM";
@@ -58,17 +76,48 @@ in {
     ];
 
     # Iterate over wallpaper folder and set default
-    home.file.".config/hypr/hyprpaper.conf".text = ''
-      preload= ~/.config/wallpapers/yokohama-carrousel.jpg
-      preload= ~/.config/wallpapers/fujisan.jpg
-      preload= ~/.config/wallpapers/yokohama.jpg
-      preload= ~/.config/wallpapers/japan-temple.jpg
-      preload= ~/.config/wallpapers/sci-fi-japan.jpg
-      preload= ~/.config/wallpapers/blue-sky.png
-      preload= ~/.config/wallpapers/fu-hua.png
-      preload= ~/.config/wallpapers/thus-spoke-apocalypse.png
-      wallpaper=,~/.config/wallpapers/thus-spoke-apocalypse.png
-    '';
+    home.file.".config/hypr/hyprpaper.conf".text = hyprpaperWallpaper "~/.config/wallpapers" [
+      {
+        name = "yokohama-carrousel.jpg";
+      }
+      {
+        name = "fujisan.jpg";
+      }
+      {
+        name = "yokohama.jpg";
+      }
+      {
+        name = "japan-temple.jpg";
+      }
+      {
+        name = "sci-fi-japan.jpg";
+      }
+      {
+        name = "miyabi.png";
+        monitor = "DP-3";
+      }
+      {
+        name = "blue-sky.png";
+      }
+      {
+        name = "fu-hua.png";
+      }
+      {
+        name = "thus-spoke-apocalypse.png";
+      }
+    ];
+    #home.file.".config/hypr/hyprpaper.conf".text = ''
+    #preload=
+    #preload= ~/.config/wallpapers/fujisan.jpg
+    #preload= ~/.config/wallpapers/yokohama.jpg
+    #preload= ~/.config/wallpapers/japan-temple.jpg
+    #preload= ~/.config/wallpapers/sci-fi-japan.jpg
+    #preload= ~/.config/wallpapers/miyabi.png
+    #preload= ~/.config/wallpapers/blue-sky.png
+    #preload= ~/.config/wallpapers/fu-hua.png
+    #preload= ~/.config/wallpapers/thus-spoke-apocalypse.png
+    #wallpaper=,~/.config/wallpapers/miyabi.png
+    #'';
 
     wayland.windowManager.hyprland = pkgs.lib.mkIf cfg.enable {
       systemd = {
@@ -149,7 +198,7 @@ in {
         };
         "$escMod" = "code:9";
         "$minus" = "code:20";
-        "$printScreen" = "code:107";
+        "$printScreen" = "code:108";
         "$equal" = "code:21";
         "$volMut" = "121";
         "$volDec" = "122";
@@ -159,7 +208,7 @@ in {
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         bind = [
           "${cfg.main-mod}, A, exec, alacritty"
-          "${cfg.main-mod}, $escMod, killactive,"
+          "${cfg.main-mod} ALT, $escMod, killactive,"
           "${cfg.main-mod} CTRL, $escMod, exit,"
           "${cfg.main-mod}, V, togglefloating, "
           "${cfg.main-mod}, O, pin, active"

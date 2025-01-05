@@ -5,55 +5,85 @@
 }:
 with lib; let
   cfg = config.wallpapers;
+  /*
+     loadFiles = filepaths: basepath: builtins.mapAttrs(k: v: let
+  	fileName = builtins.baseNameOf(v.)
+
+  in builtins.concatStringsSep("/" [(basepath ? "./") ]) );
+  */
+  loadFiles = {
+    staticFiles,
+    basepath ? "./",
+  }:
+    builtins.listToAttrs (
+      builtins.map (
+        fileConfig: let
+          fileName = builtins.baseNameOf fileConfig.source;
+          userLocalFile = builtins.concatStringsSep "/" [fileConfig.customBasePath or basepath fileName];
+        in {
+          name = userLocalFile;
+          value =
+            builtins.removeAttrs fileConfig ["customBasePath"];
+        }
+      )
+      staticFiles
+    );
 in {
   options.wallpapers = {
     enable = mkEnableOption "Enable wallpapers";
     name = mkOption {
       type = types.str;
     };
-    path = mkOption {
-      type = types.path;
-      default = ../wallpapers;
-    };
   };
 
-  config =
+  config = let
+    files = [
+      {
+        source = ../wallpapers/fujisan.jpg;
+      }
+      {
+        source = ../wallpapers/thus-spoke-apocalypse.png;
+      }
+      {
+        source = ../wallpapers/japan-temple.jpg;
+      }
+      {
+        source = ../wallpapers/sci-fi-japan.jpg;
+      }
+      {
+        source = ../wallpapers/tokito.jpeg;
+      }
+      {
+        source = ../wallpapers/yokohama-carrousel.jpg;
+      }
+      {
+        source = ../wallpapers/miyabi.png;
+      }
+      {
+        source = ../wallpapers/yokohama.jpg;
+      }
+      {
+        source = ../wallpapers/fu-hua.png;
+      }
+      {
+        source = ../wallpapers/blue-sky.png;
+      }
+      {
+        source = ../script/partstats;
+        customBasePath = ".config/script";
+      }
+      {
+        source = ../config.toml;
+        customBasePath = ".config/sss/";
+      }
+    ];
+    #filesResolved = (files ".config/wallpapers");
+  in
     mkIf cfg.enable
     {
-      home.file.".config/wallpapers/fujisan.jpg" = {
-        source = ../wallpapers/fujisan.jpg;
-      };
-      home.file.".config/wallpapers/thus-spoke-apocalypse.png" = {
-        source = ../wallpapers/thus-spoke-apocalypse.png;
-      };
-      home.file.".config/wallpapers/japan-temple.jpg" = {
-        source = ../wallpapers/japan-temple.jpg;
-      };
-      home.file.".config/wallpapers/sci-fi-japan.jpg" = {
-        source = ../wallpapers/sci-fi-japan.jpg;
-      };
-      home.file.".config/wallpapers/tokito.jpeg" = {
-        source = ../wallpapers/tokito.jpeg;
-      };
-      home.file.".config/wallpapers/yokohama-carrousel.jpg" = {
-        source = ../wallpapers/yokohama-carrousel.jpg;
-      };
-      home.file.".config/wallpapers/yokohama.jpg" = {
-        source = ../wallpapers/yokohama.jpg;
-      };
-      home.file.".config/wallpapers/blue-sky.png" = {
-        source = ../wallpapers/blue-sky.png;
-      };
-      home.file.".config/script/partstats" = {
-        source = ../script/partstats;
-      };
-      home.file."screenshots/README.md" = {
-        text = ''
-          # Screenshots folder for hyprline shortcuts
-        '';
-      };
-      home.file.".config/sss/config.toml" = {
-        source = ../config.toml;
+      home.file = loadFiles {
+        staticFiles = files;
+        basepath = ".config/wallpapers";
       };
     };
 }
