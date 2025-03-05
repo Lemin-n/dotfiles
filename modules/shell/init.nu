@@ -5,9 +5,9 @@
 # Hook configuration for zoxide.
 #
 
+$env.__zoxide_hooked = true
 # Initialize hook to add new entries to the database.
 if (not ($env | default false __zoxide_hooked | get __zoxide_hooked)) {
-  $env.__zoxide_hooked = true
   $env.config = ($env | default {} config).config
   $env.config = ($env.config | default {} hooks)
   $env.config = ($env.config | update hooks ($env.config.hooks | default {} env_change))
