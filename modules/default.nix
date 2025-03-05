@@ -27,6 +27,10 @@ in {
     username = mkOption {
       type = types.str;
     };
+    virtManager = mkEnableOption "Enable virt manager for this host";
+    docker = mkEnableOption "Enable docker for this host";
+    touchpad = mkEnableOption "Enable touchpad this host";
+    gaming = mkEnableOption "Enable gaming suite this host";
     gitname = mkOption {
       type = types.str;
     };
@@ -41,7 +45,6 @@ in {
       type = types.str;
       default = "/home/${zenix.username}";
     };
-    touchpad = mkEnableOption "Enable touchpad this host";
     shell = mkOption {
       type = types.enum [pkgs.zsh pkgs.nushell];
       default = pkgs.zsh;
@@ -75,14 +78,21 @@ in {
     };
     users.users."${zenix.username}" = {
       isNormalUser = zenix.normalUser;
-      extraGroups = zenix.groups;
+      extraGroups = zenix.groups ++ (pkgs.lib.lists.optionals zenix.virtManager ["libvirtd"]);
       shell = zenix.shell;
     };
+    users.groups.libvirtd.members = pkgs.lib.lists.optionals zenix.virtManager [zenix.username];
     home-manager.backupFileExtension = "backup";
     home-manager.users.${zenix.username} = {pkgs, ...}: {
       services.wired = {
         package = inputs.wired.packages.${system}.default;
         enable = true;
+      };
+      dconf.settings = pkgs.lib.attrsets.optionalAttrs zenix.virtManager {
+        "org/virt-manager/virt-manager/connections" = {
+          autoconnect = ["qemu:///system"];
+          uris = ["qemu:///system"];
+        };
       };
       imports = [
         ./alacritty
@@ -155,12 +165,11 @@ in {
 
             grim
             jq
-            gftp
             image-roll
             postgresql
             neofetch
 
-            onlyoffice-bin
+            #onlyoffice-bin
 
             spot
             spotifyd
@@ -177,7 +186,8 @@ in {
             seatd
             qbittorrent
           ]
-          ++ zenix.extraPackages;
+          ++ zenix.extraPackages
+          ++ pkgs.lib.lists.optionals zenix.gaming [protonup];
       };
       manual = {
         html.enable = false;
@@ -225,6 +235,16 @@ in {
         userName = zenix.gitname;
         userEmail = zenix.gitemail;
       };
+    };
+    virt = {
+      virtManager = zenix.virtManager;
+      docker = zenix.docker;
+    };
+    zenixPrograms = {
+      hyprland = true;
+      steam = zenix.gaming;
+      virtManager = zenix.virtManager;
+      light = zenix.touchpad;
     };
   };
 }
