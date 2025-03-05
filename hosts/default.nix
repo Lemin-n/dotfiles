@@ -12,72 +12,30 @@
       ...
     }: let
       inherit (inputs.nixpkgs.lib) nixosSystem;
+      baseConfig = module:
+        nixosSystem {
+          inherit system;
+
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            inputs.hm.nixosModules.default
+            module
+            {
+              imports = [
+                inputs.sss.nixosModules.default
+              ];
+              programs.sss = {
+                enable = true;
+              };
+              environment.systemPackages = [config.packages.xwaylandvideobridge inputs.nixpkgs.legacyPackages.${system}.slurp];
+            }
+          ];
+        };
     in {
-      nixzen = nixosSystem {
-        inherit system;
-
-        modules = [
-          inputs.hm.nixosModule
-          ./nixzen
-          {
-            imports = [
-              inputs.sss.nixosModules.default
-            ];
-            programs.sss = {
-              enable = true;
-            };
-            environment.systemPackages = [config.packages.xwaylandvideobridge inputs.nixpkgs.legacyPackages.${system}.slurp];
-          }
-        ];
-
-        specialArgs = {
-          inherit inputs;
-        };
-      };
-
-      lenarth = nixosSystem {
-        inherit system;
-
-        modules = [
-          inputs.hm.nixosModule
-          ./lenarth
-          {
-            imports = [
-              inputs.sss.nixosModules.default
-            ];
-            programs.sss = {
-              enable = true;
-            };
-            environment.systemPackages = [config.packages.xwaylandvideobridge inputs.nixpkgs.legacyPackages.${system}.slurp];
-          }
-        ];
-
-        specialArgs = {
-          inherit inputs;
-        };
-      };
-
-      kalimdar = nixosSystem {
-        inherit system;
-
-        modules = [
-          inputs.hm.nixosModule
-
-          ./kalimdar
-          {
-            imports = [
-              inputs.sss.nixosModules.default
-            ];
-            programs.sss = {
-              enable = true;
-            };
-            environment.systemPackages = [config.packages.xwaylandvideobridge inputs.nixpkgs.legacyPackages.${system}.slurp];
-          }
-        ];
-
-        specialArgs = {
-          inherit inputs;
-        };
-      };
+      nixzen = baseConfig ./nixzen;
+      lenarth = baseConfig ./lenarth;
+      kalimdar = baseConfig ./kalimdar;
     });
 }
