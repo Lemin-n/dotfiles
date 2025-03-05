@@ -7,8 +7,12 @@
         # Dev-Rust
         taplo
         leptosfmt
-        fenix.complete.toolchain
         rust-analyzer-nightly
+        (fenix.complete.withComponents [
+          "cargo"
+          "clippy"
+          "rustfmt"
+        ])
 
         # Dev-js
         nodejs
@@ -16,6 +20,7 @@
         nodePackages.typescript-language-server
         typescript-language-server
         typescript
+        vue-language-server
 
         # Dev-php
         php

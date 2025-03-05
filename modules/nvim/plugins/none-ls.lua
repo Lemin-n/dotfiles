@@ -52,9 +52,10 @@ none_ls.setup({
 				"--no-multiple-empty-lines",
 			},
 		}),
-		none_ls.builtins.formatting.prettier.with({
+		none_ls.builtins.formatting.prettierd.with({
 			filetypes = {
 				"css",
+				"vue",
 				"scss",
 				"html",
 				"yaml",

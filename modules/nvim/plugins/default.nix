@@ -17,6 +17,7 @@
     cmp_luasnip
     #copilot-cmp
     cmp-nvim-lua
+    nvim-cmp
     nvim-dap
     lsp-inlayhints-nvim
     cmp-nvim-lsp
@@ -31,6 +32,7 @@
     plenary-nvim
     nvim-web-devicons
     telescope-project-nvim
+    trouble-nvim
     nvim-ts-autotag
     nvim-treesitter-endwise
     inc-rename-nvim

@@ -226,7 +226,6 @@ require("lspsaga").setup({
 		sign = false,
 	},
 	diagnostic = {
-		diagnostic_only_current = true,
 		extend_relatedInformation = true,
 	},
 })

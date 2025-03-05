@@ -34,19 +34,14 @@ vim.g.rustaceanvim = {
 					loadOutDirsFromCheck = true,
 					runBuildScripts = true,
 				},
+				diagnostics = {
+					enable = true,
+					["inactive-code"] = false,
+				},
 				checkOnSave = {
 					allFeatures = true,
 					command = "clippy",
-					extraArgs = { "--no-deps" },
-				},
-				procMacro = {
-					ignored = {
-						leptos_macro = {
-							-- Leptos
-							"component",
-							"server",
-						},
-					},
+					--extraArgs = { "--no-deps" },
 				},
 			},
 		},

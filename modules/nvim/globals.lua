@@ -21,22 +21,59 @@ vim.g.syntax = "off"
 vim.diagnostic.config({
 	update_in_insert = true,
 })
---- Keymap setter
-local function keymap(maptype, keybind, binding, mode)
-	mode = mode or { nowait = true, silent = true, noremap = true }
-	vim.api.nvim_set_keymap(maptype, keybind, "<cmd>" .. binding .. "<CR>", mode)
-end
 
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
-	callback = function()
-		vim.cmd(":Lspsaga show_buf_diagnostics ++unfocus")
-	end,
+vim.diagnostic.config({
+	virtual_text = true,
 })
+local float_opts = {
+	modes = {
+		myDiags = {
+			mode = "diagnostics",
+			preview = {
+				type = "float",
+				relative = "cursor",
+				size = { width = 0.4, height = 0.4 },
+			},
+		},
+	},
+}
+
+local trouble = require("trouble")
+trouble.setup(float_opts)
+
+--- Keymap setter
+local function keymap(maptype, keybind, binding_arg, mode_arg)
+	local mode = {}
+	mode["nowait"] = true
+	mode["silent"] = true
+	mode["noremap"] = true
+	if mode_arg ~= {} then
+		mode_arg = {}
+	end
+	for key, value in pairs(mode_arg) do
+		t1[key] = value
+	end
+	local binding = ""
+	if binding_arg ~= "" then
+		binding = "<cmd>" .. binding_arg .. "<CR>"
+	end
+
+	vim.api.nvim_set_keymap(maptype, keybind, binding, mode)
+end
+local trouble_base = ":Trouble diagnostics toggle win.type =float win.relative=cursor focus=true"
+local filter_current = " filter.buf=0 "
+local filter_errors = " filter.severity=vim.diagnostic.severity.ERROR "
+local filter_warns = " filter.severity=vim.diagnostic.severity.WARN "
+
 keymap("n", "<leader>th", ":botright new <Bar> :terminal")
 keymap("n", "<leader>ts", ":botright vnew <Bar> :terminal")
 keymap("n", "<leader>lc", ":Lspsaga code_action")
 keymap("n", "<leader>lh", ":Lspsaga hover_doc")
-keymap("n", "<leader>lw", ":Lspsaga show_workspace_diagnostics")
+keymap("n", "<leader>la", trouble_base)
+keymap("n", "<leader>lw", trouble_base .. filter_warns)
+keymap("n", "<leader>lc", trouble_base .. filter_current)
+keymap("n", "<leader>le", trouble_base .. filter_errors)
+keymap("n", "<leader>lec", trouble_base .. filter_errors .. filter_current)
 keymap("n", "<leader>b", ":bprev")
 keymap("n", "<leader>n", ":bnext")
 keymap("n", "<leader>dt", ":DBUIToggle")
@@ -46,9 +83,6 @@ keymap("n", "<leader>e", ":Lspsaga rename")
 keymap("n", "<leader>tg", ":Telescope live_grep")
 keymap("n", "<leader>tf", ":Telescope find_files")
 keymap("n", "<leader>tb", ":Telescope file_browser")
-vim.diagnostic.config({
-	virtual_text = false,
-})
 -- Markdown preview options
 vim.g.mkdp_open_to_the_world = 1
 vim.g.mkdp_open_ip = "0.0.0.0"
