@@ -26,6 +26,7 @@ in
           fenix.complete.toolchain
           cargo-leptos
           cargo-shuttle
+          bacon
           leptosfmt
           cargo-make
           trunk
