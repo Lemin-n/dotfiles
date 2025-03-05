@@ -12,9 +12,11 @@
     shell = pkgs.nushell;
     groups = ["wheel" "video" "docker" "networkmanager"];
     gitname = "Emilio Ruscitti";
+    virtManager = true;
+    docker = true;
+    gaming = true;
     gitemail = "emiliorccp@gmail.com";
     extraPackages = with pkgs; [
-      protonup
       youtube-tui
       spot
       google-chrome
@@ -28,9 +30,6 @@
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
-  services.xrdp.openFirewall = true;
   boot.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
   boot.kernelParams = ["nvidia_drm.modeset=1" "nvidia_drm.fbdev=1"];
   hardware.nvidia = {
@@ -45,5 +44,5 @@
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  system.stateVersion = " 24.05 "; # Did you read the comment?
+  system.stateVersion = "25.02";
 }

@@ -8,9 +8,10 @@
     shell = pkgs.nushell;
     groups = ["wheel" "video" "docker" "networkmanager"];
     gitname = "Emilio Ruscitti";
+    virtManager = true;
+    docker = true;
     gitemail = "emiliorccp@gmail.com";
     extraPackages = with pkgs; [
-      protonup
       youtube-tui
       spot
       google-chrome
@@ -32,5 +33,5 @@
   boot.initrd.systemd.dbus.enable = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  system.stateVersion = " 24.05 "; # Did you read the comment?
+  system.stateVersion = "25.02";
 }

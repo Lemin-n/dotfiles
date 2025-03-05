@@ -22,7 +22,7 @@
             nixpkgs.config.allowUnfree = true;
             nix.settings.experimental-features = ["nix-command" "flakes"];
 
-            system.stateVersion = "24.05 "; # Did you read the comment?
+            system.stateVersion = "25.02";
             programs.zsh.enable = true;
             home-manager.users.lemi = {pkgs, ...}: {
               imports = [../modules/nvim ../modules/devEnv ../modules/shell ../modules/git];
