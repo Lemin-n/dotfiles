@@ -8,6 +8,7 @@
       "$HOME/.cargo/bin/"
       "$HOME/.npm-global/bin"
       "$HOME/.config/script"
+      "$HOME/.bun/bin/"
     ];
   };
 
