@@ -40,13 +40,16 @@ in
             selection = {
               save_to_clipboard = true;
             };
-            shell = {
-              program = lib.meta.getExe pkgs.zellij;
-
-              args = shellArgs;
+            terminal = {
+              shell = {
+                program = lib.meta.getExe pkgs.zellij;
+                args = shellArgs;
+              };
             };
-            ipc_socket = true;
-            live_config_reload = true;
+            general = {
+              ipc_socket = true;
+              live_config_reload = true;
+            };
             inherit bell colors cursor font hints mouse window;
           };
         };

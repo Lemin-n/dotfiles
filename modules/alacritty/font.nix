@@ -2,5 +2,5 @@
   normal = {
     family = "Comic Mono";
   };
-  size = 10.0;
+  size = 9.0;
 }
