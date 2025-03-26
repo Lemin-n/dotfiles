@@ -13,6 +13,7 @@
     gitemail = "emiliorccp@gmail.com";
     extraPackages = with pkgs; [
       youtube-tui
+      postgresql
       spot
       google-chrome
     ];
