@@ -166,7 +166,6 @@ in {
             grim
             jq
             image-roll
-            postgresql
             neofetch
 
             #onlyoffice-bin
@@ -180,14 +179,15 @@ in {
 
             dbeaver-bin
 
-            steam
-            retroarch
-
             seatd
             qbittorrent
           ]
           ++ zenix.extraPackages
-          ++ pkgs.lib.lists.optionals zenix.gaming [protonup];
+          ++ pkgs.lib.lists.optionals zenix.gaming [
+            protonup
+            retroarch
+            steam
+          ];
       };
       manual = {
         html.enable = false;
