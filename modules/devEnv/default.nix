@@ -23,7 +23,6 @@ in
     config = {
       home.packages = with pkgs.lib.lists;
         optionals cfg.rust (with pkgs; [
-          fenix.complete.toolchain
           cargo-leptos
           cargo-shuttle
           bacon

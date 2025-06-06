@@ -29,7 +29,10 @@
               programs.sss = {
                 enable = true;
               };
-              environment.systemPackages = [config.packages.xwaylandvideobridge inputs.nixpkgs.legacyPackages.${system}.slurp];
+              environment.systemPackages = [
+                #config.packages.xwaylandvideobridge
+                inputs.nixpkgs.legacyPackages.${system}.slurp
+              ];
             }
           ];
         };

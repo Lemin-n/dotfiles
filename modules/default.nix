@@ -73,7 +73,7 @@ in {
         libqt5pas
         xorg.libxcb
         xorg.libX11
-        libsForQt5.qt5.qtwayland
+        kdePackages.qtwayland
       ];
     };
     users.users."${zenix.username}" = {

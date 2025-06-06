@@ -38,6 +38,8 @@ none_ls.setup({
 		none_ls.builtins.formatting.stylua,
 		none_ls.builtins.formatting.alejandra,
 		none_ls.builtins.formatting.leptosfmt,
+		--[[
+		--
 		none_ls.builtins.formatting.biome,
 		none_ls.builtins.formatting.blade_formatter.with({
 			filetypes = {
@@ -65,6 +67,7 @@ none_ls.setup({
 				"txt",
 			},
 		}),
+		--]]
 	},
 	on_attach = on_attach,
 })

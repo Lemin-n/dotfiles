@@ -1,4 +1,59 @@
 --@diagnostic disable: undefined-globals
+local path = os.getenv("PWD")
+local content = ""
+-- Use dotfile instead env vars because nix insolated environment ignore current user env vars
+local feature_file = io.open(path .. "/" .. ".nixzen-rust", "r")
+if feature_file ~= nil then
+	content = feature_file:read("*all")
+end
+local project_features_env = content
+
+local project_features = {}
+
+local function split(str, sep)
+	local result = {}
+	local regex = ("([^%s]+)"):format(sep)
+	for each in str:gmatch(regex) do
+		if each == nil then
+			goto continue
+		end
+		table.insert(result, each)
+		::continue::
+	end
+	if result[0] == nil then
+		table.insert(result, str)
+	end
+	return result
+end
+
+local config = {
+	cargo = {
+		loadOutDirsFromCheck = true,
+		runBuildScripts = true,
+	},
+	diagnostics = {
+		enable = true,
+		["inactive-code"] = false,
+	},
+	checkOnSave = true,
+	check = {
+		command = "clippy",
+		--extraArgs = { "--no-deps" },
+	},
+}
+if project_features_env == nil or project_features_env == "" then
+	config.cargo.all_features = true
+	config.check.all_features = true
+else
+	project_features = split(project_features_env, ",")
+	config.cargo.features = project_features
+	config.check.features = project_features
+end
+
+for _, feature in ipairs(project_features) do
+	print(feature)
+end
+
 require("crates").setup({
 	popup = {
 		border = "rounded",
@@ -28,22 +83,7 @@ vim.g.rustaceanvim = {
 			vim.lsp.inlay_hint.enable()
 		end,
 		default_settings = {
-			["rust-analyzer"] = {
-				cargo = {
-					allFeatures = true,
-					loadOutDirsFromCheck = true,
-					runBuildScripts = true,
-				},
-				diagnostics = {
-					enable = true,
-					["inactive-code"] = false,
-				},
-				checkOnSave = {
-					allFeatures = true,
-					command = "clippy",
-					--extraArgs = { "--no-deps" },
-				},
-			},
+			["rust-analyzer"] = config,
 		},
 	},
 }
