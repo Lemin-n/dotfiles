@@ -33,6 +33,26 @@
   nixpkgs.config.allowUnfree = true;
   boot.initrd.systemd.dbus.enable = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = ["mydatabase"];
+    enableTCPIP = true;
+    # port = 5432;
+    authentication = pkgs.lib.mkOverride 10 ''
+      #...
+      #type database DBuser origin-address auth-method
+      local all       all     trust
+      # ipv4
+      host  all      all     127.0.0.1/32   trust
+      # ipv6
+      host all       all     ::1/128        trust
+    '';
+    initialScript = pkgs.writeText "init" ''
+      CREATE ROLE sias_admin WITH LOGIN PASSWORD 'Iso9001' CREATEDB;
+      CREATE DATABASE sias;
+      GRANT ALL PRIVILEGES ON DATABASE sias TO sias_admin;
+    '';
+  };
 
   system.stateVersion = "25.02";
 }

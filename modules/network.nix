@@ -22,6 +22,10 @@
         #pg
         5432
       ];
+      #Winbox multicast ports
+      allowedUDPPorts = [
+        5678
+      ];
     };
   };
 }
