@@ -2,7 +2,7 @@
 local path = os.getenv("PWD")
 local content = ""
 -- Use dotfile instead env vars because nix insolated environment ignore current user env vars
-local feature_file = io.open(path .. "/" .. ".nixzen-rust", "r")
+local feature_file = io.open(path .. "/" .. ".editor-nvim", "r")
 if feature_file ~= nil then
 	content = feature_file:read("*all")
 end
@@ -48,10 +48,6 @@ else
 	project_features = split(project_features_env, ",")
 	config.cargo.features = project_features
 	config.check.features = project_features
-end
-
-for _, feature in ipairs(project_features) do
-	print(feature)
 end
 
 require("crates").setup({
