@@ -321,3 +321,4 @@ default_layout "compact"
 //
 // theme_dir "/path/to/my/theme_dir"
 
+show_startup_tips false
