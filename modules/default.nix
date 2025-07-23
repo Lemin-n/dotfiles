@@ -161,7 +161,6 @@ in {
             font-manager
 
             anydesk
-            winbox
 
             grim
             jq

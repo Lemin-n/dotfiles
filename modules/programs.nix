@@ -18,6 +18,11 @@ in {
         xwayland.enable = true;
         portalPackage = pkgs.xdg-desktop-portal-hyprland;
       };
+      winbox = {
+        enable = true;
+        package = pkgs.winbox4;
+        openFirewall = true;
+      };
       steam = pkgs.lib.attrsets.optionalAttrs zenixPrograms.steam {
         enable = true;
         remotePlay.openFirewall = true;
