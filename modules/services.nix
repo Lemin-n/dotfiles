@@ -1,53 +1,65 @@
 {
   pkgs,
   self',
+  config,
   ...
-}: {
-  services = {
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-    };
-    # provide location
-    geoclue2.enable = true;
-    printing = {
-      enable = true;
-      drivers = with pkgs; [gutenprint gutenprintBin hplipWithPlugin hplip];
-      webInterface = true;
-    };
+}: let
+  cfg = config.zenvices;
+  lib = pkgs.lib;
+  modules = import ./options.nix {inherit pkgs;};
+in {
+  options.zenvices = {
+    avahi = modules.avahi;
+    printing = modules.printing;
+    ssh = modules.ssh;
+    gui = modules.gui;
+    batteryDevice = modules.batteryDevice;
+    torrent = modules.torrent;
+    ntp = modules.ntp;
+    soundBackend = modules.soundBackend;
+  };
+  config = {
+    services = {
+      avahi = lib.mkIf cfg.avahi {
+        enable = true;
+        nssmdns4 = true;
+      };
+      printing = lib.mkIf cfg.printing.enable {
+        enable = cfg.printing.enable;
+        drivers = cfg.printing.drivers;
+        webInterface = cfg.printing.web;
+      };
 
-    xserver = {
-      xkb = {
-        layout = "
+      xserver = {
+        xkb = {
+          layout = "
           us ";
-        variant = "
+          variant = "
           altgr-intl ";
+        };
       };
-    };
-    openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = true;
-        PermitRootLogin = "no";
+      openssh = lib.mkIf cfg.ssh {
+        enable = cfg.ssh;
+        settings = {
+          PasswordAuthentication = true;
+          PermitRootLogin = "no";
+        };
       };
-    };
-    gnome.gnome-keyring.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      jack.enable = true;
-      pulse.enable = true;
-    };
-    upower.enable = true;
-    dbus = {
-      apparmor = "enabled";
-      implementation = "broker";
-    };
-    ratbagd.enable = true;
-    ntpd-rs = {
-      enable = true;
-      useNetworkingTimeServers = true;
+      gnome.gnome-keyring = lib.mkIf cfg.gui {enable = true;};
+      upower = lib.mkIf cfg.batteryDevice {enable = true;};
+      dbus = {
+        apparmor = "enabled";
+        implementation = "broker";
+      };
+      ntpd-rs = lib.mkIf cfg.ntp {
+        enable = true;
+        useNetworkingTimeServers = true;
+      };
+      jackett = lib.mkIf cfg.torrent {
+        enable = true;
+        dataDir = "/home/jackett";
+        openFirewall = true;
+      };
     };
   };
 }

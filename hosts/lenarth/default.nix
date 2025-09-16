@@ -5,17 +5,73 @@
   ];
   zenix = {
     username = "lemi";
-    shell = pkgs.nushell;
-    groups = ["wheel" "video" "docker" "networkmanager"];
+    configuredShell = {
+      userShell = {
+        shell = pkgs.nushell;
+        scripts = [
+          {
+            name = "config.nu";
+            source = ../../modules/shell/config.nu;
+          }
+          {
+            name = "env.nu";
+            source = ../../modules/shell/env.nu;
+          }
+        ];
+      };
+      zellij = {
+        enable = true;
+        layouts = [
+          {
+            name = "laravel.nu";
+            source = ../../modules/shell/laravel-vite.kdl;
+          }
+          {
+            name = "default.kdl";
+            source = ../../modules/shell/default.nix;
+          }
+          {
+            name = "config.kdl";
+            source = ../../modules/shell/config.kdl;
+          }
+        ];
+      };
+      starship = true;
+      eza = true;
+      ripgrep = true;
+      zoxide = true;
+      bat = true;
+    };
+    groups = [
+      "wheel"
+      "video"
+      "docker"
+      "networkmanager"
+      "wireshark"
+      "audio"
+      "input"
+      "tty"
+      "pipewire"
+    ];
     gitname = "Emilio Ruscitti";
     virtManager = true;
     docker = true;
     gitemail = "emiliorccp@gmail.com";
+    networking = {
+      hostname = "lenarth";
+      winbox = true;
+    };
+    ssh = true;
+    gui = true;
+    bluetooth = true;
     extraPackages = with pkgs; [
-      youtube-tui
+      cargo-flamegraph
+      kdePackages.dolphin
+      kdePackages.dolphin-plugins
+      kdePackages.kio-fuse
+      kdePackages.kio-extras
+      libsForQt5.qt5ct
       postgresql
-      spot
-      google-chrome
     ];
   };
   # Enable OpenGL
@@ -32,7 +88,10 @@
   };
   nixpkgs.config.allowUnfree = true;
   boot.initrd.systemd.dbus.enable = true;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   services.postgresql = {
     enable = true;
     ensureDatabases = ["mydatabase"];

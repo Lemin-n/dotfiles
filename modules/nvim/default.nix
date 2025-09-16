@@ -7,12 +7,12 @@
         # Dev-Rust
         taplo
         leptosfmt
-        rust-analyzer-nightly
-        (fenix.complete.withComponents [
-          "cargo"
-          "clippy"
-          "rustfmt"
-        ])
+        #rust-analyzer-nightly
+        #(fenix.latest.withComponents [
+        #"cargo"
+        #"clippy"
+        #"rustfmt"
+        #])
 
         # Dev-js
         nodejs

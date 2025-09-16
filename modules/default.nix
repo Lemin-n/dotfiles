@@ -6,6 +6,8 @@
 }: let
   zenix = config.zenix;
   system = pkgs.system;
+  modules = import ./options.nix {inherit pkgs;};
+  optionals = pkgs.lib.lists.optionals;
 in {
   imports = [
     ./boot.nix
@@ -13,12 +15,12 @@ in {
     ./fonts.nix
     ./hardware.nix
     ./i18n.nix
+    ./sound.nix
+    ./gaming.nix
     ./network.nix
     ./programs.nix
     ./services.nix
-    ./sound.nix
     ./time.nix
-    ./torrent.nix
     ./virtualisation.nix
     ./xdg.nix
   ];
@@ -27,36 +29,35 @@ in {
     username = mkOption {
       type = types.str;
     };
-    virtManager = mkEnableOption "Enable virt manager for this host";
-    docker = mkEnableOption "Enable docker for this host";
-    touchpad = mkEnableOption "Enable touchpad this host";
-    gaming = mkEnableOption "Enable gaming suite this host";
-    gitname = mkOption {
-      type = types.str;
+    configuredShell = {
+      userShell = modules.userShell;
+      bat = modules.bat;
+      eza = modules.eza;
+      starship = modules.starship;
+      ripgrep = modules.ripgrep;
+      zoxide = modules.zoxide;
+      zellij = modules.zellij;
     };
-    gitemail = mkOption {
-      type = types.str;
-    };
-    normalUser = mkOption {
-      type = types.bool;
-      default = true;
-    };
-    homepath = mkOption {
-      type = types.str;
-      default = "/home/${zenix.username}";
-    };
-    shell = mkOption {
-      type = types.enum [pkgs.zsh pkgs.nushell];
-      default = pkgs.zsh;
-    };
-    groups = mkOption {
-      type = types.listOf types.str;
-      default = [];
-    };
-    extraPackages = mkOption {
-      type = types.listOf types.package;
-      default = [];
-    };
+    virtManager = modules.virtManager;
+    docker = modules.docker;
+    touchpad = modules.touchpad;
+    gaming = modules.gaming;
+    gitname = modules.gitname;
+    gitemail = modules.gitemail;
+    normalUser = modules.normalUser;
+    homepath = modules.homepath zenix.username;
+    groups = modules.groups;
+    extraPackages = modules.extraPackages;
+    avahi = modules.avahi;
+    printing = modules.printing;
+    ssh = modules.ssh;
+    gui = modules.gui;
+    bluetooth = modules.bluetooth;
+    batteryDevice = modules.batteryDevice;
+    torrent = modules.torrent;
+    ntp = modules.ntp;
+    networking = modules.networking;
+    soundBackend = modules.soundBackend;
   };
 
   config = {
@@ -78,8 +79,13 @@ in {
     };
     users.users."${zenix.username}" = {
       isNormalUser = zenix.normalUser;
-      extraGroups = zenix.groups ++ (pkgs.lib.lists.optionals zenix.virtManager ["libvirtd"]);
-      shell = zenix.shell;
+      linger = true;
+      extraGroups =
+        zenix.groups
+        ++ (pkgs.lib.lists.optionals zenix.virtManager ["libvirtd"])
+        ++ ["audio"]
+        ++ (pkgs.lib.lists.optional zenix.networking.wireshark "wireshark");
+      shell = zenix.configuredShell.userShell.shell;
     };
     users.groups.libvirtd.members = pkgs.lib.lists.optionals zenix.virtManager [zenix.username];
     home-manager.backupFileExtension = "backup";
@@ -152,11 +158,11 @@ in {
           source = ../script/screenshot;
         };
 
-        packages = with pkgs;
+        packages = with pkgs; let
+          enabled = bin: (bin && zenix.gaming.enable);
+        in
           [
             docker-compose
-
-            bluez
 
             font-manager
 
@@ -176,17 +182,20 @@ in {
             google-chrome
             brave
 
-            dbeaver-bin
+            #dbeaver-bin
 
             seatd
             qbittorrent
           ]
           ++ zenix.extraPackages
-          ++ pkgs.lib.lists.optionals zenix.gaming [
-            protonup
-            retroarch
+          ++ (lib.lists.optionals zenix.bluetooth [
+            bluez
+          ])
+          ++ optionals (enabled zenix.gaming.steam) [
             steam
-          ];
+          ]
+          ++ optionals (enabled zenix.gaming.heroic) [heroic]
+          ++ optionals (enabled zenix.gaming.retroarch) [retroarch];
       };
       manual = {
         html.enable = false;
@@ -197,16 +206,11 @@ in {
         enable = true;
         name = zenix.username;
       };
-      zenshell = {
-        user = zenix.username;
-        shell = zenix.shell;
-        bat = true;
-        eza = true;
-        starship = true;
-        ripgrep = true;
-        zoxide = true;
-        zellij = true;
-      };
+      zenshell =
+        zenix.configuredShell
+        // {
+          user = zenix.username;
+        };
       devEnv = {
         rust = true;
         tauri = true;
@@ -223,7 +227,7 @@ in {
       };
       alacritty = {
         enable = true;
-        shell = zenix.shell;
+        shell = zenix.configuredShell.userShell.shell;
         name = zenix.username;
       };
       zentube = {
@@ -239,11 +243,25 @@ in {
       virtManager = zenix.virtManager;
       docker = zenix.docker;
     };
+    zenworks = zenix.networking;
+    zenvices = {
+      avahi = zenix.avahi;
+      printing = zenix.printing;
+      ssh = zenix.ssh;
+      gui = zenix.gui;
+      batteryDevice = zenix.batteryDevice;
+      torrent = zenix.torrent;
+      ntp = zenix.ntp;
+    };
     zenixPrograms = {
       hyprland = true;
-      steam = zenix.gaming;
       virtManager = zenix.virtManager;
       light = zenix.touchpad;
+    };
+    gamenix = zenix.gaming;
+    sounix = {
+      bluetooth = zenix.bluetooth;
+      soundBackend = zenix.soundBackend;
     };
   };
 }

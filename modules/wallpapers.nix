@@ -19,11 +19,20 @@ with lib; let
       builtins.map (
         fileConfig: let
           fileName = builtins.baseNameOf fileConfig.source;
-          userLocalFile = builtins.concatStringsSep "/" [fileConfig.customBasePath or basepath fileName];
+          userLocalFile = builtins.concatStringsSep "/" [
+            fileConfig.customBasePath or basepath
+            fileName
+          ];
         in {
           name = userLocalFile;
-          value =
-            builtins.removeAttrs fileConfig ["customBasePath"];
+          value = (
+            builtins.removeAttrs fileConfig ["customBasePath"]
+            // {
+              force = true;
+              recursive = true;
+              enable = true;
+            }
+          );
         }
       )
       staticFiles
@@ -79,8 +88,7 @@ in {
     ];
     #filesResolved = (files ".config/wallpapers");
   in
-    mkIf cfg.enable
-    {
+    mkIf cfg.enable {
       home.file = loadFiles {
         staticFiles = files;
         basepath = ".config/wallpapers";

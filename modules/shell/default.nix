@@ -28,31 +28,37 @@
       };
     };
   };
-  selectedShell = cfg.shell.pname;
+  selectedShell = cfg.userShell.shell.pname;
+  modules = import ../options.nix {inherit pkgs;};
 in {
-  options.zenshell = with lib; {
-    shell = mkOption {
-      type = types.enum [pkgs.zsh pkgs.nushell];
-      default = pkgs.zsh;
-    };
-    user = mkOption {
-      type = types.str;
-    };
-    bat = mkEnableOption "Enable bat util";
-    eza = mkEnableOption "Enable eza util";
-    starship = mkEnableOption "Enable starship util";
-    ripgrep = mkEnableOption "Enable ripgrep util";
-    zoxide = mkEnableOption "Enable zoxide util";
-    zellij = mkEnableOption "Enable zellij util";
+  options.zenshell = {
+    userShell = modules.userShell;
+    bat = modules.bat;
+    eza = modules.eza;
+    starship = modules.starship;
+    ripgrep = modules.ripgrep;
+    zoxide = modules.zoxide;
+    zellij = modules.zellij;
+    user = with lib;
+      mkOption {
+        type = types.str;
+      };
   };
   config = let
     settings = shellConfig."${selectedShell}";
-  in {
+  in rec {
     programs = {
       "${selectedShell}" = settings.config;
       bat = lib.mkIf cfg.bat {
         enable = cfg.bat;
-        extraPackages = with pkgs.bat-extras; [batman batpipe batdiff batgrep batwatch prettybat];
+        extraPackages = with pkgs.bat-extras; [
+          batman
+          batpipe
+          batdiff
+          batgrep
+          batwatch
+          prettybat
+        ];
         config = {
           map-syntax = [
             "*.jenkinsfile:Groovy"
@@ -65,13 +71,20 @@ in {
       };
       eza = lib.mkIf cfg.eza {
         enable = cfg.eza;
-        extraOptions = ["-1lTFgHh" "-L" "1" "--octal-permissions" "-t" "changed"];
+        extraOptions = [
+          "-1lTFgHh"
+          "-L"
+          "1"
+          "--octal-permissions"
+          "-t"
+          "changed"
+        ];
         git = true;
         icons = "auto";
       };
       starship = lib.mkIf cfg.starship {
         enable = cfg.starship;
-        enableZshIntegration = cfg.shell == pkgs.zsh;
+        enableZshIntegration = cfg.userShell.shell == pkgs.zsh;
         settings = {
           add_newline = true;
           format = "$all";
@@ -87,34 +100,45 @@ in {
       };
       zoxide = lib.mkIf cfg.zoxide {
         enable = true;
-        enableZshIntegration = cfg.shell == pkgs.zsh;
+        enableZshIntegration = cfg.userShell.shell == pkgs.zsh;
       };
-      zellij = lib.mkIf cfg.zellij {
+      zellij = lib.mkIf cfg.zellij.enable {
         enable = true;
       };
       ripgrep.enable = cfg.ripgrep;
     };
-    home = with lib; {
-      file = {
-        ".config/zellij/config.kdl" = mkIf cfg.zellij {
-          source = ./config.kdl;
+    home = let
+      toHomeFile =
+        (lib.listToAttrs (
+          lib.lists.map (item: {
+            name = ".config/nushell/" + item.name;
+            value = {
+              force = true;
+              recursive = true;
+              enable = true;
+              source = item.source;
+            };
+          }) (lib.lists.optionals (cfg.userShell.shell == pkgs.nushell) cfg.userShell.scripts)
+        ))
+        // (builtins.listToAttrs (
+          lib.lists.map (item: {
+            name = ".config/zellij/" + item.name;
+            value = {
+              force = true;
+              recursive = true;
+              enable = true;
+              source = item.source;
+            };
+          })
+          cfg.zellij.layouts
+        ))
+        // {
+          ".cache/zoxide/init.nu" = lib.mkIf (cfg.userShell.shell == pkgs.nushell && cfg.zoxide) {
+            source = ./init.nu;
+          };
         };
-        ".config/zellij/layouts/laravel-vite.kdl" = mkIf cfg.zellij {
-          source = ./laravel-vite.kdl;
-        };
-        ".config/zellij/layouts/default.kdl" = mkIf cfg.zellij {
-          source = ./default-layout.kdl;
-        };
-        ".config/nushell/config.nu" = mkIf (cfg.shell == pkgs.nushell) {
-          source = ./config.nu;
-        };
-        ".config/nushell/env.nu" = mkIf (cfg.shell == pkgs.nushell) {
-          source = ./env.nu;
-        };
-        ".cache/zoxide/init.nu" = mkIf (cfg.shell == pkgs.nushell) {
-          source = ./init.nu;
-        };
-      };
+    in {
+      file = toHomeFile;
       inherit (settings.home) packages;
     };
   };

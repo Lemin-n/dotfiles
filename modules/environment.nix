@@ -3,7 +3,9 @@
   inputs,
   ...
 }: {
-  environment.sessionVariables = {
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
     PATH = [
       "$HOME/.cargo/bin/"
       "$HOME/.npm-global/bin"
@@ -11,13 +13,11 @@
       "$HOME/.bun/bin/"
     ];
   };
-
   powerManagement.cpuFreqGovernor = "ondemand";
   environment.systemPackages = with pkgs; [
     # Default
     inputs.agenix.packages.${system}.default
     curl
-    cloudflared
     remmina
     #wrangler
     ripgrep

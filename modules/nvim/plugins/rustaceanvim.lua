@@ -56,16 +56,16 @@ require("crates").setup({
 		show_version_date = true,
 	},
 	completion = {
-		cmp = {
+		--[[cmp = {
 			enabled = true,
-		},
+		},--]]
 		crates = {
 			enabled = true,
 		},
 	},
-	null_ls = {
+	--[[null_ls = {
 		enabled = true,
-	},
+	},--]]
 })
 vim.g.rustaceanvim = {
 	tools = {

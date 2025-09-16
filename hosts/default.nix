@@ -3,9 +3,8 @@
   withSystem,
   ...
 }: {
-  flake.nixosConfigurations =
-    withSystem "x86_64-linux"
-    ({
+  flake.nixosConfigurations = withSystem "x86_64-linux" (
+    {
       system,
       config,
       self',
@@ -29,10 +28,12 @@
               programs.sss = {
                 enable = true;
               };
-              environment.systemPackages = [
-                #config.packages.xwaylandvideobridge
-                inputs.nixpkgs.legacyPackages.${system}.slurp
-              ];
+              environment = {
+                systemPackages = [
+                  #config.packages.xwaylandvideobridge
+                  inputs.nixpkgs.legacyPackages.${system}.slurp
+                ];
+              };
             }
           ];
         };
@@ -40,5 +41,6 @@
       nixzen = baseConfig ./nixzen;
       lenarth = baseConfig ./lenarth;
       kalimdar = baseConfig ./kalimdar;
-    });
+    }
+  );
 }

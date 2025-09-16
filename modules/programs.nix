@@ -8,7 +8,6 @@ in {
   options.zenixPrograms = with pkgs.lib; {
     light = mkEnableOption "Enable light backlight manager for this host";
     hyprland = mkEnableOption "Enable hyprland for this host";
-    steam = mkEnableOption "Enable steam for this host";
     virtManager = mkEnableOption "Enable virt manager for this host";
   };
   config = {
@@ -17,16 +16,6 @@ in {
         enable = true;
         xwayland.enable = true;
         portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      };
-      winbox = {
-        enable = true;
-        package = pkgs.winbox4;
-        openFirewall = true;
-      };
-      steam = pkgs.lib.attrsets.optionalAttrs zenixPrograms.steam {
-        enable = true;
-        remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
       };
       light = pkgs.lib.attrsets.optionalAttrs zenixPrograms.light {
         enable = true;
