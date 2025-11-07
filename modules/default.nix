@@ -71,7 +71,7 @@ in {
     programs.nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        libqt5pas
+        libsForQt5.libqtpas
         xorg.libxcb
         xorg.libX11
         kdePackages.qtwayland
