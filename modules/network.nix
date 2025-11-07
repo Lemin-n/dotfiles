@@ -34,7 +34,6 @@ in {
     environment.systemPackages = with pkgs;
       optionals cfg.wireshark [wireshark]
       ++ optionals cfg.cloudflared [cloudflared]
-      ++ optionals cfg.winbox [winbox]
       ++ optionals cfg.iperf [iperf];
   };
 }
