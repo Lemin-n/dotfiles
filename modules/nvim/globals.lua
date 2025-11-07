@@ -15,7 +15,7 @@ vim.o.updatetime = 100
 vim.o.rnu = true
 vim.o.mouse = "a"
 vim.o.scrolloff = 3
---vim.g.rustfmt_autosave = 1
+vim.g.rustfmt_autosave = 1
 vim.g.skip_ts_context_commentstring_module = true
 vim.g.syntax = "off"
 vim.diagnostic.config({

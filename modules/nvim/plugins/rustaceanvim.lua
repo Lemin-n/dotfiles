@@ -1,4 +1,5 @@
 --@diagnostic disable: undefined-globals
+--vim.lsp.enable("rust_analyzer")
 local path = os.getenv("PWD")
 local content = ""
 -- Use dotfile instead env vars because nix insolated environment ignore current user env vars

@@ -1,11 +1,11 @@
 ---@diagnostic disable: undefined-global
-local lsp_zero = require("lsp-zero")
+--local lsp_zero = require("lsp-zero")
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 --require("copilot_cmp").setup({
 --	fix_pairs = false,
 --})
-lsp_zero.preset("recommended")
+--lsp_zero.preset("recommended")
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.colorProvider = {
@@ -23,7 +23,7 @@ keymap("n", "<leader>ws", "lua vim.lsp.buf.workspace_symbol()")
 keymap("n", "<leader>dn", "lua vim.diagnostic.goto_next()")
 keymap("n", "<leader>dp", "lua vim.diagnostic.goto_prev()")
 --require("rest-nvim").setup({})
-lsp_zero.set_preferences({ set_lsp_keymaps = false, cmp_capabilities = capabilities })
+--lsp_zero.set_preferences({ set_lsp_keymaps = false, cmp_capabilities = capabilities })
 
 -- local cmp_action = lsp_zero.cmp_action()
 cmp.setup({
@@ -116,7 +116,7 @@ cmp.setup({
 		},
 	},
 })
-lsp_zero.setup_servers = {
+--[[lsp_zero.setup_servers = {
 	-- web
 	"tailwindcss",
 	"cssls",
@@ -148,7 +148,8 @@ lsp_zero.format_on_save({
 		["volar"] = { "vue" },
 		["biome"] = { "*" },
 	},
-})
+})]]
+--
 --Rust_lsp = lsp_zero.build_options("rust_analyzer", {
 --	settings = {
 --		["rust-analyzer"] = {
@@ -166,7 +167,54 @@ lsp_zero.format_on_save({
 --	},
 --})
 local lsp = require("lspconfig")
-lsp.lua_ls.setup({})
+lsp.lua_ls.setup({
+	on_init = function(client)
+		if client.workspace_folders then
+			local path = client.workspace_folders[1].name
+			if
+				path ~= vim.fn.stdpath("config")
+				and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+			then
+				return
+			end
+		end
+
+		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most
+				-- likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+				-- Tell the language server how to find Lua modules same way as Neovim
+				-- (see `:h lua-module-load`)
+				path = {
+					"lua/?.lua",
+					"lua/?/init.lua",
+				},
+			},
+			-- Make the server aware of Neovim runtime files
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
+					-- Depending on the usage, you might want to add additional paths
+					-- here.
+					-- '${3rd}/luv/library'
+					-- '${3rd}/busted/library'
+				},
+				-- Or pull in all of 'runtimepath'.
+				-- NOTE: this is a lot slower and will cause issues when working on
+				-- your own configuration.
+				-- See https://github.com/neovim/nvim-lspconfig/issues/3189
+				-- library = {
+				--   vim.api.nvim_get_runtime_file('', true),
+				-- }
+			},
+		})
+	end,
+	settings = {
+		Lua = {},
+	},
+})
 lsp.tailwindcss.setup({
 	filetypes = {
 		"css",
@@ -203,8 +251,8 @@ lsp.nil_ls.setup({
 			binary = "nix",
 			maxMemoryMB = null,
 			flake = {
-				autoArchive = true,
-				autoEvalInputs = true,
+				autoArchive = false,
+				autoEvalInputs = false,
 				nixpkgsInputName = "nixpkgs",
 			},
 		},
@@ -219,6 +267,8 @@ lsp.jsonls.setup({})
 lsp.html.setup({})
 lsp.taplo.setup({})
 lsp.yamlls.setup({})
+--vim.lsp.enable("vue_ls")
+
 require("lspsaga").setup({
 	code_action_lightbulb = { enable = false },
 	lightbulb = {

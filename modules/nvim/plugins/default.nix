@@ -18,6 +18,8 @@
     #copilot-cmp
     cmp-nvim-lua
     nvim-cmp
+    typescript-tools-nvim
+    nvim-vtsls
     nvim-dap
     lsp-inlayhints-nvim
     cmp-nvim-lsp
