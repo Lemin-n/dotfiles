@@ -3,19 +3,22 @@ SSS_OUTDIR="$HOME/screenshots/$(date +%s)"
 if [ "$1" = "window" ]
 then
 echo "window"
-SSS_WINDOW_RANGE="$(hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')"
-	sss --area "$SSS_WINDOW_RANGE" -o "${SSS_OUTDIR}-windowed.png"
-	cat "${SSS_OUTDIR}-windowed.png" | wl-copy
+#SSS_WINDOW_RANGE="$(hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')"
+#	sss --area "$SSS_WINDOW_RANGE" -o "${SSS_OUTDIR}-windowed.png"
+#	cat "${SSS_OUTDIR}-windowed.png" | wl-copy
+grimblast --notify copysave active "${SSS_OUTDIR}-windowed.png"
 fi
 if [ "$1" = "fullscreen" ]
 then
 echo "fullscreen"
-	sss -o "${SSS_OUTDIR}-fullscreen.png"
-	cat "${SSS_OUTDIR}-fullscreen.png" | wl-copy
+#	sss -o "${SSS_OUTDIR}-fullscreen.png"
+#	cat "${SSS_OUTDIR}-fullscreen.png" | wl-copy
+grimblast --notify copysave screen "${SSS_OUTDIR}-fullscreen.png"
 fi
 if [ "$1" = "zone" ]
 then
 echo "zone"
-	sss --area "$(slurp)" -o "${SSS_OUTDIR}-zone.png"
-	cat "${SSS_OUTDIR}-zone.png" | wl-copy
+#	sss --area "$(slurp)" -o "${SSS_OUTDIR}-zone.png"
+#	cat "${SSS_OUTDIR}-zone.png" | wl-copy
+grimblast --notify copysave area "${SSS_OUTDIR}-zone.png"
 fi

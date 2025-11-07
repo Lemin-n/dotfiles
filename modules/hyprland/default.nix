@@ -3,40 +3,35 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   cfg = config.zenprland;
-  hyprpaperWallpaper =
-    basepath: files:
-    let
-      isWallpaper = file: file ? "monitor";
-      hyprpaperConfig = builtins.partition (file: lib.strings.hasPrefix "wallpaper" file) (
-        lib.lists.flatten (
-          builtins.map (
-            file:
-            let
-              preloadConf = "preload=${basepath}/${file.name}";
-              wallpaperConf = "wallpaper=${file.monitor},${basepath}/${file.name}";
-            in
-            if isWallpaper file then
-              [
-                wallpaperConf
-                preloadConf
-              ]
-            else
+  hyprpaperWallpaper = basepath: files: let
+    isWallpaper = file: file ? "monitor";
+    hyprpaperConfig = builtins.partition (file: lib.strings.hasPrefix "wallpaper" file) (
+      lib.lists.flatten (
+        builtins.map (
+          file: let
+            preloadConf = "preload=${basepath}/${file.name}";
+            wallpaperConf = "wallpaper=${file.monitor},${basepath}/${file.name}";
+          in
+            if isWallpaper file
+            then [
+              wallpaperConf
               preloadConf
-          ) files
+            ]
+            else preloadConf
         )
-      );
-    in
+        files
+      )
+    );
+  in
     lib.strings.concatLines (
       lib.lists.flatten [
         hyprpaperConfig.wrong
         hyprpaperConfig.right
       ]
     );
-in
-{
+in {
   options.zenprland = with pkgs.lib; {
     enable = mkEnableOption "Enable Hyprland as main WM";
     main-mod = mkOption {
@@ -54,17 +49,17 @@ in
       type = types.submodule {
         options = {
           layout = mkOption {
-            type = types.enum [ "us" ];
+            type = types.enum ["us"];
             default = "us";
           };
           variant = mkOption {
-            type = types.enum [ "altgr-intl" ];
+            type = types.enum ["altgr-intl"];
             default = "altgr-intl";
           };
         };
-        config = { };
+        config = {};
       };
-      default = { };
+      default = {};
     };
     layout = mkOption {
       type = types.enum [
@@ -81,6 +76,7 @@ in
 
   config = {
     home.packages = with pkgs; [
+      grimblast
       hyprpaper
       hyprpicker
       wl-clipboard
@@ -140,7 +136,7 @@ in
     wayland.windowManager.hyprland = pkgs.lib.mkIf cfg.enable {
       systemd = {
         enableXdgAutostart = true;
-        variables = [ "--all" ];
+        variables = ["--all"];
       };
       enable = true;
       settings = {
@@ -221,10 +217,10 @@ in
         };
 
         /*
-            gestures = {
-            # See https://wiki.hyprland.org/Configuring/Variables/ for more
-            workspace_swipe = "on";
-          };
+          gestures = {
+          # See https://wiki.hyprland.org/Configuring/Variables/ for more
+          workspace_swipe = "on";
+        };
         */
         "$escMod" = "code:9";
         "$minus" = "code:20";
