@@ -22,12 +22,6 @@
             inputs.hm.nixosModules.default
             module
             {
-              imports = [
-                inputs.sss.nixosModules.default
-              ];
-              programs.sss = {
-                enable = true;
-              };
               environment = {
                 systemPackages = [
                   #config.packages.xwaylandvideobridge

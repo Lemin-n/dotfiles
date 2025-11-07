@@ -81,10 +81,6 @@ in {
         source = ../script/partstats;
         customBasePath = ".config/script";
       }
-      {
-        source = ../config.toml;
-        customBasePath = ".config/sss/";
-      }
     ];
     #filesResolved = (files ".config/wallpapers");
   in

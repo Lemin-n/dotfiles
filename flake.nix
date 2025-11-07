@@ -58,10 +58,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sss = {
-      url = "github:SergioRibera/sss?rev=15e46e961286c62d56f6b8e2e2d818ef194b02ac";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
