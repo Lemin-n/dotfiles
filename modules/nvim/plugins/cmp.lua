@@ -167,6 +167,7 @@ lsp_zero.format_on_save({
 --	},
 --})
 local lsp = require("lspconfig")
+vim.deprecate = function() end
 lsp.lua_ls.setup({
 	on_init = function(client)
 		if client.workspace_folders then
