@@ -1,6 +1,7 @@
-{pkgs, ...}:
-with pkgs.vimPlugins; {
-  plugin = lsp-zero-nvim;
+{ pkgs, ... }:
+with pkgs.vimPlugins;
+{
+  plugin = nvim-cmp;
   type = "lua";
   config =
     pkgs.lib.strings.fileContents ./cmp.lua

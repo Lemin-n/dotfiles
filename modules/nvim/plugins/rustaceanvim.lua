@@ -10,7 +10,23 @@ end
 local project_features_env = content
 
 local project_features = {}
-
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.rs", -- Apply to all new files
+	callback = function()
+		local rust_analyzer_id = nil
+		for _, client in pairs(vim.lsp.get_clients()) do
+			if client.name ~= "rust_analyzer" then
+				rust_analyzer_id = client.id
+			end
+		end
+		if rust_analyzer_id then
+			if vim.lsp.buf_is_attached(0, rust_analyzer_id) then
+				return
+			end
+			vim.lsp.buf_attach_client(0, rust_analyzer_id)
+		end
+	end,
+})
 local function split(str, sep)
 	local result = {}
 	local regex = ("([^%s]+)"):format(sep)
@@ -29,7 +45,7 @@ end
 
 local config = {
 	cargo = {
-		loadOutDirsFromCheck = true,
+		--loadOutDirsFromCheck = true,
 		runBuildScripts = true,
 	},
 	diagnostics = {
@@ -76,6 +92,12 @@ vim.g.rustaceanvim = {
 		enable_clippy = true,
 	},
 	server = {
+		auto_attach = function(bufnr)
+			if #vim.bo[bufnr].buftype > 0 then
+				return false
+			end
+			return true
+		end,
 		on_attach = function()
 			vim.lsp.inlay_hint.enable()
 		end,

@@ -8,6 +8,7 @@ local lspkind = require("lspkind")
 --lsp_zero.preset("recommended")
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+--capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 capabilities.textDocument.colorProvider = {
 	dynamicRegistration = true,
 }
@@ -24,6 +25,45 @@ keymap("n", "<leader>dn", "lua vim.diagnostic.goto_next()")
 keymap("n", "<leader>dp", "lua vim.diagnostic.goto_prev()")
 --require("rest-nvim").setup({})
 --lsp_zero.set_preferences({ set_lsp_keymaps = false, cmp_capabilities = capabilities })
+local allowed_lsp = { "biome", "tsserver", "rust_analyzer", "rust-analyzer", "lua_ls", "tailwindcss", "nil_ls", "taplo" }
+local function has_value(tab, val)
+	for index, value in ipairs(tab) do
+		if value == val then
+			return true
+		end
+	end
+
+	return false
+end
+
+local on_attach = function(client, bufnr)
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint.enable()
+	end
+	if client.server_capabilities.textDocument then
+		vim.lsp.inlay_hint.enable()
+	end
+	if has_value(allowed_lsp, client.name) then
+		client.server_capabilities.documentFormattingProvider = true
+	end
+	if client.supports_method("textDocument/formatting") then
+		-- A
+	end
+end
+vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = augroup,
+	buffer = bufnr,
+	callback = function()
+		-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+		vim.lsp.buf.format({
+			async = false,
+			filter = function(client)
+				return has_value(allowed_lsp, client.name)
+			end,
+		})
+	end,
+})
 
 -- local cmp_action = lsp_zero.cmp_action()
 cmp.setup({
@@ -58,17 +98,17 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "path", priority = 5 },
-		{ name = "luasnip", priority = 5 },
-		{ name = "emoji", priority = 5 },
-		{ name = "npm", priority = 5 },
+		{ name = "path",                  priority = 5 },
+		{ name = "luasnip",               priority = 5 },
+		{ name = "emoji",                 priority = 5 },
+		{ name = "npm",                   priority = 5 },
 		{ name = "vim-dadbod-completion", priority = 1 },
-		{ name = "nvim_lua", priority = 5 },
-		{ name = "buffer", keyword_length = 2, priority = 5 },
-		{ name = "nvim_lsp", priority = 1 },
-		{ name = "conventionalcommits", priority = 1 },
+		{ name = "nvim_lua",              priority = 5 },
+		{ name = "buffer",                keyword_length = 2, priority = 5 },
+		{ name = "nvim_lsp",              priority = 1 },
+		{ name = "conventionalcommits",   priority = 1 },
 		--{ name = "copilot",             priority = -100 },
-		{ name = "crates", priority = 4 },
+		{ name = "crates",                priority = 4 },
 	},
 	formatting = {
 		format = lspkind.cmp_format({
@@ -173,8 +213,8 @@ lsp.lua_ls.setup({
 		if client.workspace_folders then
 			local path = client.workspace_folders[1].name
 			if
-				path ~= vim.fn.stdpath("config")
-				and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+			    path ~= vim.fn.stdpath("config")
+			    and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
 			then
 				return
 			end
@@ -260,7 +300,7 @@ lsp.nil_ls.setup({
 	},
 })
 lsp.pyright.setup({})
-lsp.biome.setup({})
+lsp.biome.setup({ on_attach = on_attach })
 lsp.intelephense.setup({
 	single_file_support = true,
 })
@@ -299,7 +339,7 @@ require("colorizer").setup({
 		mode = "background", -- Set the display mode.
 		-- Available methods are false / true / "normal" / "lsp" / "both"
 		-- True is same as normal
-		tailwind = true, -- Enable tailwind colors
+		tailwind = true,                  -- Enable tailwind colors
 		sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
 		virtualtext = "■",
 		always_update = true,

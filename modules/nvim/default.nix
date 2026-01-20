@@ -53,7 +53,6 @@
         zls
 
         # Dev-web
-        biome
         nodePackages.tailwindcss
         nodePackages.prettier
         nodePackages."@tailwindcss/language-server"
