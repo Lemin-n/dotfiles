@@ -1,3 +1,11 @@
-{pkgs, ...}: {
-  fonts.packages = with pkgs; [comic-mono] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+{ pkgs, ... }:
+{
+  fonts.packages =
+    with pkgs;
+    [ comic-mono ]
+    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)
+    ++ [
+      corefonts
+      ipafont
+    ];
 }
