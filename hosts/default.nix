@@ -2,16 +2,19 @@
   inputs,
   withSystem,
   ...
-}: {
+}:
+{
   flake.nixosConfigurations = withSystem "x86_64-linux" (
     {
       system,
       config,
       self',
       ...
-    }: let
+    }:
+    let
       inherit (inputs.nixpkgs.lib) nixosSystem;
-      baseConfig = module:
+      baseConfig =
+        module:
         nixosSystem {
           inherit system;
 
@@ -31,7 +34,8 @@
             }
           ];
         };
-    in {
+    in
+    {
       nixzen = baseConfig ./nixzen;
       lenarth = baseConfig ./lenarth;
       kalimdar = baseConfig ./kalimdar;

@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  imports = [./plugins];
+{ pkgs, ... }:
+{
+  imports = [ ./plugins ];
   config = {
     programs.neovim = {
       enable = true;
@@ -66,7 +67,7 @@
       # Override vim opt and globals
       # Override Keymaps
       # Mk Preview
-      extraLuaConfig = pkgs.lib.strings.fileContents ./globals.lua;
+      initLua = pkgs.lib.strings.fileContents ./globals.lua;
     };
   };
 }

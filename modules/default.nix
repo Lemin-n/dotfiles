@@ -3,12 +3,14 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   zenix = config.zenix;
   system = pkgs.system;
-  modules = import ./options.nix {inherit pkgs;};
+  modules = import ./options.nix { inherit pkgs; };
   optionals = pkgs.lib.lists.optionals;
-in {
+in
+{
   imports = [
     ./boot.nix
     ./environment.nix
@@ -62,10 +64,9 @@ in {
 
   config = {
     nixpkgs.overlays = [
-      inputs.wired.overlays.default
+      inputs.antigravity-nix.overlays.default
     ];
     home-manager.sharedModules = [
-      inputs.wired.homeManagerModules.default
       inputs.niri.homeModules.niri
     ];
     programs.nix-ld = {
@@ -82,163 +83,165 @@ in {
       linger = true;
       extraGroups =
         zenix.groups
-        ++ (pkgs.lib.lists.optionals zenix.virtManager ["libvirtd"])
-        ++ ["audio"]
+        ++ (pkgs.lib.lists.optionals zenix.virtManager [ "libvirtd" ])
+        ++ [ "audio" ]
         ++ (pkgs.lib.lists.optional zenix.networking.wireshark "wireshark");
       shell = zenix.configuredShell.userShell.shell;
     };
-    users.groups.libvirtd.members = pkgs.lib.lists.optionals zenix.virtManager [zenix.username];
+    users.groups.libvirtd.members = pkgs.lib.lists.optionals zenix.virtManager [ zenix.username ];
     home-manager.backupFileExtension = "backup";
-    home-manager.users.${zenix.username} = {pkgs, ...}: {
-      services.wired = {
-        package = inputs.wired.packages.${system}.default;
-        enable = true;
-      };
-      dconf.settings = pkgs.lib.attrsets.optionalAttrs zenix.virtManager {
-        "org/virt-manager/virt-manager/connections" = {
-          autoconnect = ["qemu:///system"];
-          uris = ["qemu:///system"];
+    home-manager.users.${zenix.username} =
+      { pkgs, ... }:
+      {
+        dconf.settings = pkgs.lib.attrsets.optionalAttrs zenix.virtManager {
+          "org/virt-manager/virt-manager/connections" = {
+            autoconnect = [ "qemu:///system" ];
+            uris = [ "qemu:///system" ];
+          };
         };
-      };
-      imports = [
-        ./alacritty
-        ./shell
+        imports = [
+          ./alacritty
+          ./shell
 
-        # Bins
-        ./htop
-        ./git
+          # Bins
+          ./htop
+          ./git
 
-        # Dev env
-        ./nvim
-        ./devEnv
+          # Dev env
+          ./nvim
+          ./devEnv
 
-        # Wayland config, unify all in one
-        ./hyprland
-        ./wofi
-        ./waybar
+          # Wayland config, unify all in one
+          ./hyprland
+          ./wofi
+          ./waybar
 
-        # X11 config, unify all in one
-        ./rofi
-        ./feh
+          # X11 config, unify all in one
+          ./rofi
+          ./feh
 
-        # Utils
-        ./socials
-        ./wallpapers.nix
-        ./youtube
-      ];
+          # Utils
+          ./socials
+          ./wallpapers.nix
+          ./youtube
+        ];
 
-      nixpkgs.config.allowUnfree = true;
-      nixpkgs.overlays = [inputs.fenix.overlays.default];
-      programs.home-manager.enable = true;
-      #programs.niri = {
-      #	enable = true;
-      # settings = {
-      #   prefer-no-csd = true;
-      #   hotkey-overlay.skip-at-startup = true;
-      #   environment = {
-      #     DISPLAY = ":0";
-      #   };
-      #   spawn-at-startup = [
-      #     {command = ["alacritty"];}
-      #     {command = ["brave"];}
-      #   ];
-      #   binds = {
-      #     "Mod+Ctrl+Escape".action.quit.skip-confirmation = true;
-      #   };
-      # };
-      # };
-      home = {
-        stateVersion = "24.05";
+        nixpkgs.config.allowUnfree = true;
+        nixpkgs.overlays = [ inputs.fenix.overlays.default ];
+        programs.home-manager.enable = true;
+        #programs.niri = {
+        #	enable = true;
+        # settings = {
+        #   prefer-no-csd = true;
+        #   hotkey-overlay.skip-at-startup = true;
+        #   environment = {
+        #     DISPLAY = ":0";
+        #   };
+        #   spawn-at-startup = [
+        #     {command = ["alacritty"];}
+        #     {command = ["brave"];}
+        #   ];
+        #   binds = {
+        #     "Mod+Ctrl+Escape".action.quit.skip-confirmation = true;
+        #   };
+        # };
+        # };
+        home = {
+          stateVersion = "24.05";
 
-        username = zenix.username;
-        homeDirectory = zenix.homepath;
-        # Iterate over zellij config file, layout and plugin folder
-        file.".config/script/screenshot" = {
-          executable = true;
-          source = ../script/screenshot;
+          username = zenix.username;
+          homeDirectory = zenix.homepath;
+          # Iterate over zellij config file, layout and plugin folder
+          file.".config/script/screenshot" = {
+            executable = true;
+            source = ../script/screenshot;
+          };
+
+          packages =
+            with pkgs;
+            let
+              enabled = bin: (bin && zenix.gaming.enable);
+            in
+            [
+              wired
+              docker-compose
+
+              font-manager
+
+              anydesk
+
+              grim
+              jq
+              image-roll
+              neofetch
+
+              #onlyoffice-bin
+
+              spot
+              spotifyd
+              spotify
+
+              google-chrome
+              brave
+
+              #dbeaver-bin
+
+              seatd
+              qbittorrent
+            ]
+            ++ zenix.extraPackages
+            ++ (lib.lists.optionals zenix.bluetooth [
+              bluez
+            ])
+            ++ optionals (enabled zenix.gaming.steam) [
+              steam
+            ]
+            ++ optionals (enabled (zenix.gaming.steam or zenix.gaming.heroic)) [
+              protonplus
+            ]
+            ++ optionals (enabled zenix.gaming.heroic) [ heroic ]
+            ++ optionals (enabled zenix.gaming.retroarch) [ retroarch ];
         };
-
-        packages = with pkgs; let
-          enabled = bin: (bin && zenix.gaming.enable);
-        in
-          [
-            docker-compose
-
-            font-manager
-
-            anydesk
-
-            grim
-            jq
-            image-roll
-            neofetch
-
-            #onlyoffice-bin
-
-            spot
-            spotifyd
-            spotify
-
-            google-chrome
-            brave
-
-            #dbeaver-bin
-
-            seatd
-            qbittorrent
-          ]
-          ++ zenix.extraPackages
-          ++ (lib.lists.optionals zenix.bluetooth [
-            bluez
-          ])
-          ++ optionals (enabled zenix.gaming.steam) [
-            steam
-          ]
-          ++ optionals (enabled zenix.gaming.heroic) [heroic]
-          ++ optionals (enabled zenix.gaming.retroarch) [retroarch];
-      };
-      manual = {
-        html.enable = false;
-        json.enable = false;
-        manpages.enable = false;
-      };
-      wallpapers = {
-        enable = true;
-        name = zenix.username;
-      };
-      zenshell =
-        zenix.configuredShell
-        // {
+        manual = {
+          html.enable = false;
+          json.enable = false;
+          manpages.enable = false;
+        };
+        wallpapers = {
+          enable = true;
+          name = zenix.username;
+        };
+        zenshell = zenix.configuredShell // {
           user = zenix.username;
         };
-      devEnv = {
-        rust = true;
-        tauri = true;
-        lua = true;
-        bun = true;
-        php = true;
-        python = true;
+        devEnv = {
+          rust = true;
+          tauri = true;
+          lua = true;
+          bun = true;
+          php = true;
+          python = true;
+        };
+        zenprland = {
+          enable = true;
+          touchpad = zenix.touchpad;
+          username = zenix.username;
+          rounding = 0;
+        };
+        alacritty = {
+          enable = true;
+          shell = zenix.configuredShell.userShell.shell;
+          name = zenix.username;
+        };
+        zentube = {
+          music = true;
+        };
+        zengit = {
+          enable = true;
+          userName = zenix.gitname;
+          userEmail = zenix.gitemail;
+        };
       };
-      zenprland = {
-        enable = true;
-        touchpad = zenix.touchpad;
-        username = zenix.username;
-        rounding = 0;
-      };
-      alacritty = {
-        enable = true;
-        shell = zenix.configuredShell.userShell.shell;
-        name = zenix.username;
-      };
-      zentube = {
-        music = true;
-      };
-      zengit = {
-        enable = true;
-        userName = zenix.gitname;
-        userEmail = zenix.gitemail;
-      };
-    };
     virt = {
       virtManager = zenix.virtManager;
       docker = zenix.docker;

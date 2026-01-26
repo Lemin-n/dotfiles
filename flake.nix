@@ -1,43 +1,46 @@
 {
   description = "Nixzen configuration";
-  outputs = inputs:
+  outputs =
+    inputs:
     inputs.flake-parts.lib.mkFlake
-    {
-      inherit inputs;
-    }
-    {
-      systems = ["x86_64-linux"];
+      {
+        inherit inputs;
+      }
+      {
+        systems = [ "x86_64-linux" ];
 
-      imports = [
-        ./hosts
-        ./pkgs
-        ./vm
-      ];
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            alejandra
-            git
-          ];
-          name = "Zenparadise";
-          DIRENV_LOG_FORMAT = "";
-        };
-        # Nix Formatter
-        formatter = pkgs.alejandra;
+        imports = [
+          ./hosts
+          ./pkgs
+          ./vm
+        ];
+        perSystem =
+          {
+            config,
+            pkgs,
+            ...
+          }:
+          {
+            devShells.default = pkgs.mkShell {
+              packages = with pkgs; [
+                alejandra
+                git
+              ];
+              name = "Zenparadise";
+              DIRENV_LOG_FORMAT = "";
+            };
+            # Nix Formatter
+            formatter = pkgs.alejandra;
+          };
       };
-    };
 
   inputs = {
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    wired = {
-      url = "github:Toqozz/wired-notify";
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {

@@ -11,12 +11,10 @@
       lib.lists.flatten (
         builtins.map (
           file: let
-            preloadConf = "preload=${basepath}/${file.name}";
-            wallpaperConf = "wallpaper=${file.monitor},${basepath}/${file.name}";
+            preloadConf = "wallpaper {\n\tmonitor = ${file.monitor or ""}\n\tpath = ${basepath}/${file.name}\n\tfit_mode = cover\n}";
           in
             if isWallpaper file
             then [
-              wallpaperConf
               preloadConf
             ]
             else preloadConf

@@ -2,10 +2,12 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.gamenix;
-  modules = import ./options.nix {inherit pkgs;};
-in {
+  modules = import ./options.nix { inherit pkgs; };
+in
+{
   options.gamenix = modules.gaming;
   config = {
     programs = {
