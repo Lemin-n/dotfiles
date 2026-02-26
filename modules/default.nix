@@ -156,6 +156,84 @@ in
             executable = true;
             source = ../script/screenshot;
           };
+          file.".config/script/ssheleport" =
+            let
+              script = pkgs.writeShellScript "wofi-ssh" ''
+                CONFIG="${zenix.homepath}/.config/wofi/remote.ssh"
+                CONFIG_DIR="${zenix.homepath}/.config/wofi"
+                DEFAULT_ICON="$CONFIG_DIR/default-icon.png"
+                TERM_EMU="${pkgs.lib.meta.getExe pkgs.alacritty} --command ${pkgs.lib.meta.getExe pkgs.bash} -c"
+
+                ITEMS=""
+                name=""
+                host=""
+                user=""
+                icon=""
+                extra_args=""
+
+                process_item() {
+                    if [ -n "$name" ] && [ -n "$host" ]; then
+                        [ -z "$user" ] && user="$USER"
+                        
+                        if [ -z "$icon" ]; then
+                            icon="$DEFAULT_ICON"
+                        else
+                            eval "resolved_icon=$icon"
+                            case "$resolved_icon" in
+                                /*) 
+                                    [ ! -f "$resolved_icon" ] && icon="$DEFAULT_ICON" || icon="$resolved_icon"
+                                    ;;
+                                *) 
+                                    [ ! -f "$CONFIG_DIR/$resolved_icon" ] && icon="$DEFAULT_ICON" || icon="$CONFIG_DIR/$resolved_icon"
+                                    ;;
+                            esac
+                        fi
+                        ITEMS="$ITEMS$name,$host,$user,$icon,$extra_args\n"
+                    fi
+                }
+
+                while IFS= read -r line || [ -n "$line" ]; do
+                    case "$line" in
+                        \[*\])
+                            process_item
+                            name=$(echo "$line" | sed 's/^\[\(.*\)\]$/\1/')
+                            host=""
+                            user=""
+                            icon=""
+                            extra_args=""
+                            ;;
+                        host=*) host="''${line#host=}" ;;
+                        user=*) user="''${line#user=}" ;;
+                        icon=*) icon="''${line#icon=}" ;;
+                        extra_args=*) extra_args="''${line#extra_args=}" ;;
+                    esac
+                done < "$CONFIG"
+                process_item
+
+                WOFI_INPUT=$(printf "%b" "$ITEMS" | while IFS=, read -r i_name i_host i_user i_icon i_extra; do
+                    [ -n "$i_name" ] && printf "img:%s:text:%s\n" "$i_icon" "$i_name"
+                done)
+
+                SELECTION=$(echo "$WOFI_INPUT" | ${pkgs.lib.meta.getExe pkgs.wofi} --dmenu --allow-images -p "SSH:")
+                [ -z "$SELECTION" ] && exit 0
+
+                TARGET="''${SELECTION##*:text:}"
+
+                SELECTED_ITEM=$(printf "%b" "$ITEMS" | grep "^$TARGET,")
+                host=$(echo "$SELECTED_ITEM" | cut -d',' -f2)
+                user=$(echo "$SELECTED_ITEM" | cut -d',' -f3)
+                extra_args=$(echo "$SELECTED_ITEM" | cut -d',' -f5-)
+
+                PASS=$(echo "" | ${pkgs.lib.meta.getExe pkgs.wofi} --dmenu --password -p "Password ($user@$host):")
+                [ -z "$PASS" ] && exit 0
+
+                $TERM_EMU "${pkgs.lib.meta.getExe pkgs.sshpass} -p '$PASS' ${pkgs.lib.meta.getExe pkgs.openssh} -t $user@$host $extra_args"
+              '';
+            in
+            {
+              executable = true;
+              source = script;
+            };
 
           packages =
             with pkgs;
