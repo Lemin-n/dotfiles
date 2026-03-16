@@ -2,9 +2,11 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   zenixPrograms = config.zenixPrograms;
-in {
+in
+{
   options.zenixPrograms = with pkgs.lib; {
     light = mkEnableOption "Enable light backlight manager for this host";
     hyprland = mkEnableOption "Enable hyprland for this host";
@@ -16,9 +18,6 @@ in {
         enable = true;
         xwayland.enable = true;
         portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      };
-      light = pkgs.lib.attrsets.optionalAttrs zenixPrograms.light {
-        enable = true;
       };
       virt-manager.enable = zenixPrograms.virtManager;
     };

@@ -251,7 +251,7 @@ in
               grim
               jq
               image-roll
-              neofetch
+              fastfetch
 
               #onlyoffice-bin
 
@@ -271,6 +271,7 @@ in
             ++ (lib.lists.optionals zenix.bluetooth [
               bluez
             ])
+            ++ lib.lists.optionals zenix.touchpad [ brightnessctl ]
             ++ optionals (enabled zenix.gaming.steam) [
               steam
             ]
