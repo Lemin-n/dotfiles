@@ -73,8 +73,8 @@ in
       enable = true;
       libraries = with pkgs; [
         libsForQt5.libqtpas
-        xorg.libxcb
-        xorg.libX11
+        libxcb
+        libX11
         kdePackages.qtwayland
       ];
     };

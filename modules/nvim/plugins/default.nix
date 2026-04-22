@@ -41,7 +41,7 @@
     inc-rename-nvim
     #rest-nvim
     #(import ./copilot.nix {inherit pkgs;})
-    (import ./tree-sitter.nix { inherit pkgs; })
+    #(import ./tree-sitter.nix { inherit pkgs; })
     (import ./autopairs.nix { inherit pkgs; })
     # (import ./nvim-tree.nix {inherit pkgs;})
     (import ./cmp.nix { inherit pkgs; })

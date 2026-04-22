@@ -3,11 +3,13 @@
   self',
   config,
   ...
-}: let
+}:
+let
   cfg = config.sounix;
   lib = pkgs.lib;
-  modules = import ./options.nix {inherit pkgs;};
-in {
+  modules = import ./options.nix { inherit pkgs; };
+in
+{
   options.sounix = {
     bluetooth = modules.bluetooth;
     soundBackend = modules.soundBackend;
@@ -34,7 +36,7 @@ in {
         jack.enable = true;
         pulse.enable = true;
       };
-      blueman = lib.mkIf cfg.bluetooth {enable = true;};
+      blueman = lib.mkIf cfg.bluetooth { enable = true; };
     };
     hardware = {
       bluetooth = lib.mkIf cfg.bluetooth {
@@ -43,6 +45,7 @@ in {
         hsphfpd.enable = cfg.soundBackend != "pipewire";
         settings = {
           General = {
+            ControllerMode = "bredr";
             Experimental = true;
             FastConnectable = true;
             Enable = "Source,Sink,Media,Socket";
@@ -53,7 +56,7 @@ in {
         };
       };
     };
-    security.rtkit = lib.mkIf (cfg.soundBackend == "pipewire") {enable = true;};
+    security.rtkit = lib.mkIf (cfg.soundBackend == "pipewire") { enable = true; };
     #systemd.user.services.wireplumber.wantedBy = lib.lists.optionals (cfg.soundBackend == "pipewire") #[
     #"default.target"
     #];

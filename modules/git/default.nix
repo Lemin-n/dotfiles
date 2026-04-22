@@ -24,6 +24,7 @@ in
     programs = {
       git = pkgs.lib.mkIf cfg.enable {
         enable = true;
+        signing.format = "openpgp";
         settings = {
           user = {
             name = cfg.userName;

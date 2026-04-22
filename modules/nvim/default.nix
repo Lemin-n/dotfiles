@@ -18,14 +18,14 @@
         # Dev-js
         nodejs
         deno
-        nodePackages.typescript-language-server
+        typescript-language-server
         typescript-language-server
         typescript
         vue-language-server
 
         # Dev-php
         php
-        nodePackages.intelephense
+        intelephense
 
         # Dev-python
         python3
@@ -48,19 +48,22 @@
 
         # Self-Dif ~ Data Interchange Format
         taplo
-        nodePackages.yaml-language-server
+        yaml-language-server
 
         # Dev-Zig
         zls
 
         # Dev-web
-        nodePackages.tailwindcss
-        nodePackages.prettier
-        nodePackages."@tailwindcss/language-server"
+        tailwindcss
+        prettier
+        #"@tailwindcss/language-server"
         vscode-langservers-extracted
       ];
       viAlias = true;
       vimAlias = true;
+      withRuby = false;
+      withPython3 = false;
+
       extraConfig = ''
         set noswapfile
       '';
