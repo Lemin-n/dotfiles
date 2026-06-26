@@ -17,7 +17,6 @@
   powerManagement.cpuFreqGovernor = "ondemand";
   environment.systemPackages = with pkgs; [
     # Default
-    inputs.antigravity-nix.packages.x86_64-linux.default
     inputs.agenix.packages.${system}.default
     curl
     remmina

@@ -125,6 +125,12 @@ in
           ./wallpapers.nix
           ./youtube
         ];
+        services = {
+
+          ssh-agent = {
+            enable = true;
+          };
+        };
 
         nixpkgs.config.allowUnfree = true;
         nixpkgs.overlays = [ inputs.fenix.overlays.default ];
@@ -246,7 +252,7 @@ in
 
               font-manager
 
-              anydesk
+              #anydesk
 
               grim
               jq

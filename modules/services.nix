@@ -3,11 +3,13 @@
   self',
   config,
   ...
-}: let
+}:
+let
   cfg = config.zenvices;
   lib = pkgs.lib;
-  modules = import ./options.nix {inherit pkgs;};
-in {
+  modules = import ./options.nix { inherit pkgs; };
+in
+{
   options.zenvices = {
     avahi = modules.avahi;
     printing = modules.printing;
@@ -29,7 +31,6 @@ in {
         drivers = cfg.printing.drivers;
         webInterface = cfg.printing.web;
       };
-
       xserver = {
         xkb = {
           layout = "
@@ -45,8 +46,8 @@ in {
           PermitRootLogin = "no";
         };
       };
-      gnome.gnome-keyring = lib.mkIf cfg.gui {enable = true;};
-      upower = lib.mkIf cfg.batteryDevice {enable = true;};
+      gnome.gnome-keyring = lib.mkIf cfg.gui { enable = true; };
+      upower = lib.mkIf cfg.batteryDevice { enable = true; };
       dbus = {
         apparmor = "enabled";
         implementation = "broker";
