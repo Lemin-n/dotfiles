@@ -57,8 +57,8 @@ in
       };
     };
     security.rtkit = lib.mkIf (cfg.soundBackend == "pipewire") { enable = true; };
-    #systemd.user.services.wireplumber.wantedBy = lib.lists.optionals (cfg.soundBackend == "pipewire") #[
-    #"default.target"
-    #];
+    systemd.user.services.wireplumber.wantedBy = lib.lists.optionals (cfg.soundBackend == "pipewire") [
+      "default.target"
+    ];
   };
 }
